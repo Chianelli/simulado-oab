@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado OAB Pro - Versão Corrigida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .correct { border: 3px solid #10b981 !important; background-color: #ecfdf5 !important; }
+        .wrong { border: 3px solid #ef4444 !important; background-color: #fef2f2 !important; }
+        .sidebar-correct { background-color: #10b981 !important; color: white !important; border: none !important; }
+        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; border: none !important; }
+        .sidebar-review { background-color: #f59e0b !important; color: white !important; border: none !important; }
+        .sidebar-active { outline: 3px solid #3b82f6; outline-offset: 2px; }
+        .hidden { display: none !important; }
+        .option-btn:disabled { opacity: 1; cursor: default; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-gray-900">
+
+    <div id="home-screen" class="max-w-2xl mx-auto mt-20 p-6 text-center">
+        <h1 class="text-4xl font-black text-blue-600 mb-2 italic">OAB SIMULADOS</h1>
+        <p class="text-slate-500 font-medium mb-10">Análise de desempenho e Revisão de Chutes</p>
+        <button onclick="startQuiz()" class="p-8 bg-white border-2 border-blue-600 rounded-2xl shadow-xl hover:scale-105 transition-all text-left w-full">
+            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Exame 44 Oficial</span>
+            <h2 class="text-2xl font-bold text-slate-800 mt-1 italic text-center">Iniciar Prova Completa (80 Questões)</h2>
+            <div class="mt-4 text-blue-600 font-bold underline text-center">CLIQUE PARA COMEÇAR →</div>
+        </button>
+    </div>
+
+    <div id="quiz-screen" class="max-w-[1440px] mx-auto p-4 flex flex-col md:flex-row gap-6 hidden">
+        
+        <aside class="w-full md:w-64 bg-white rounded-2xl shadow-lg p-5 md:sticky md:top-4 h-auto md:h-[calc(100vh-2rem)] overflow-y-auto border border-slate-200 flex-shrink-0">
+            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-5 text-center border-b pb-2">Mapa da Prova</h3>
+            <div id="questions-grid" class="grid grid-cols-5 md:grid-cols-4 gap-2 text-center text-[11px] font-bold"></div>
+            <div class="mt-6 space-y-2 pt-4 border-t text-[9px] uppercase font-bold text-slate-400">
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-green-500 rounded-sm"></div> Acerto</div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-red-500 rounded-sm"></div> Erro</div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 bg-yellow-500 rounded-sm"></div> Chute</div>
+            </div>
+        </aside>
+
+        <div class="flex-1">
+            <header class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm mb-6 border border-slate-200">
+                <button onclick="location.reload()" class="text-[10px] font-black text-blue-600 uppercase">← Menu</button>
+                <div id="total-timer" class="text-2xl font-mono font-black text-slate-700 leading-none">05:00:00</div>
+                <div id="question-timer" class="text-xs font-mono font-bold text-blue-400 uppercase">Questão: 00:00</div>
+            </header>
+
+            <main id="main-quiz-area" class="bg-white p-6 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-100 relative">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span id="subject-tag" class="bg-slate-900 text-white text-[10px] font-black px-4 py-1 rounded uppercase tracking-tighter mr-2"></span>
+                        <span id="topic-tag" class="text-[10px] text-blue-500 font-bold uppercase italic tracking-tight"></span>
+                    </div>
+                    <button id="btn-review" onclick="toggleReview()" class="flex items-center gap-2 px-4 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50 transition-all shadow-sm">
+                        🤔 Chutei / Rever dps
+                    </button>
+                </div>
+                
+                <h2 id="question-text" class="text-lg font-medium leading-relaxed text-slate-800 mb-8 text-justify"></h2>
+                <div id="options-container" class="space-y-3"></div>
+
+                <div id="feedback" class="mt-8 p-6 bg-blue-50 rounded-2xl border-l-[10px] border-blue-600 hidden">
+                    <h4 class="font-black text-blue-900 mb-2 uppercase text-xs tracking-widest">⚖️ Fundamentação Legal:</h4>
+                    <p id="justification-text" class="text-slate-700 text-sm leading-relaxed mb-4 italic"></p>
+                    <div class="bg-white p-3 rounded-lg border border-blue-100 inline-block shadow-sm">
+                        <p class="text-[10px] font-bold text-blue-600 uppercase">📚 O que estudar para dominar este tema:</p>
+                        <p id="study-tip" class="text-slate-600 text-xs italic font-semibold"></p>
+                    </div>
+                </div>
+
+                <footer class="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center">
+                    <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase">Anterior</button>
+                    <div class="text-[11px] font-black text-slate-300 uppercase">Questão <span id="current-idx-display" class="text-slate-800 text-sm">1</span> / 80</div>
+                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-8 py-3 rounded-xl transition shadow-lg uppercase text-xs tracking-widest">Próxima</button>
+                </footer>
+            </main>
+
+            <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100">
+                <h2 class="text-3xl font-black text-slate-800 mb-8 text-center italic tracking-tighter uppercase">Relatório de Desempenho</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-900 p-8 rounded-3xl text-center text-white flex flex-col justify-center border-b-8 border-blue-600">
+                        <span class="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Total de Acertos</span>
+                        <div class="text-7xl font-black my-2"><span id="score-total">0</span><span class="text-xl text-slate-500">/80</span></div>
+                        <div id="score-percent" class="text-sm font-bold text-blue-400 italic"></div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <h3 class="font-black text-slate-800 uppercase text-[10px] mb-4 tracking-[0.3em] border-b pb-2">Análise por Disciplina</h3>
+                        <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                    </div>
+                </div>
+                <div id="review-summary" class="mt-8 p-6 bg-yellow-50 rounded-2xl border-2 border-yellow-100 hidden">
+                    <h4 class="font-black text-yellow-800 text-[10px] uppercase mb-2 italic">⚠️ Alerta de Dúvidas:</h4>
+                    <p id="review-list" class="text-sm text-yellow-700 font-medium"></p>
+                </div>
+                <div class="mt-10 text-center"><button onclick="location.reload()" class="px-14 py-4 bg-blue-600 text-white font-black rounded-xl shadow-lg hover:bg-blue-700 transition-all uppercase text-xs tracking-widest">Recomeçar Prova</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BANCO DE QUESTÕES OFICIAL OAB 44
+        const questionsDB = [
+            { subject: "Ética Profissional", topic: "Sociedade", text: "1. Gomes, advogado, decide constituir uma sociedade unipessoal. Após registro, é convidado a integrar uma sociedade pluripessoal na mesma base territorial. Segundo o EAOAB:", options: ["Pode integrar ambas livremente.", "Não pode integrar mais de uma sociedade de advogados na mesma base territorial.", "Pode integrar se houver autorização da Seccional.", "Pode, pois uma delas é unipessoal."], correct: 1, explanation: "Art. 15, § 4º do EAOAB: O advogado não pode pertencer a mais de uma sociedade na mesma base territorial." },
+            { subject: "Ética Profissional", topic: "Mandato", text: "2. O advogado Dênis decidiu renunciar ao mandato em uma ação trabalhista por desentendimento com o cliente. Sobre os deveres de Dênis:", options: ["A renúncia dispensa comunicação se feita ao juiz.", "Dênis deve notificar o cliente e representá-lo pelos 10 dias seguintes à notificação.", "O dever de representar cessa no ato da postagem da carta.", "É proibido renunciar após a fase de instrução."], correct: 1, explanation: "Art. 112 do CPC e Art. 5º do Estatuto da OAB." },
+            { subject: "Ética Profissional", topic: "Publicidade", text: "3. Uma sociedade de advogados decide impulsionar posts informativos em redes sociais sobre teses jurídicas. Segundo o Provimento 205/2021 do CFOAB:", options: ["Qualquer impulsionamento é vedado.", "É permitido o impulsionamento desde que não configure mercantilização ou captação indevida.", "Pode-se usar fotos dos veículos e bens dos sócios.", "É permitido citar nomes de clientes para dar autoridade."], correct: 1, explanation: "O Provimento 205/2021 permite marketing jurídico informativo." },
+            { subject: "Ética Profissional", topic: "Incompatibilidade", text: "4. Pedro, advogado, foi eleito Vereador e assumiu a Presidência da Câmara Municipal. Segundo o Estatuto da OAB:", options: ["Pedro está apenas impedido contra a Fazenda Pública.", "Pedro está incompatibilizado de exercer a advocacia totalmente enquanto no cargo.", "Pedro pode advogar normalmente no escritório.", "Ele deve cancelar a OAB e fazer novo exame depois."], correct: 1, explanation: "Art. 28, VI do EAOAB estabelece incompatibilidade total temporária." },
+            { subject: "Ética Profissional", topic: "Honorários", text: "5. Sobre o recebimento de honorários em caso de substabelecimento sem reserva de poderes:", options: ["O advogado anterior perde o direito aos honorários.", "O advogado substabelecente tem direito a receber honorários proporcionais ao trabalho.", "Os honorários são divididos igualmente entre todos.", "A OAB arbitra o valor em 20%."], correct: 1, explanation: "O advogado que sai da causa tem direito ao recebimento proporcional ao serviço." },
+            { subject: "Ética Profissional", topic: "Gestante", text: "6. A advogada Maria, gestante, comparece à audiência e encontra fila. Ela possui direito a:", options: ["Preferência na ordem das audiências do dia.", "Isenção de custas processuais.", "Adiamento automático por 30 dias.", "Acesso apenas se for acompanhada."], correct: 0, explanation: "Art. 7-A, I, 'a' do EAOAB garante preferência para gestantes." },
+            { subject: "Ética Profissional", topic: "Sigilo", text: "7. O advogado é intimado a depor como testemunha sobre fato confidencial de cliente. Ele deve:", options: ["Depor, se houver interesse da justiça.", "Recusar-se a depor, protegendo o sigilo que é direito e dever.", "Depor se o cliente autorizar oralmente.", "Apenas depor se for em segredo de justiça."], correct: 1, explanation: "O sigilo profissional é inviolável e o advogado tem o dever de se recusar." },
+            { subject: "Ética Profissional", topic: "Infrações", text: "8. João abandonou a causa sem motivo justo e causou prejuízo. Qual a sanção?", options: ["Censura.", "Suspensão.", "Exclusão.", "Multa."], correct: 0, explanation: "Art. 34, XI do EAOAB." },
+            { subject: "Direito Constitucional", topic: "ADI", text: "9. Legitimidade do Governador para propor ADI:", options: ["Universal.", "Especial (exige pertinência temática).", "Só via MS.", "Inexistente."], correct: 1, explanation: "Art. 103, V da CF e STF." },
+            { subject: "Direito Constitucional", topic: "Remédios", text: "10. Habeas Data serve para:", options: ["Liberdade de locomoção.", "Acesso a informações pessoais em órgãos públicos.", "Anular ato administrativo.", "Combater lei injusta."], correct: 1, explanation: "Art. 5º, LXXII da CF." },
+            { subject: "Direito Constitucional", topic: "Poder Executivo", text: "11. Iniciativa privativa do Presidente da República para criar cargos:", options: ["Sim, absoluto.", "Não, cabe ao Senado.", "Apenas em estados.", "Só se for temporário."], correct: 0, explanation: "Art. 61, § 1º da CF." },
+            { subject: "Direito Constitucional", topic: "Estado Sítio", text: "12. Comoção grave nacional autoriza:", options: ["Estado Defesa.", "Estado Sítio.", "Intervenção.", "Nada."], correct: 1, explanation: "Art. 137, I da CF." },
+            { subject: "Direito Constitucional", topic: "CPI", text: "13. CPI pode quebrar sigilo bancário?", options: ["Não.", "Sim.", "Só com ordem judicial.", "Só de políticos."], correct: 1, explanation: "Art. 58, § 3º da CF." },
+            { subject: "Direito Constitucional", topic: "Controle", text: "14. Controle externo da Câmara é auxiliado pelo:", options: ["Senado.", "Tribunal de Contas.", "MP Federal.", "Polícia."], correct: 1, explanation: "Art. 31, § 1º da CF." },
+            { subject: "Direito Constitucional", topic: "Sanção", text: "15. Silêncio do Presidente por 15 dias úteis sobre projeto aprovado:", options: ["Veto.", "Sanção tácita.", "Caducidade.", "Nada."], correct: 1, explanation: "Art. 66, § 3º da CF." },
+            { subject: "Direito Administrativo", topic: "Princípios", text: "16. Suspensão de serviço público sem autorização fere a:", options: ["Legalidade.", "Continuidade.", "Modicidade.", "Dignidade."], correct: 1, explanation: "Lei 8987/95." },
+            { subject: "Direito Administrativo", topic: "Atos", text: "17. Remoção de servidor como castigo é:", options: ["Válido.", "Nulo por desvio de finalidade.", "Legítimo.", "Urgente."], correct: 1, explanation: "Abuso de Poder." },
+            { subject: "Direito Administrativo", topic: "Propriedade", text: "18. Uso de terreno privado por 6 meses para obra pública:", options: ["Servidão.", "Ocupação Temporária.", "Requisição.", "Limitação."], correct: 1, explanation: "Art. 36 DL 3365." },
+            { subject: "Direito Administrativo", topic: "Licitação", text: "19. Contratado deve aceitar acréscimos de até:", options: ["10%.", "25%.", "50%.", "100%."], correct: 1, explanation: "Lei 14.133." },
+            { subject: "Direito Administrativo", topic: "Subsidiárias", text: "20. Criar subsidiária de empresa pública exige:", options: ["Nada.", "Autorização legislativa.", "Decreto do Diretor.", "Só em S.A."], correct: 1, explanation: "Art. 37, XX CF." },
+            { subject: "Direito Administrativo", topic: "Danos", text: "21. Responsabilidade omissiva do Estado via de regra é:", options: ["Objetiva.", "Subjetiva.", "Integral.", "Inexistente."], correct: 1, explanation: "Teoria Subjetiva." },
+            { subject: "Direito Civil", topic: "Desvio", text: "22. Desvio de finalidade na PJ exige:", options: ["Prejuízo.", "Propósito de lesar credores ou ilícitos.", "Falência.", "Dívida."], correct: 1, explanation: "Art. 50 CC." },
+            { subject: "Direito Civil", topic: "Bens", text: "23. Direito à sucessão aberta é:", options: ["Móvel.", "Imóvel por lei.", "Sem valor.", "Dívida."], correct: 1, explanation: "Art. 80 CC." },
+            { subject: "Direito Civil", topic: "Perigo", text: "24. Estado de perigo exige conhecimento do dano pela outra parte?", options: ["Não.", "Sim.", "Só se for parente.", "Sempre nulo."], correct: 1, explanation: "Art. 156 CC." },
+            { subject: "Direito Civil", topic: "Prazos", text: "25. Prazos prescricionais podem ser mudados pelas partes?", options: ["Sim.", "Não.", "Só se for menor.", "Só no banco."], correct: 1, explanation: "Art. 192 CC." },
+            { subject: "Direito Civil", topic: "Posse", text: "26. Má-fé na posse é quando se tem ciência do vício:", options: ["Falso.", "Verdadeiro.", "Só em aluguel.", "Não existe."], correct: 1, explanation: "Art. 1.201 CC." },
+            { subject: "Direito Civil", topic: "Animais", text: "27. Dono de animal responde se não provar culpa da vítima ou força maior:", options: ["Amizade com a vítima.", "Culpa da vítima ou força maior.", "Que o bicho é vacinado.", "Que não estava em casa."], correct: 1, explanation: "Art. 936 CC." },
+            { subject: "Direito Civil", topic: "União", text: "28. Herança na união estável sem contrato:", options: ["Divide.", "Exclui da comunhão.", "Dobra.", "Sobra."], correct: 1, explanation: "Art. 1.659 CC." },
+            { subject: "Direito Civil", topic: "Vago", text: "29. Sem herdeiros, a herança vai para:", options: ["Irmãos.", "Estado/Município.", "Vizinhos.", "MP."], correct: 1, explanation: "Herança Jacente." },
+            { subject: "ECA", topic: "Adoção", text: "30. Adoção por procuração é vedada?", options: ["Não.", "Sim.", "Só em SP.", "Só para bebês."], correct: 1, explanation: "Art. 39 ECA." },
+            { subject: "ECA", topic: "Internação", text: "31. Internação exige violência ou grave ameaça:", options: ["Falso.", "Verdadeiro.", "Só com drogas.", "Obrigatória."], correct: 1, explanation: "Art. 122 ECA." },
+            { subject: "Direito do Consumidor", topic: "Fato", text: "32. Prazo para reparação por explosão de produto:", options: ["1 ano.", "5 anos.", "90 dias.", "10 anos."], correct: 1, explanation: "Art. 27 CDC." },
+            { subject: "Direito do Consumidor", topic: "Web", text: "33. Direito de arrependimento (prazo):", options: ["24h.", "7 dias.", "30 dias.", "15 dias."], correct: 1, explanation: "Art. 49 CDC." },
+            { subject: "Direito do Consumidor", topic: "Anúncio", text: "34. Omitir dado essencial no produto é propaganda:", options: ["Abusiva.", "Enganosa.", "Lícita.", "Diferente."], correct: 1, explanation: "Art. 37 CDC." },
+            { subject: "Direito do Consumidor", topic: "Prova", text: "35. Inversão do ônus da prova exige verossimilhança:", options: ["Falso.", "Verdadeiro.", "Só se for rico.", "Sempre proibida."], correct: 1, explanation: "Art. 6 CDC." },
+            { subject: "Direito Empresarial", topic: "Aval", text: "36. Aval parcial no Código Civil é proibido?", options: ["Não.", "Sim.", "Livre.", "Só em cheque."], correct: 1, explanation: "Art. 897 CC." },
+            { subject: "Direito Empresarial", topic: "Invenção", text: "37. Patente de invenção dura:", options: ["10 anos.", "20 anos.", "15 anos.", "50 anos."], correct: 1, explanation: "Lei 9.279." },
+            { subject: "Direito Empresarial", topic: "Sociedade", text: "38. Sócios na limitada respondem solidariamente pela integralização?", options: ["Não.", "Sim.", "Só o gerente.", "Só em dívida de luz."], correct: 1, explanation: "Art. 1.052 CC." },
+            { subject: "Direito Empresarial", topic: "Falência", text: "39. Crédito trabalhista preferencial até:", options: ["50 salários.", "150 salários.", "Sem limite.", "100 salários."], correct: 1, explanation: "Lei 11.101." },
+            { subject: "Direito Empresarial", topic: "SLU", text: "40. Empresa de um sócio sem capital mínimo:", options: ["EIRELI.", "SLUnipessoal.", "MEI.", "S.A."], correct: 1, explanation: "Liberdade Econômica." },
+            { subject: "Direito Processual Civil", topic: "Prazos", text: "41. Prazos contam-se em dias úteis?", options: ["Não.", "Sim.", "Só em feriados.", "Só no verão."], correct: 1, explanation: "Art. 219 CPC." },
+            { subject: "Direito Processual Civil", topic: "Imóvel", text: "42. Foro para ação de imóvel:", options: ["Autor.", "Situação da coisa.", "Brasília.", "Nenhum."], correct: 1, explanation: "Art. 47 CPC." },
+            { subject: "Direito Processual Civil", topic: "Chamamento", text: "43. Chamamento serve para trazer codevedor?", options: ["Não.", "Sim.", "Só parentes.", "Só bancos."], correct: 1, explanation: "Art. 130 CPC." },
+            { subject: "Direito Processual Civil", topic: "Tutela", text: "44. Tutela exige probabilidade e perigo:", options: ["Falso.", "Verdadeiro.", "Só se for pobre.", "Obrigatória sempre."], correct: 1, explanation: "Art. 300 CPC." },
+            { subject: "Direito Processual Civil", topic: "Multa", text: "45. Não pagar sentença em 15 dias gera multa de:", options: ["2%.", "10%.", "20%.", "Nada."], correct: 1, explanation: "Art. 523 CPC." },
+            { subject: "Direito Processual Civil", topic: "Agravo", text: "46. Decisão de mérito interlocutória desafia Agravo?", options: ["Não.", "Sim.", "Só se for urgente.", "Só no STJ."], correct: 1, explanation: "Art. 1.015 CPC." },
+            { subject: "Direito Processual Civil", topic: "Prazo", text: "47. Embargos de Declaração prazo:", options: ["15 dias.", "5 dias.", "10 dias.", "8 dias."], correct: 1, explanation: "Art. 1.023 CPC." },
+            { subject: "Direito Processual Civil", topic: "Ação", text: "48. Prazo da Rescisória:", options: ["1 ano.", "2 anos.", "5 anos.", "Imprescritível."], correct: 1, explanation: "Art. 975 CPC." },
+            { subject: "Direito Processual Civil", topic: "Fatos", text: "49. Revelia presume fatos verdadeiros:", options: ["Falso.", "Verdadeiro.", "Só se o juiz quiser.", "Raramente."], correct: 1, explanation: "Art. 344 CPC." },
+            { subject: "Direito Processual Civil", topic: "Sentença", text: "50. Artigo que extingue sem mérito:", options: ["487.", "485.", "1.000.", "1."], correct: 1, explanation: "Art. 485 CPC." },
+            { subject: "Direito Penal", topic: "Nexo", text: "51. Vítima morre em incêndio no hospital. Tício responde por:", options: ["Consumado.", "Tentativa.", "Culposo.", "Lesão."], correct: 1, explanation: "Art. 13 CP." },
+            { subject: "Direito Penal", topic: "Roubo", text: "52. Grave ameaça para subtrair é:", options: ["Furto.", "Roubo.", "Extorsão.", "Estelionato."], correct: 1, explanation: "Art. 157 CP." },
+            { subject: "Direito Penal", topic: "Legítima", text: "53. Agente responde por excesso na legítima defesa?", options: ["Não.", "Sim.", "Só se for dolo.", "Nunca."], correct: 1, explanation: "Art. 23 CP." },
+            { subject: "Direito Penal", topic: "Prescrição", text: "54. Menor de 21 anos tem prazo prescricional reduzido pela metade:", options: ["Falso.", "Verdadeiro.", "Só no crime de furto.", "Não existe."], correct: 1, explanation: "Art. 115 CP." },
+            { subject: "Direito Penal", topic: "Pena", text: "55. Reincidência 'prescreve' em:", options: ["2 anos.", "5 anos.", "10 anos.", "Eterna."], correct: 1, explanation: "Art. 64 CP." },
+            { subject: "Direito Penal", topic: "Regime", text: "56. Regime para pena de 5 anos (não reincidente):", options: ["Fechado.", "Semiaberto.", "Aberto.", "Indefinido."], correct: 1, explanation: "Art. 33 CP." },
+            { subject: "Direito Penal", topic: "Meio", text: "57. Ineficácia absoluta do meio é:", options: ["Tentativa.", "Crime Impossível.", "Erro.", "Desistência."], correct: 1, explanation: "Art. 17 CP." },
+            { subject: "Direito Penal", topic: "Erro", text: "58. Erro de tipo exclui o dolo:", options: ["Falso.", "Verdadeiro.", "Só se for menor.", "Sempre punível."], correct: 1, explanation: "Art. 20 CP." },
+            { subject: "Direito Penal", topic: "Sursis", text: "59. Sursis penal até penas de:", options: ["1 ano.", "2 anos.", "4 anos.", "5 anos."], correct: 1, explanation: "Art. 77 CP." },
+            { subject: "Direito Penal", topic: "Morte", text: "60. Morte do agente extingue a punibilidade:", options: ["Falso.", "Verdadeiro.", "Só se for natural.", "Depende da pena."], correct: 1, explanation: "Art. 107 CP." },
+            { subject: "Direito Processual Penal", topic: "IP", text: "61. Inquérito é:", options: ["Judicial.", "Inquisitivo.", "Público.", "Contraditório."], correct: 1, explanation: "Procedimento Inquisitivo." },
+            { subject: "Direito Processual Penal", topic: "Prisão", text: "62. Preventiva como antecipação de pena é vedada:", options: ["Falso.", "Verdadeiro.", "Só em roubo.", "Livre."], correct: 1, explanation: "Art. 313 CPP." },
+            { subject: "Direito Processual Penal", topic: "Júri", text: "63. Pronúncia encerra a 1ª fase do júri:", options: ["Falso.", "Verdadeiro.", "Depende.", "Só no homicídio."], correct: 1, explanation: "Art. 413 CPP." },
+            { subject: "Direito Processual Penal", topic: "Recurso", text: "64. Recurso contra rejeição de denúncia:", options: ["Apelação.", "RESE.", "Agravo.", "Carta."], correct: 1, explanation: "Art. 581 CPP." },
+            { subject: "Direito Processual Penal", topic: "Flagrante", text: "65. Comunicar flagrante em:", options: ["12h.", "24h.", "48h.", "Imediato."], correct: 1, explanation: "Art. 306 CPP." },
+            { subject: "Direito Processual Penal", topic: "Soltura", text: "66. Liberdade provisória sem fiança é possível?", options: ["Não.", "Sim.", "Só para ricos.", "Raramente."], correct: 1, explanation: "Art. 310 CPP." },
+            { subject: "Direito Processual Penal", topic: "Militar", text: "67. Citação do militar é pelo chefe do serviço:", options: ["Falso.", "Verdadeiro.", "Edital.", "Correio."], correct: 1, explanation: "Art. 358 CPP." },
+            { subject: "Direito Processual Penal", topic: "Max", text: "68. Limite de testemunhas no rito ordinário:", options: ["5.", "8.", "10.", "3."], correct: 1, explanation: "Art. 401 CPP." },
+            { subject: "Direito Processual Penal", topic: "Adit", text: "69. Mutatio libelli exige aditamento:", options: ["Não.", "Sim.", "Livre.", "Só se for erro."], correct: 1, explanation: "Art. 384 CPP." },
+            { subject: "Direito Processual Penal", topic: "Prazo", text: "70. Prazo Apelação Criminal:", options: ["15 dias.", "5 dias.", "8 dias.", "10 dias."], correct: 1, explanation: "Art. 593 CPP." },
+            { subject: "Direito do Trabalho", topic: "Prejuízo", text: "71. Alteração ilícita é a que gera prejuízo:", options: ["Falso.", "Verdadeiro.", "Só salarial.", "Livre."], correct: 1, explanation: "Art. 468 CLT." },
+            { subject: "Direito do Trabalho", topic: "Semana", text: "72. Jornada semanal padrão:", options: ["40h.", "44h.", "48h.", "36h."], correct: 1, explanation: "Art. 7 CF." },
+            { subject: "Direito do Trabalho", topic: "Bar", text: "73. Embriaguez habitual gera justa causa?", options: ["Não.", "Sim.", "Só no bar.", "Suspensão."], correct: 1, explanation: "Art. 482 CLT." },
+            { subject: "Direito do Trabalho", topic: "FGTS", text: "74. Depósito mensal FGTS:", options: ["2%.", "8%.", "11%.", "20%."], correct: 1, explanation: "Lei 8036." },
+            { subject: "Direito do Trabalho", topic: "Tempo", text: "75. Diferença de tempo na função para equiparação:", options: ["1 ano.", "2 anos.", "4 anos.", "5 anos."], correct: 1, explanation: "Art. 461 CLT." },
+            { subject: "Processo do Trabalho", topic: "Recurso", text: "76. Prazo Recurso Ordinário (RO):", options: ["5 dias.", "8 dias.", "15 dias.", "10 dias."], correct: 1, explanation: "Art. 895 CLT." },
+            { subject: "Processo do Trabalho", topic: "Sumaríssimo", text: "77. Teto sumaríssimo até 40 salários:", options: ["Falso.", "Verdadeiro.", "Só para bancos.", "Livre."], correct: 1, explanation: "Art. 852-A CLT." },
+            { subject: "Direito do Trabalho", topic: "Gravidez", text: "78. Estabilidade gestante até 5 meses após parto:", options: ["Falso.", "Verdadeiro.", "Só concursada.", "Livre."], correct: 1, explanation: "ADCT." },
+            { subject: "Processo do Trabalho", topic: "Pagar", text: "79. Prazo para pagar na execução:", options: ["24h.", "48h.", "15 dias.", "10 dias."], correct: 1, explanation: "Art. 880 CLT." },
+            { subject: "Direito do Trabalho", topic: "Aviso", text: "80. Aviso prévio proporcional max dias:", options: ["30.", "90.", "60.", "120."], correct: 1, explanation: "Lei 12.506." }
+        ];
+
+        let currentExam = [];
+        let currentIdx = 0;
+        let qTimer;
+        let secondsInQuestion = 0;
+        let totalSeconds = 5 * 60 * 60;
+        let userResponses = Array(80).fill(null);
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz() {
+            currentExam = questionsDB.map(q => {
+                let optionsWithIndex = q.options.map((text, i) => ({ text, originalIdx: i }));
+                let shuffled = shuffle([...optionsWithIndex]);
+                let newCorrect = shuffled.findIndex(opt => opt.originalIdx === q.correct);
+                return { 
+                    subject: q.subject, 
+                    topic: q.topic, 
+                    text: q.text, 
+                    options: shuffled.map(s => s.text), 
+                    correct: newCorrect, 
+                    explanation: q.explanation 
+                };
+            });
+
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            buildSidebar();
+            loadQuestion(0);
+            startGlobalTimer();
+        }
+
+        function buildSidebar() {
+            const grid = document.getElementById('questions-grid');
+            grid.innerHTML = '';
+            for(let i=0; i<80; i++) {
+                const btn = document.createElement('button');
+                btn.id = `side-q-${i}`;
+                btn.className = "w-full py-3 rounded bg-slate-200 text-slate-500 border border-slate-300 transition-all hover:bg-slate-300";
+                btn.innerText = i + 1;
+                btn.onclick = () => loadQuestion(i);
+                grid.appendChild(btn);
+            }
+        }
+
+        function loadQuestion(idx) {
+            currentIdx = idx;
+            const q = currentExam[idx];
+            
+            document.querySelectorAll('[id^="side-q-"]').forEach(el => el.classList.remove('sidebar-active'));
+            document.getElementById(`side-q-${idx}`).classList.add('sidebar-active');
+            
+            document.getElementById('subject-tag').innerText = q.subject;
+            document.getElementById('topic-tag').innerText = "TEMA: " + q.topic;
+            document.getElementById('question-text').innerText = q.text;
+            document.getElementById('current-idx-display').innerText = idx + 1;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full text-left p-5 border-2 border-slate-200 rounded-xl hover:bg-blue-50 transition-all flex items-start font-medium";
+                btn.innerHTML = `<span class="font-black text-blue-500 mr-4">${String.fromCharCode(65 + i)}</span> ${opt}`;
+                
+                if(userResponses[idx] && userResponses[idx].selected !== null) {
+                    btn.disabled = true;
+                    if(i === q.correct) btn.classList.add('correct');
+                    if(i === userResponses[idx].selected && i !== q.correct) btn.classList.add('wrong');
+                } else {
+                    btn.onclick = () => checkAnswer(i);
+                }
+                container.appendChild(btn);
+            });
+
+            const btnRev = document.getElementById('btn-review');
+            if(userResponses[idx] && userResponses[idx].review) {
+                btnRev.classList.add('bg-yellow-400', 'text-white');
+            } else {
+                btnRev.classList.remove('bg-yellow-400', 'text-white');
+            }
+
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.innerText = (idx === 79) ? "Ver Resultado Final" : "Próxima";
+
+            if(userResponses[idx] && userResponses[idx].selected !== null) {
+                document.getElementById('justification-text').innerText = q.explanation;
+                document.getElementById('study-tip').innerText = q.subject;
+                document.getElementById('feedback').classList.remove('hidden');
+            } else {
+                document.getElementById('feedback').classList.add('hidden');
+            }
+            resetQuestionTimer();
+        }
+
+        function toggleReview() {
+            if(!userResponses[currentIdx]) userResponses[currentIdx] = {selected: null, correct: null, subject: currentExam[currentIdx].subject, review: false};
+            userResponses[currentIdx].review = !userResponses[currentIdx].review;
+            updateSidebarColor();
+            loadQuestion(currentIdx);
+        }
+
+        function checkAnswer(selected) {
+            const q = currentExam[currentIdx];
+            const isCorrect = (selected === q.correct);
+            if(!userResponses[currentIdx]) userResponses[currentIdx] = {review: false};
+            userResponses[currentIdx] = { 
+                ...userResponses[currentIdx],
+                selected: selected, correct: isCorrect, subject: q.subject 
+            };
+            updateSidebarColor();
+            loadQuestion(currentIdx);
+        }
+
+        function updateSidebarColor() {
+            const sideBtn = document.getElementById(`side-q-${currentIdx}`);
+            const res = userResponses[currentIdx];
+            if(res.review) sideBtn.className = "w-full py-3 rounded border font-bold sidebar-review";
+            else if(res.correct === true) sideBtn.className = "w-full py-3 rounded border font-bold sidebar-correct";
+            else if(res.correct === false) sideBtn.className = "w-full py-3 rounded border font-bold sidebar-wrong";
+        }
+
+        function showFinalResults() {
+            document.getElementById('main-quiz-area').classList.add('hidden');
+            document.querySelector('aside').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            
+            const totalHits = userResponses.filter(r => r && r.correct).length;
+            document.getElementById('score-total').innerText = totalHits;
+            document.getElementById('score-percent').innerText = `${Math.round((totalHits/80)*100)}% de Aproveitamento Total`;
+
+            const stats = {};
+            userResponses.forEach(r => {
+                if(!r || !r.subject) return;
+                if(!stats[r.subject]) stats[r.subject] = { total: 0, hits: 0 };
+                stats[r.subject].total++;
+                if(r.correct) stats[r.subject].hits++;
+            });
+
+            const report = document.getElementById('subject-report');
+            report.innerHTML = '';
+            for(let s in stats) {
+                let p = Math.round((stats[s].hits/stats[s].total)*100);
+                report.innerHTML += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="text-[9px] font-black text-slate-400 uppercase tracking-tighter">${s}</p>
+                    <p class="text-lg font-black ${p >= 50 ? 'text-green-600' : 'text-red-600'}">${p}% <span class="text-xs text-slate-400">(${stats[s].hits}/${stats[s].total})</span></p>
+                </div>`;
+            }
+
+            const reviews = [...new Set(userResponses.filter(r => r && r.review).map(r => r.subject))];
+            if(reviews.length > 0) {
+                document.getElementById('review-summary').classList.remove('hidden');
+                document.getElementById('review-list').innerText = reviews.join(", ");
+            }
+        }
+
+        function nextQuestion() { if(currentIdx < 79) loadQuestion(currentIdx + 1); else showFinalResults(); }
+        function prevQuestion() { if(currentIdx > 0) loadQuestion(currentIdx - 1); }
+
+        function resetQuestionTimer() {
+            clearInterval(qTimer); secondsInQuestion = 0;
+            qTimer = setInterval(() => {
+                secondsInQuestion++;
+                const m = Math.floor(secondsInQuestion/60).toString().padStart(2,'0');
+                const s = (secondsInQuestion%60).toString().padStart(2,'0');
+                document.getElementById('question-timer').innerText = `Questão: ${m}:${s}`;
+            }, 1000);
+        }
+
+        function startGlobalTimer() {
+            setInterval(() => {
+                totalSeconds--;
+                let h = Math.floor(totalSeconds/3600).toString().padStart(2,'0');
+                let m = Math.floor((totalSeconds%3600)/60).toString().padStart(2,'0');
+                let s = (totalSeconds%60).toString().padStart(2,'0');
+                document.getElementById('total-timer').innerText = `${h}:${m}:${s}`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
