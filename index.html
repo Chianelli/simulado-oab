@@ -8,7 +8,7 @@
     <style>
         .correct { border: 2px solid #10b981 !important; background-color: #ecfdf5 !important; }
         .wrong { border: 2px solid #ef4444 !important; background-color: #fef2f2 !important; }
-        .hidden { display: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-900">
@@ -20,14 +20,14 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <button onclick="startQuiz('OAB 44')" class="group p-8 bg-white border-2 border-transparent hover:border-blue-500 rounded-2xl shadow-md transition-all text-left">
+            <button onclick="startQuiz('OAB 44')" class="group p-8 bg-white border-2 border-blue-100 hover:border-blue-500 rounded-2xl shadow-md transition-all text-left">
                 <span class="text-blue-600 font-bold text-sm uppercase tracking-widest">Novo</span>
                 <h2 class="text-2xl font-bold text-slate-800 mt-1">Exame 44</h2>
                 <p class="text-slate-500 text-sm mt-2">Prova aplicada em 2025</p>
                 <div class="mt-4 text-blue-500 font-semibold group-hover:translate-x-2 transition-transform">Começar Agora →</div>
             </button>
 
-            <button onclick="startQuiz('OAB 43')" class="group p-8 bg-white border-2 border-transparent hover:border-blue-500 rounded-2xl shadow-md transition-all text-left">
+            <button onclick="startQuiz('OAB 43')" class="group p-8 bg-white border-2 border-blue-100 hover:border-blue-500 rounded-2xl shadow-md transition-all text-left">
                 <span class="text-slate-400 font-bold text-sm uppercase tracking-widest">Anterior</span>
                 <h2 class="text-2xl font-bold text-slate-800 mt-1">Exame 43</h2>
                 <p class="text-slate-500 text-sm mt-2">Prova aplicada em 2024</p>
@@ -39,11 +39,11 @@
     <div id="quiz-screen" class="max-w-4xl mx-auto p-4 hidden">
         <header class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm mb-6 sticky top-2 z-10 border border-slate-200">
             <div class="flex flex-col">
-                <button onclick="location.reload()" class="text-xs font-bold text-blue-600 mb-1">← TROCAR DE PROVA</button>
+                <button onclick="window.location.reload()" class="text-xs font-bold text-blue-600 mb-1">← VOLTAR AO MENU</button>
                 <div id="total-timer" class="text-2xl font-mono font-bold text-slate-700">05:00:00</div>
             </div>
             <div class="text-right">
-                <span class="text-[10px] text-slate-400 font-black uppercase">Tempo nesta questão</span>
+                <span class="text-[10px] text-slate-400 font-black uppercase">Tempo na questão</span>
                 <div id="question-timer" class="text-xl font-mono font-medium text-blue-500">00:00</div>
             </div>
         </header>
@@ -53,23 +53,17 @@
                 <span id="exam-tag" class="bg-slate-800 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase"></span>
                 <span id="subject-tag" class="bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase"></span>
             </div>
-            
             <p id="topic-tag" class="text-sm text-blue-400 font-semibold mb-4"></p>
             <h2 id="question-text" class="text-xl font-semibold leading-snug text-slate-800 mb-8"></h2>
-
             <div id="options-container" class="space-y-4"></div>
-
-            <div id="feedback" class="mt-8 p-6 bg-slate-50 rounded-xl border-l-4 border-blue-500 hidden">
-                <h4 class="font-bold text-blue-800 mb-2 flex items-center">
-                    <span class="mr-2">⚖️</span> Fundamentação Jurídica:
-                </h4>
-                <p id="justification-text" class="text-slate-600 text-sm leading-relaxed italic"></p>
+            <div id="feedback" class="mt-8 p-6 bg-slate-50 rounded-xl border-l-4 border-blue-500 hidden text-sm italic">
+                <h4 class="font-bold text-blue-800 mb-2 italic">⚖️ Fundamentação:</h4>
+                <p id="justification-text"></p>
             </div>
-
             <footer class="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center">
                 <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-700 font-bold px-4 py-2 transition">Anterior</button>
                 <div class="bg-slate-100 px-4 py-1 rounded-full text-slate-500 font-mono text-sm">
-                    Questão <span id="current-idx" class="text-slate-900 font-bold">1</span> de <span id="total-q-count">0</span>
+                    <span id="current-idx">1</span> / <span id="total-q-count">0</span>
                 </div>
                 <button onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-2 rounded-lg transition shadow-lg shadow-blue-200">Próxima</button>
             </footer>
@@ -81,44 +75,21 @@
             "OAB 44": [
                 {
                     subject: "Direito Ético",
-                    topic: "Incompatibilidades e Impedimentos",
-                    text: "No Exame 44, imagine que Pedro, advogado, é eleito Vereador e assume a Presidência da Câmara Municipal. Segundo o Estatuto da OAB:",
-                    options: [
-                        "Pedro passa a ter apenas impedimento para advogar contra a Fazenda Pública.",
-                        "Pedro está em situação de incompatibilidade definitiva com a advocacia.",
-                        "Pedro deve licenciar-se da advocacia por exercer cargo de direção no Legislativo.",
-                        "Pedro pode advogar normalmente, desde que não utilize o cargo para captação."
-                    ],
+                    topic: "Incompatibilidades",
+                    text: "Questão Exame 44: O advogado eleito Presidente da Câmara Municipal...",
+                    options: ["Opção A", "Opção B", "Incompatibilidade Temporária", "Opção D"],
                     correct: 2,
-                    explanation: "Art. 28, inciso VI do EAOAB: O exercício de cargos de direção ou gerência em órgãos do Poder Legislativo gera incompatibilidade (proibição total) enquanto durar o mandato."
-                },
-                {
-                    subject: "Direito Constitucional",
-                    topic: "Processo Legislativo",
-                    text: "A respeito das emendas à Constituição (EC), assinale a opção correta:",
-                    options: [
-                        "Podem ser propostas por 1/3 dos membros da Câmara ou do Senado.",
-                        "A matéria constante de proposta de emenda rejeitada pode ser reapresentada na mesma sessão legislativa.",
-                        "O Presidente da República tem poder de veto sobre emendas constitucionais.",
-                        "As emendas são promulgadas pelo Presidente da República."
-                    ],
-                    correct: 0,
-                    explanation: "Art. 60, inciso I da CF/88: A Constituição poderá ser emendada mediante proposta de um terço, no mínimo, dos membros da Câmara dos Deputados ou do Senado Federal."
+                    explanation: "Art. 28, VI do EAOAB."
                 }
             ],
             "OAB 43": [
                 {
                     subject: "Direito Civil",
                     topic: "Domicílio",
-                    text: "Sobre o domicílio da pessoa natural, o Código Civil estabelece que:",
-                    options: [
-                        "É o lugar onde a pessoa estabelece sua residência com ânimo definitivo.",
-                        "Se a pessoa tiver diversas residências, apenas a principal será domicílio.",
-                        "O domicílio do preso é o lugar onde foi cometido o crime.",
-                        "O domicílio do marítimo é onde sua família reside."
-                    ],
+                    text: "Sobre o domicílio da pessoa natural...",
+                    options: ["Residência definitiva", "Qualquer lugar", "Onde trabalha", "Onde nasceu"],
                     correct: 0,
-                    explanation: "Art. 70 do Código Civil: O domicílio da pessoa natural é o lugar onde ela estabelece a sua residência com ânimo definitivo."
+                    explanation: "Art. 70 do Código Civil."
                 }
             ]
         };
@@ -128,6 +99,12 @@
         let qTimer;
         let secondsInQuestion = 0;
         let totalSeconds = 5 * 60 * 60;
+
+        // FUNÇÃO QUE GARANTE QUE O MENU APAREÇA AO ABRIR
+        window.onload = function() {
+            document.getElementById('home-screen').classList.remove('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+        };
 
         function startQuiz(examKey) {
             currentExam = allExams[examKey];
@@ -141,53 +118,35 @@
 
         function loadQuestion(idx) {
             const q = currentExam[idx];
-            document.getElementById('exam-tag').innerText = "Simulado " + (currentExam === allExams["OAB 44"] ? "Exame 44" : "Exame 43");
+            document.getElementById('exam-tag').innerText = "Simulado Selecionado";
             document.getElementById('subject-tag').innerText = q.subject;
             document.getElementById('topic-tag').innerText = "TEMA: " + q.topic;
             document.getElementById('question-text').innerText = q.text;
             document.getElementById('current-idx').innerText = idx + 1;
-            
             const container = document.getElementById('options-container');
             container.innerHTML = '';
-            
             q.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left p-5 border-2 border-slate-100 rounded-xl hover:bg-blue-50 hover:border-blue-200 transition-all flex items-start group";
-                btn.innerHTML = `<span class="font-bold text-slate-400 group-hover:text-blue-500 mr-4">${String.fromCharCode(65 + i)}</span> <span class="text-slate-700">${opt}</span>`;
+                btn.className = "w-full text-left p-5 border-2 border-slate-100 rounded-xl hover:bg-blue-50 transition-all flex items-start group";
+                btn.innerHTML = `<span class="font-bold text-slate-400 mr-4">${String.fromCharCode(65 + i)}</span> ${opt}`;
                 btn.onclick = () => checkAnswer(i, q.correct, q.explanation);
                 container.appendChild(btn);
             });
-
             document.getElementById('feedback').classList.add('hidden');
             resetQuestionTimer();
         }
 
         function checkAnswer(selected, correct, explanation) {
             const btns = document.getElementById('options-container').children;
-            if(selected === correct) {
-                btns[selected].classList.add('correct');
-            } else {
-                btns[selected].classList.add('wrong');
-                btns[correct].classList.add('correct');
-            }
+            if(selected === correct) { btns[selected].classList.add('correct'); } 
+            else { btns[selected].classList.add('wrong'); btns[correct].classList.add('correct'); }
             document.getElementById('justification-text').innerText = explanation;
             document.getElementById('feedback').classList.remove('hidden');
             Array.from(btns).forEach(b => b.onclick = null);
         }
 
-        function nextQuestion() {
-            if(currentIdx < currentExam.length - 1) {
-                currentIdx++;
-                loadQuestion(currentIdx);
-            }
-        }
-
-        function prevQuestion() {
-            if(currentIdx > 0) {
-                currentIdx--;
-                loadQuestion(currentIdx);
-            }
-        }
+        function nextQuestion() { if(currentIdx < currentExam.length - 1) { currentIdx++; loadQuestion(currentIdx); } }
+        function prevQuestion() { if(currentIdx > 0) { currentIdx--; loadQuestion(currentIdx); } }
 
         function resetQuestionTimer() {
             clearInterval(qTimer);
