@@ -1,0 +1,36 @@
+{
+  "OAB45": [
+    {
+      "subject": "Ética Profissional",
+      "topic": "Incompatibilidade",
+      "text": "O advogado Dr. Roberto, com sólida carreira na área cível, é convidado pelo Prefeito de seu Município para assumir o cargo de Secretário Municipal de Saúde, em razão de sua vasta experiência em gestão hospitalar anterior à advocacia. Roberto aceita o convite e toma posse. No entanto, ele possui uma banca com diversos processos em curso, inclusive contra o próprio Município, e não deseja abandonar seus clientes, pretendendo continuar assinando as petições nos horários em que não estiver na secretaria. Diante do caso narrado, à luz das normas do Estatuto da Advocacia e da OAB (EAOAB), assinale a opção que indica a situação de Roberto:",
+      "options": [
+        "Roberto poderá manter sua atuação profissional, desde que não utilize o prestígio do cargo para captar clientela, sofrendo apenas impedimento contra a Fazenda Pública que o remunera.",
+        "Roberto passa a estar em situação de incompatibilidade total com o exercício da advocacia enquanto permanecer no cargo de Secretário Municipal, devendo licenciar-se da Ordem.",
+        "Roberto pode continuar advogando normalmente em processos que não envolvam o direito à saúde, uma vez que a incompatibilidade é restrita à sua área de atuação na secretaria municipal.",
+        "Roberto deve cancelar definitivamente sua inscrição na OAB, pois cargos de primeiro escalão no Poder Executivo municipal são vedados permanentemente a bacharéis em Direito com inscrição ativa."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 28, III, do EAOAB. O cargo de Secretário Municipal é de direção na administração pública, o que gera incompatibilidade total (proibição total) do exercício da advocacia durante o mandato."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Sucessões",
+      "text": "João, solteiro e sem filhos, falece deixando um patrimônio considerável. Seus pais já são falecidos. João possui dois irmãos vivos, Roberto e Cláudio, e dois sobrinhos, filhos de sua irmã Maria, que faleceu dois anos antes de João. Roberto, por razões pessoais, decide renunciar formalmente à herança de João por meio de escritura pública. Diante desse cenário sucessório, de acordo com o Código Civil, a herança de João deverá ser dividida da seguinte forma:",
+      "options": [
+        "A herança é dividida integralmente entre Cláudio e os dois sobrinhos (filhos de Maria), cabendo metade a Cláudio e a outra metade dividida entre os sobrinhos.",
+        "A herança é dividida em partes iguais entre Cláudio e Roberto, sendo a renúncia de Roberto considerada inválida por prejudicar os sobrinhos.",
+        "Todo o patrimônio é destinado a Cláudio, pois na classe dos colaterais os mais próximos excluem os mais remotos, e a renúncia de Roberto impede que seus próprios filhos (se existissem) herdassem por representação.",
+        "A herança é dividida em três partes iguais: uma para Cláudio, uma para Roberto (que seria repassada ao Estado pela renúncia) e uma para os sobrinhos."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 1.840 e 1.843 do CC. Na sucessão colateral, os filhos de irmãos (sobrinhos) herdam por direito de representação se concorrerem com tio."
+    }
+  ],
+  "OAB44": [],
+  "OAB43": [],
+  "OAB42": [],
+  "OAB41": [],
+  "OAB40": [],
+  "OAB39": []
+}
