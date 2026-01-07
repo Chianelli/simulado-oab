@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado OAB - Preparatório</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .correct { border: 2px solid #10b981; background-color: #ecfdf5; }
+        .wrong { border: 2px solid #ef4444; background-color: #fef2f2; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <div class="max-w-3xl mx-auto p-4">
+        <header class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm mb-6 sticky top-0 z-10">
+            <div>
+                <span class="text-sm text-gray-500 uppercase font-bold tracking-wider">Tempo Total</span>
+                <div id="total-timer" class="text-xl font-mono text-blue-600">05:00:00</div>
+            </div>
+            <div class="text-right">
+                <span class="text-sm text-gray-500 uppercase font-bold tracking-wider">Tempo na Questão</span>
+                <div id="question-timer" class="text-xl font-mono text-gray-700">00:00</div>
+            </div>
+        </header>
+
+        <main id="quiz-container" class="bg-white p-8 rounded-xl shadow-md">
+            <div id="metadata" class="mb-4">
+                <span id="exam-tag" class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">OAB 43</span>
+                <span id="subject-tag" class="ml-2 bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Direito Ético</span>
+                <p id="topic-tag" class="text-xs text-gray-400 mt-2 italic font-bold">Tema: Deveres do Advogado</p>
+            </div>
+
+            <h2 id="question-text" class="text-lg font-medium leading-relaxed mb-6">Carregando questão...</h2>
+
+            <div id="options-container" class="space-y-3">
+                </div>
+
+            <div id="feedback" class="mt-6 p-4 rounded-lg hidden">
+                <h4 class="font-bold mb-2">Fundamentação:</h4>
+                <p id="justification-text" class="text-sm leading-relaxed"></p>
+            </div>
+
+            <footer class="mt-8 pt-6 border-t flex justify-between">
+                <button onclick="prevQuestion()" class="px-6 py-2 border rounded-lg hover:bg-gray-100 transition">Anterior</button>
+                <div class="text-gray-400 self-center"><span id="current-idx">1</span>/80</div>
+                <button onclick="nextQuestion()" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Próxima</button>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Exemplo de estrutura de dados (Banco de Questões)
+        const questions = [
+            {
+                exam: "OAB 43",
+                subject: "Direito Ético",
+                topic: "Sanções Disciplinares",
+                text: "O advogado X reteve autos de forma abusiva, tendo sido intimado e não os devolvido. Segundo o Estatuto da OAB, qual a sanção aplicável?",
+                options: [
+                    "Censura apenas.",
+                    "Suspensão do exercício profissional.",
+                    "Exclusão dos quadros da OAB.",
+                    "Multa apenas."
+                ],
+                correct: 1, // Letra B
+                explanation: "Conforme o Art. 37, inciso I do EAOAB, a retenção abusiva de autos enseja a sanção de suspensão."
+            },
+            {
+                exam: "OAB 43",
+                subject: "Direito Civil",
+                topic: "Bens",
+                text: "Sobre os bens juridicamente considerados, assinale a alternativa correta:",
+                options: [
+                    "Energias que tenham valor econômico são bens móveis.",
+                    "Os materiais destinados a alguma construção são imóveis.",
+                    "O direito à sucessão aberta é bem móvel.",
+                    "Navios e aeronaves são bens imóveis por natureza."
+                ],
+                correct: 0, // Letra A
+                explanation: "Art. 83, II do Código Civil: Consideram-se bens móveis as energias que tenham valor econômico."
+            }
+        ];
+
+        let currentIdx = 0;
+        let qTimer;
+        let secondsInQuestion = 0;
+
+        function loadQuestion(idx) {
+            const q = questions[idx];
+            document.getElementById('exam-tag').innerText = q.exam;
+            document.getElementById('subject-tag').innerText = q.subject;
+            document.getElementById('topic-tag').innerText = "Tema: " + q.topic;
+            document.getElementById('question-text').innerText = q.text;
+            document.getElementById('current-idx').innerText = idx + 1;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 border rounded-lg hover:bg-blue-50 transition flex items-start";
+                btn.innerHTML = `<span class="font-bold mr-3">${String.fromCharCode(65 + i)})</span> ${opt}`;
+                btn.onclick = () => checkAnswer(i, q.correct, q.explanation);
+                container.appendChild(btn);
+            });
+
+            document.getElementById('feedback').classList.add('hidden');
+            resetQuestionTimer();
+        }
+
+        function checkAnswer(selected, correct, explanation) {
+            const btns = document.getElementById('options-container').children;
+            const feedback = document.getElementById('feedback');
+            
+            if(selected === correct) {
+                btns[selected].classList.add('correct');
+            } else {
+                btns[selected].classList.add('wrong');
+                btns[correct].classList.add('correct');
+            }
+            
+            document.getElementById('justification-text').innerText = explanation;
+            feedback.classList.remove('hidden');
+            // Desabilita botões após resposta
+            Array.from(btns).forEach(b => b.onclick = null);
+        }
+
+        function nextQuestion() {
+            if(currentIdx < questions.length - 1) {
+                currentIdx++;
+                loadQuestion(currentIdx);
+            }
+        }
+
+        function prevQuestion() {
+            if(currentIdx > 0) {
+                currentIdx--;
+                loadQuestion(currentIdx);
+            }
+        }
+
+        // Timer de Questão
+        function resetQuestionTimer() {
+            clearInterval(qTimer);
+            secondsInQuestion = 0;
+            qTimer = setInterval(() => {
+                secondsInQuestion++;
+                const m = Math.floor(secondsInQuestion / 60).toString().padStart(2, '0');
+                const s = (secondsInQuestion % 60).toString().padStart(2, '0');
+                document.getElementById('question-timer').innerText = `${m}:${s}`;
+            }, 1000);
+        }
+
+        // Timer Total (5 horas)
+        let totalSeconds = 5 * 60 * 60;
+        setInterval(() => {
+            totalSeconds--;
+            const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+            const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+            const s = (totalSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('total-timer').innerText = `${h}:${m}:${s}`;
+        }, 1000);
+
+        loadQuestion(0);
+    </script>
+</body>
+</html>
