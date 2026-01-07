@@ -3,118 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulado OAB 44 - Painel Completo</title>
+    <title>Simulado OAB Pro - Sistema de Revisão</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .correct { border: 2px solid #10b981 !important; background-color: #ecfdf5 !important; }
-        .wrong { border: 2px solid #ef4444 !important; background-color: #fef2f2 !important; }
-        .sidebar-correct { background-color: #10b981 !important; color: white !important; }
-        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; }
-        .sidebar-active { border: 2px solid #3b82f6 !important; }
+        .correct { border: 3px solid #10b981 !important; background-color: #ecfdf5 !important; }
+        .wrong { border: 3px solid #ef4444 !important; background-color: #fef2f2 !important; }
+        .sidebar-correct { background-color: #10b981 !important; color: white !important; border: none !important; }
+        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; border: none !important; }
+        .sidebar-review { background-color: #f59e0b !important; color: white !important; border: none !important; }
+        .sidebar-active { outline: 3px solid #3b82f6; outline-offset: 2px; }
         .hidden { display: none !important; }
         .option-btn:disabled { opacity: 1; cursor: default; }
     </style>
 </head>
-<body class="bg-slate-100 font-sans text-gray-900">
+<body class="bg-slate-50 font-sans text-gray-900">
 
     <div id="home-screen" class="max-w-2xl mx-auto mt-20 p-6">
         <div class="text-center mb-10">
-            <h1 class="text-4xl font-black text-slate-800 mb-2 italic">Simulado OAB Pro</h1>
-            <p class="text-slate-500 font-medium">Sistema completo com análise de desempenho</p>
+            <h1 class="text-4xl font-black text-slate-800 mb-2 italic">Simulado OAB Inteligente</h1>
+            <p class="text-slate-500 font-medium font-serif">Apoio total para a aprovação</p>
         </div>
         <div class="grid grid-cols-1 gap-6">
-            <button onclick="startQuiz('OAB44')" class="group p-8 bg-white border-2 border-blue-500 rounded-2xl shadow-xl hover:scale-105 transition-all text-left">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Exame 44 Oficial</span>
-                <h2 class="text-2xl font-bold text-slate-800 mt-1">Simulado com Mapa de Questões</h2>
-                <p class="text-slate-500 text-sm mt-2 font-medium">80 questões com acompanhamento lateral e relatório final por matéria.</p>
-                <div class="mt-4 text-blue-600 font-bold italic underline">CLIQUE PARA INICIAR →</div>
+            <button onclick="startQuiz('OAB44')" class="group p-8 bg-white border-2 border-blue-600 rounded-2xl shadow-xl hover:scale-105 transition-all text-left">
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Exame 44 Completo</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1">Iniciar com Modo Revisão</h2>
+                <p class="text-slate-500 text-sm mt-2 font-medium italic">Inclui ferramenta para marcar dúvidas e análise final de temas pendentes.</p>
+                <div class="mt-4 text-blue-600 font-bold italic underline">CLIQUE PARA COMEÇAR →</div>
             </button>
         </div>
     </div>
 
-    <div id="quiz-screen" class="max-w-[1400px] mx-auto p-4 flex gap-6 hidden">
+    <div id="quiz-screen" class="max-w-[1440px] mx-auto p-4 flex gap-6 hidden">
         
-        <aside class="w-72 bg-white rounded-2xl shadow-md p-4 sticky top-4 h-[calc(100vh-2rem)] overflow-y-auto hidden md:block border border-slate-200">
-            <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Mapa de Questões</h3>
-            <div id="questions-grid" class="grid grid-cols-5 gap-2 text-center text-xs font-bold">
+        <aside class="w-64 bg-white rounded-2xl shadow-lg p-5 sticky top-4 h-[calc(100vh-2rem)] overflow-y-auto hidden lg:block border border-slate-200">
+            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-5 text-center">Status da Prova</h3>
+            <div id="questions-grid" class="grid grid-cols-4 gap-2 text-center text-xs font-bold"></div>
+            
+            <div class="mt-8 space-y-3 pt-6 border-t border-slate-100">
+                <div class="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-400">
+                    <div class="w-4 h-4 bg-green-500 rounded-sm"></div> Acertou
                 </div>
-            <div class="mt-6 pt-6 border-t border-slate-100">
-                <div class="flex items-center gap-2 mb-2 text-[10px] uppercase font-bold text-slate-500">
-                    <div class="w-3 h-3 bg-green-500 rounded"></div> Acerto
+                <div class="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-400">
+                    <div class="w-4 h-4 bg-red-500 rounded-sm"></div> Errou
                 </div>
-                <div class="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500">
-                    <div class="w-3 h-3 bg-red-500 rounded"></div> Erro
+                <div class="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-400">
+                    <div class="w-4 h-4 bg-yellow-500 rounded-sm"></div> Chutou/Rever
                 </div>
             </div>
         </aside>
 
         <div class="flex-1">
-            <header class="flex justify-between items-center bg-white p-4 rounded-xl shadow-md mb-6 sticky top-2 z-10 border border-slate-200">
-                <div class="flex flex-col">
-                    <button onclick="location.reload()" class="text-xs font-bold text-blue-600 mb-1 hover:underline">← SAIR</button>
-                    <div id="total-timer" class="text-2xl font-mono font-bold text-slate-700">05:00:00</div>
-                </div>
-                <div class="text-right">
-                    <span class="text-[10px] text-slate-400 font-black uppercase">Tempo Questão</span>
-                    <div id="question-timer" class="text-xl font-mono font-medium text-blue-500">00:00</div>
-                </div>
+            <header class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm mb-6 sticky top-2 z-10 border border-slate-200">
+                <button onclick="location.reload()" class="text-[10px] font-black text-blue-600 uppercase tracking-widest">← Menu</button>
+                <div id="total-timer" class="text-2xl font-mono font-black text-slate-700">05:00:00</div>
+                <div id="question-timer" class="text-lg font-mono font-bold text-blue-400">00:00</div>
             </header>
 
-            <main id="main-quiz-area" class="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-slate-100">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="flex gap-2">
-                        <span id="subject-tag" class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest"></span>
-                        <span id="topic-tag" class="text-[10px] text-slate-400 font-bold uppercase py-1 italic"></span>
+            <main id="main-quiz-area" class="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100 relative">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <span id="subject-tag" class="bg-slate-900 text-white text-[10px] font-black px-4 py-1 rounded-md uppercase tracking-tighter mr-2"></span>
+                        <span id="topic-tag" class="text-[10px] text-blue-500 font-bold uppercase py-1 italic tracking-tight"></span>
                     </div>
-                    <div class="text-[10px] font-black text-slate-300">Q. <span id="current-idx-display">1</span>/80</div>
+                    <button id="btn-review" onclick="toggleReview()" class="flex items-center gap-2 px-3 py-1 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50 transition-all">
+                        🤔 Chutei, preciso rever
+                    </button>
                 </div>
                 
-                <h2 id="question-text" class="text-lg font-medium leading-relaxed text-slate-800 mb-8 text-justify"></h2>
+                <h2 id="question-text" class="text-xl font-medium leading-relaxed text-slate-800 mb-10 text-justify"></h2>
                 <div id="options-container" class="space-y-4"></div>
 
-                <div id="feedback" class="mt-8 p-6 bg-blue-50 rounded-xl border-l-8 border-blue-600 hidden">
-                    <h4 class="font-black text-blue-800 mb-2 uppercase text-xs tracking-widest italic">⚖️ Fundamentação:</h4>
-                    <p id="justification-text" class="text-slate-700 text-sm leading-relaxed font-medium italic"></p>
+                <div id="feedback" class="mt-10 p-8 bg-blue-50 rounded-3xl border-l-[12px] border-blue-600 hidden animate-in fade-in duration-500">
+                    <h4 class="font-black text-blue-900 mb-3 uppercase text-xs tracking-widest flex items-center gap-2">
+                        <span>⚖️ Fundamentação Legal:</span>
+                    </h4>
+                    <p id="justification-text" class="text-slate-700 text-sm leading-relaxed mb-4"></p>
+                    <div class="bg-white p-3 rounded-lg border border-blue-100 inline-block">
+                        <p class="text-[11px] font-bold text-blue-600 uppercase">📚 O que estudar para esta questão:</p>
+                        <p id="study-tip" class="text-slate-600 text-sm italic"></p>
+                    </div>
                 </div>
 
-                <footer class="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center">
-                    <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-800 font-bold px-4 py-2 transition">ANTERIOR</button>
-                    <button onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl transition shadow-lg shadow-blue-200">PRÓXIMA QUESTÃO</button>
+                <footer class="mt-12 pt-8 border-t border-slate-100 flex justify-between items-center">
+                    <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase tracking-widest">Anterior</button>
+                    <div class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Questão <span id="current-idx-display" class="text-slate-800 text-sm">1</span> / 80</div>
+                    <button onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-10 py-4 rounded-2xl transition shadow-xl uppercase text-xs tracking-widest">Próxima</button>
                 </footer>
             </main>
 
-            <div id="result-screen" class="hidden bg-white p-8 rounded-2xl shadow-2xl">
-                <h2 class="text-3xl font-black text-slate-800 mb-6 text-center italic">Desempenho Final</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-slate-50 p-6 rounded-xl text-center">
-                        <span class="text-xs font-black uppercase text-slate-400">Total de Acertos</span>
-                        <div class="text-6xl font-black text-blue-600 my-2"><span id="score-total">0</span>/80</div>
-                        <div id="score-percent" class="text-sm font-bold text-slate-500 italic">0% de aproveitamento</div>
+            <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100">
+                <h2 class="text-4xl font-black text-slate-800 mb-8 text-center italic tracking-tighter">Relatório de Desempenho</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="bg-slate-900 p-8 rounded-3xl text-center text-white lg:col-span-1">
+                        <span class="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em]">Acertos Totais</span>
+                        <div class="text-7xl font-black my-4"><span id="score-total">0</span><span class="text-2xl text-slate-500">/80</span></div>
+                        <div id="score-percent" class="text-sm font-bold text-blue-400"></div>
                     </div>
-                    <div>
-                        <h3 class="font-black text-slate-800 uppercase text-xs mb-4 tracking-widest">Análise por Matéria</h3>
-                        <div id="subject-report" class="space-y-3">
-                            </div>
+                    
+                    <div class="lg:col-span-2">
+                        <h3 class="font-black text-slate-800 uppercase text-xs mb-6 tracking-widest flex items-center gap-2">
+                            🔍 Análise Crítica por Disciplina
+                        </h3>
+                        <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                     </div>
                 </div>
-                <div class="mt-8 pt-6 border-t border-slate-100 text-center">
-                    <button onclick="location.reload()" class="px-10 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition">Reiniciar Estudos</button>
+
+                <div id="review-summary" class="mt-10 p-6 bg-yellow-50 rounded-2xl border-2 border-yellow-100 hidden">
+                    <h4 class="font-black text-yellow-800 text-xs uppercase mb-3 italic">⚠️ Alerta de "Chutes" (Dúvidas Marcadas):</h4>
+                    <p id="review-list" class="text-sm text-yellow-700 leading-relaxed"></p>
+                </div>
+
+                <div class="mt-10 text-center">
+                    <button onclick="location.reload()" class="px-12 py-4 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition-all shadow-lg">Refazer Simulado</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // O banco de dados completo (usando o anterior corrigido)
         const allExams = {
             "OAB44": [
                 { subject: "Ética Profissional", topic: "Sociedade", text: "1. Gomes, advogado, decide constituir uma sociedade unipessoal. Após registro, é convidado a integrar uma sociedade pluripessoal na mesma base territorial. Segundo o EAOAB:", options: ["Pode integrar ambas livremente.", "Não pode integrar mais de uma sociedade de advogados na mesma base territorial.", "Pode integrar se houver autorização da Seccional.", "Pode, pois uma delas é unipessoal."], correct: 1, explanation: "Art. 15, § 4º do EAOAB: O advogado não pode pertencer a mais de uma sociedade na mesma base territorial." },
                 { subject: "Ética Profissional", topic: "Mandato", text: "2. O advogado Dênis decidiu renunciar ao mandato em uma ação trabalhista por desentendimento com o cliente. Sobre os deveres de Dênis:", options: ["A renúncia dispensa comunicação se feita ao juiz.", "Dênis deve notificar o cliente e representá-lo pelos 10 dias seguintes à notificação.", "O dever de representar cessa no ato da postagem da carta.", "É proibido renunciar após a fase de instrução."], correct: 1, explanation: "Art. 112 do CPC e Art. 5º do Estatuto da OAB." },
-                { subject: "Ética Profissional", topic: "Publicidade", text: "3. Uma sociedade de advogados decide impulsionar posts informativos em redes sociais sobre teses jurídicas. Segundo o Provimento 205/2021 do CFOAB:", options: ["Qualquer impulsionamento é vedado.", "É permitido o impulsionamento desde que não configure mercantilização ou captação indevida.", "Pode-se usar fotos dos veículos e bens dos sócios.", "É permitido citar nomes de clientes para dar autoridade."], correct: 1, explanation: "O Provimento 205/2021 permite marketing jurídico informativo, vedando a mercantilização." },
-                { subject: "Ética Profissional", topic: "Incompatibilidade", text: "4. Pedro, advogado, foi eleito Vereador e assumiu a Presidência da Câmara Municipal. Segundo o Estatuto da OAB:", options: ["Pedro está apenas impedido contra a Fazenda Pública.", "Pedro está incompatibilizado de exercer a advocacia totalmente enquanto no cargo.", "Pedro pode advogar normalmente no escritório.", "Ele deve cancelar a OAB e fazer novo exame depois."], correct: 1, explanation: "Art. 28, VI do EAOAB estabelece incompatibilidade para membros de órgãos de direção do Poder Legislativo." },
-                { subject: "Ética Profissional", topic: "Honorários", text: "5. Sobre o recebimento de honorários em caso de substabelecimento sem reserva de poderes:", options: ["O advogado anterior perde o direito aos honorários.", "O advogado substabelecente tem direito a receber honorários proporcionais ao trabalho.", "Os honorários são divididos igualmente entre todos.", "A OAB arbitra o valor em 20%."], correct: 1, explanation: "O advogado que sai da causa tem direito ao recebimento proporcional ao serviço já prestado." },
+                { subject: "Ética Profissional", topic: "Publicidade", text: "3. Uma sociedade de advogados decide impulsionar posts informativos em redes sociais sobre teses jurídicas. Segundo o Provimento 205/2021 do CFOAB:", options: ["Qualquer impulsionamento é vedado.", "É permitido o impulsionamento desde que não configure mercantilização ou captação indevida.", "Pode-se usar fotos dos veículos e bens dos sócios.", "É permitido citar nomes de clientes para dar autoridade."], correct: 1, explanation: "O Provimento 205/2021 permite marketing jurídico informativo." },
+                { subject: "Ética Profissional", topic: "Incompatibilidade", text: "4. Pedro, advogado, foi eleito Vereador e assumiu a Presidência da Câmara Municipal. Segundo o Estatuto da OAB:", options: ["Pedro está apenas impedido contra a Fazenda Pública.", "Pedro está incompatibilizado de exercer a advocacia totalmente enquanto no cargo.", "Pedro pode advogar normalmente no escritório.", "Ele deve cancelar a OAB e fazer novo exame depois."], correct: 1, explanation: "Art. 28, VI do EAOAB estabelece incompatibilidade total temporária." },
+                { subject: "Ética Profissional", topic: "Honorários", text: "5. Sobre o recebimento de honorários em caso de substabelecimento sem reserva de poderes:", options: ["O advogado anterior perde o direito aos honorários.", "O advogado substabelecente tem direito a receber honorários proporcionais ao trabalho.", "Os honorários são divididos igualmente entre todos.", "A OAB arbitra o valor em 20%."], correct: 1, explanation: "O advogado que sai da causa tem direito ao recebimento proporcional ao serviço." },
                 { subject: "Ética Profissional", topic: "Gestante", text: "6. A advogada Maria, gestante, comparece à audiência e encontra fila. Ela possui direito a:", options: ["Preferência na ordem das audiências do dia.", "Isenção de custas processuais.", "Adiamento automático por 30 dias.", "Acesso apenas se for acompanhada."], correct: 0, explanation: "Art. 7-A, I, 'a' do EAOAB garante preferência para gestantes." },
-                { subject: "Ética Profissional", topic: "Sigilo", text: "7. O advogado é intimado a depor como testemunha sobre fato confidencial de cliente. Ele deve:", options: ["Depor, se houver interesse da justiça.", "Recusar-se a depor, protegendo o sigilo que é direito e dever.", "Depor se o cliente autorizar oralmente.", "Apenas depor se for em segredo de justiça."], correct: 1, explanation: "O sigilo profissional é inviolável e o advogado tem o dever de se recusar a depor." },
-                { subject: "Ética Profissional", topic: "Incompatibilidade", text: "8. Manter conduta incompatível com a advocacia, como incontinência pública escandalosa, gera:", options: ["Censura.", "Suspensão.", "Exclusão.", "Multa apenas."], correct: 1, explanation: "Art. 37, I do EAOAB prevê suspensão para condutas incompatíveis." },
+                { subject: "Ética Profissional", topic: "Sigilo", text: "7. O advogado é intimado a depor como testemunha sobre fato confidencial de cliente. Ele deve:", options: ["Depor, se houver interesse da justiça.", "Recusar-se a depor, protegendo o sigilo que é direito e dever.", "Depor se o cliente autorizar oralmente.", "Apenas depor se for em segredo de justiça."], correct: 1, explanation: "O sigilo profissional é inviolável e o advogado tem o dever de se recusar." },
+                { subject: "Ética Profissional", topic: "Incompatibilidade", text: "8. Manter conduta incompatível com a advocacia, como incontinência pública escandalosa, gera:", options: ["Censura.", "Suspensão.", "Exclusão.", "Multa apenas."], correct: 1, explanation: "Art. 37, I do EAOAB prevê suspensão." },
                 { subject: "Direito Constitucional", topic: "ADI", text: "9. Sobre a legitimidade do Governador para propor Ação Direta de Inconstitucionalidade (ADI):", options: ["É legitimado universal.", "É legitimado especial, devendo provar pertinência temática.", "Só pode propor ADI contra leis federais.", "Precisa de autorização da Assembleia."], correct: 1, explanation: "Art. 103, V da CF e jurisprudência do STF." },
                 { subject: "Direito Constitucional", topic: "Remédios", text: "10. Para assegurar o conhecimento de informações relativas à pessoa do impetrante em bancos governamentais, cabe:", options: ["Mandado de Segurança.", "Habeas Data.", "Habeas Corpus.", "Mandado de Injunção."], correct: 1, explanation: "Art. 5º, LXXII, 'a' da CF." },
                 { subject: "Direito Constitucional", topic: "Poder Executivo", text: "11. Lei que cria cargos na administração pública federal é de iniciativa privativa do:", options: ["Presidente da República.", "Congresso Nacional.", "STF.", "Ministro da Justiça."], correct: 0, explanation: "Art. 61, § 1º da CF." },
@@ -157,7 +175,7 @@
                 { subject: "Processo Civil", topic: "Rescisória", text: "48. Prazo da ação rescisória:", options: ["1 ano.", "2 anos.", "5 anos.", "10 anos."], correct: 1, explanation: "Art. 975 CPC." },
                 { subject: "Processo Civil", topic: "Revelia", text: "49. Revelia presume fatos verdadeiros:", options: ["Falso.", "Verdadeiro.", "Só em valor baixo.", "Só se o réu sumir."], correct: 1, explanation: "Art. 344 CPC." },
                 { subject: "Processo Civil", topic: "Sentença", text: "50. Sentença que não julga mérito é art:", options: ["485.", "487.", "1.", "100."], correct: 0, explanation: "Art. 485 CPC." },
-                { subject: "Direito Penal", topic: "Teoria", text: "51. Vítima morre em incêndio no hospital. Agressor responde por:", options: ["Consumado.", "Tentativa.", "Culposo.", "Lesão."], correct: 1, explanation: "Art. 13 CP." },
+                { subject: "Direito Penal", topic: "Teoria", text: "51. Vítima morre em incêndio no hospital. Agressor responde por:", options: ["Consumado.", "Tentativa.", "Culposo.", "Lesão."], correct: 1, explanation: "Causa superveniente (Art. 13 CP)." },
                 { subject: "Direito Penal", topic: "Crimes", text: "52. Subtrair com ameaça é:", options: ["Furto.", "Roubo.", "Extorsão.", "Estelionato."], correct: 1, explanation: "Art. 157 CP." },
                 { subject: "Direito Penal", topic: "Legítima Defesa", text: "53. Agente responde por excesso?", options: ["Não.", "Sim, dolo ou culpa.", "Só se matar.", "Só no tráfico."], correct: 1, explanation: "Art. 23 CP." },
                 { subject: "Direito Penal", topic: "Prescrição", text: "54. Menor de 21 anos tem prescrição reduzida:", options: ["Não.", "Sim, pela metade.", "Sim, em 1/3.", "Não existe."], correct: 1, explanation: "Art. 115 CP." },
@@ -192,10 +210,10 @@
 
         let currentExam = [];
         let currentIdx = 0;
-        let qTimer;
+        let qTimer, totalTimer;
         let secondsInQuestion = 0;
         let totalSeconds = 5 * 60 * 60;
-        let userResponses = Array(80).fill(null); // [ {correct: true/false, subject: ''} ]
+        let userResponses = Array(80).fill(null); // {selected, correct, subject, review: bool}
 
         function startQuiz(examKey) {
             currentExam = allExams[examKey];
@@ -210,12 +228,12 @@
             const grid = document.getElementById('questions-grid');
             grid.innerHTML = '';
             for(let i=0; i<80; i++) {
-                const div = document.createElement('button');
-                div.id = `side-q-${i}`;
-                div.className = "w-full py-2 rounded-lg bg-slate-50 border border-slate-200 transition-all hover:border-blue-300";
-                div.innerText = i + 1;
-                div.onclick = () => loadQuestion(i);
-                grid.appendChild(div);
+                const btn = document.createElement('button');
+                btn.id = `side-q-${i}`;
+                btn.className = "w-full py-2 rounded bg-slate-100 border border-slate-200 text-slate-400";
+                btn.innerText = i + 1;
+                btn.onclick = () => loadQuestion(i);
+                grid.appendChild(btn);
             }
         }
 
@@ -223,7 +241,6 @@
             currentIdx = idx;
             const q = currentExam[idx];
             
-            // UI Update
             document.querySelectorAll('[id^="side-q-"]').forEach(el => el.classList.remove('sidebar-active'));
             document.getElementById(`side-q-${idx}`).classList.add('sidebar-active');
             
@@ -237,11 +254,10 @@
             
             q.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left p-5 border-2 border-slate-200 rounded-xl hover:bg-blue-50 transition-all flex items-start font-medium";
+                btn.className = "option-btn w-full text-left p-5 border-2 border-slate-200 rounded-2xl hover:bg-blue-50 transition-all flex items-start font-medium";
                 btn.innerHTML = `<span class="font-black text-blue-500 mr-4">${String.fromCharCode(65 + i)}</span> ${opt}`;
                 
-                // Se já respondeu
-                if(userResponses[idx] !== null) {
+                if(userResponses[idx] && userResponses[idx].selected !== null) {
                     btn.disabled = true;
                     if(i === q.correct) btn.classList.add('correct');
                     if(i === userResponses[idx].selected && i !== q.correct) btn.classList.add('wrong');
@@ -251,8 +267,18 @@
                 container.appendChild(btn);
             });
 
-            if(userResponses[idx] !== null) {
-                showFeedback(q.explanation);
+            // Atualiza Botão Chute
+            const btnRev = document.getElementById('btn-review');
+            if(userResponses[idx] && userResponses[idx].review) {
+                btnRev.classList.add('bg-yellow-400', 'text-white');
+            } else {
+                btnRev.classList.remove('bg-yellow-400', 'text-white');
+            }
+
+            if(userResponses[idx] && userResponses[idx].selected !== null) {
+                document.getElementById('justification-text').innerText = q.explanation;
+                document.getElementById('study-tip').innerText = q.subject;
+                document.getElementById('feedback').classList.remove('hidden');
             } else {
                 document.getElementById('feedback').classList.add('hidden');
             }
@@ -260,42 +286,50 @@
             resetQuestionTimer();
         }
 
+        function toggleReview() {
+            if(!userResponses[currentIdx]) userResponses[currentIdx] = {selected: null, correct: null, subject: currentExam[currentIdx].subject, review: false};
+            userResponses[currentIdx].review = !userResponses[currentIdx].review;
+            
+            const sideBtn = document.getElementById(`side-q-${currentIdx}`);
+            if(userResponses[currentIdx].review) {
+                sideBtn.classList.add('sidebar-review');
+            } else {
+                sideBtn.classList.remove('sidebar-review');
+                // Mantém a cor de acerto/erro se já respondeu
+                if(userResponses[currentIdx].selected !== null) {
+                    sideBtn.classList.add(userResponses[currentIdx].correct ? 'sidebar-correct' : 'sidebar-wrong');
+                }
+            }
+            loadQuestion(currentIdx);
+        }
+
         function checkAnswer(selected, correct, explanation) {
             const isCorrect = (selected === correct);
+            if(!userResponses[currentIdx]) userResponses[currentIdx] = {review: false};
+            
             userResponses[currentIdx] = { 
+                ...userResponses[currentIdx],
                 selected: selected, 
                 correct: isCorrect, 
                 subject: currentExam[currentIdx].subject 
             };
             
-            // Update Sidebar
             const sideBtn = document.getElementById(`side-q-${currentIdx}`);
-            sideBtn.classList.add(isCorrect ? 'sidebar-correct' : 'sidebar-wrong');
-
-            loadQuestion(currentIdx); // Reload to show styles
-            
-            // Se for a última, mostra dashboard após delay
-            if(currentIdx === 79) {
-                setTimeout(showFinalResults, 2000);
+            if(!userResponses[currentIdx].review) {
+                sideBtn.classList.add(isCorrect ? 'sidebar-correct' : 'sidebar-wrong');
             }
+            loadQuestion(currentIdx);
         }
-
-        function showFeedback(text) {
-            const fb = document.getElementById('feedback');
-            document.getElementById('justification-text').innerText = text;
-            fb.classList.remove('hidden');
-        }
-
-        function nextQuestion() { if(currentIdx < 79) loadQuestion(currentIdx + 1); else showFinalResults(); }
-        function prevQuestion() { if(currentIdx > 0) loadQuestion(currentIdx - 1); }
 
         function showFinalResults() {
             document.getElementById('main-quiz-area').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
             
-            const totalAcertos = userResponses.filter(r => r && r.correct).length;
-            document.getElementById('score-total').innerText = totalAcertos;
-            document.getElementById('score-percent').innerText = `${Math.round((totalAcertos/80)*100)}% de acerto total`;
+            const totalHits = userResponses.filter(r => r && r.correct).length;
+            const totalReview = userResponses.filter(r => r && r.review).length;
+            
+            document.getElementById('score-total').innerText = totalHits;
+            document.getElementById('score-percent').innerText = `${Math.round((totalHits/80)*100)}% de acerto total`;
 
             // Report por Matéria
             const stats = {};
@@ -308,21 +342,27 @@
 
             const reportContainer = document.getElementById('subject-report');
             reportContainer.innerHTML = '';
-            
             for(let sub in stats) {
                 const percent = Math.round((stats[sub].hits / stats[sub].total) * 100);
                 const color = percent >= 60 ? 'text-green-600' : 'text-red-600';
-                const div = document.createElement('div');
-                div.className = "flex justify-between items-center border-b border-slate-100 pb-2";
-                div.innerHTML = `
-                    <span class="text-sm font-medium text-slate-600">${sub}</span>
-                    <span class="text-sm font-black ${color}">${percent}% (${stats[sub].hits}/${stats[sub].total})</span>
-                `;
-                reportContainer.appendChild(div);
+                reportContainer.innerHTML += `
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <p class="text-[10px] font-black text-slate-400 uppercase">${sub}</p>
+                        <p class="text-lg font-black ${color}">${percent}% <span class="text-xs text-slate-400">(${stats[sub].hits}/${stats[sub].total})</span></p>
+                    </div>`;
+            }
+
+            // Lista de Chutes
+            if(totalReview > 0) {
+                const subjectsToReview = [...new Set(userResponses.filter(r => r && r.review).map(r => r.subject))];
+                document.getElementById('review-summary').classList.remove('hidden');
+                document.getElementById('review-list').innerText = "Você marcou dúvida em questões de: " + subjectsToReview.join(", ") + ". Priorize a leitura dessas leis!";
             }
         }
 
-        // Timers
+        function nextQuestion() { if(currentIdx < 79) loadQuestion(currentIdx + 1); else showFinalResults(); }
+        function prevQuestion() { if(currentIdx > 0) loadQuestion(currentIdx - 1); }
+
         function resetQuestionTimer() {
             clearInterval(qTimer); secondsInQuestion = 0;
             qTimer = setInterval(() => {
@@ -334,7 +374,7 @@
         }
 
         function startTotalTimer() {
-            setInterval(() => {
+            totalTimer = setInterval(() => {
                 if(totalSeconds > 0) {
                     totalSeconds--;
                     const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
