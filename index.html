@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulado OAB Pro - 80 Questões</title>
+    <title>Simulado OAB Pro - Versão Final</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .correct { border: 3px solid #10b981 !important; background-color: #ecfdf5 !important; }
@@ -20,7 +20,7 @@
 
     <div id="home-screen" class="max-w-2xl mx-auto mt-20 p-6 text-center">
         <h1 class="text-4xl font-black text-blue-600 mb-2 italic">OAB SIMULADOS</h1>
-        <p class="text-slate-500 font-medium mb-10">Versão Final com Mapa e Análise de Desempenho</p>
+        <p class="text-slate-500 font-medium mb-10 text-center">Sistema Profissional de Desempenho</p>
         <button onclick="startQuiz()" class="p-8 bg-white border-2 border-blue-600 rounded-2xl shadow-xl hover:scale-105 transition-all text-left w-full">
             <span class="text-blue-600 font-bold text-xs uppercase tracking-widest text-center block mb-2">Exame 44 Oficial</span>
             <h2 class="text-2xl font-bold text-slate-800 text-center italic">Iniciar Prova Completa</h2>
@@ -42,19 +42,19 @@
 
         <div class="flex-1">
             <header class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm mb-6 border border-slate-200">
-                <button onclick="location.reload()" class="text-[10px] font-black text-blue-600 uppercase">← Sair</button>
-                <div id="total-timer" class="text-2xl font-mono font-black text-slate-700">05:00:00</div>
-                <div id="question-timer" class="text-xs font-mono font-bold text-blue-400 uppercase">Tempo Questão: 00:00</div>
+                <button onclick="location.reload()" class="text-[10px] font-black text-blue-600 uppercase">← Menu</button>
+                <div id="total-timer" class="text-2xl font-mono font-black text-slate-700 leading-none">05:00:00</div>
+                <div id="question-timer" class="text-xs font-mono font-bold text-blue-400 uppercase">Questão: 00:00</div>
             </header>
 
             <main id="main-quiz-area" class="bg-white p-6 md:p-10 rounded-[2rem] shadow-xl border border-slate-100 relative">
                 <div class="flex justify-between items-start mb-6">
                     <div>
-                        <span id="subject-tag" class="bg-slate-900 text-white text-[10px] font-black px-4 py-1 rounded uppercase tracking-tighter mr-2"></span>
+                        <span id="subject-tag" class="bg-slate-900 text-white text-[10px] font-black px-4 py-1 rounded uppercase tracking-tighter mr-2 leading-none"></span>
                         <span id="topic-tag" class="text-[10px] text-blue-500 font-bold uppercase italic tracking-tight"></span>
                     </div>
                     <button id="btn-review" onclick="toggleReview()" class="flex items-center gap-2 px-4 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50 transition-all shadow-sm">
-                        🤔 Chutei / Rever dps
+                        🤔 Chutando / Rever dps
                     </button>
                 </div>
                 
@@ -73,34 +73,34 @@
                 <footer class="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center">
                     <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase">Anterior</button>
                     <div class="text-[11px] font-black text-slate-300 uppercase italic">Questão <span id="current-idx-display" class="text-slate-800 text-sm">1</span> / 80</div>
-                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-8 py-3 rounded-xl transition shadow-lg uppercase text-xs tracking-widest">Próxima</button>
+                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-8 py-3 rounded-xl transition shadow-lg uppercase text-xs">Próxima</button>
                 </footer>
             </main>
 
-            <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center">
-                <h2 class="text-3xl font-black text-slate-800 mb-8 tracking-tighter uppercase italic">Desempenho Final</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
-                    <div class="bg-slate-900 p-8 rounded-3xl text-center text-white flex flex-col justify-center">
-                        <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Acertos Totais</span>
+            <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100">
+                <h2 class="text-3xl font-black text-slate-800 mb-8 text-center italic tracking-tighter uppercase">Relatório de Desempenho</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-900 p-8 rounded-3xl text-center text-white flex flex-col justify-center border-b-8 border-blue-600">
+                        <span class="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em]">Total de Acertos</span>
                         <div class="text-7xl font-black my-4"><span id="score-total">0</span><span class="text-xl text-slate-500">/80</span></div>
-                        <div id="score-percent" class="text-sm font-bold text-blue-400 italic"></div>
+                        <div id="score-percent" class="text-sm font-bold text-blue-400 italic leading-relaxed"></div>
                     </div>
                     <div class="lg:col-span-2">
-                        <h3 class="font-black text-slate-800 uppercase text-[10px] mb-4 tracking-widest border-b pb-2 italic">Análise por Disciplina</h3>
+                        <h3 class="font-black text-slate-800 uppercase text-[10px] mb-4 tracking-[0.3em] border-b pb-2">Análise por Disciplina</h3>
                         <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
                     </div>
                 </div>
                 <div id="review-summary" class="mt-8 p-6 bg-yellow-50 rounded-2xl border-2 border-yellow-100 hidden">
-                    <h4 class="font-black text-yellow-800 text-[10px] uppercase mb-2 italic">⚠️ Alerta de Dúvidas (Chutes):</h4>
-                    <p id="review-list" class="text-sm text-yellow-700 font-medium"></p>
+                    <h4 class="font-black text-yellow-800 text-[10px] uppercase mb-2 italic">⚠️ Matérias Marcadas com Dúvida (Chutes):</h4>
+                    <p id="review-list" class="text-sm text-yellow-700 font-medium italic"></p>
                 </div>
-                <button onclick="location.reload()" class="mt-10 px-14 py-4 bg-blue-600 text-white font-black rounded-xl shadow-lg hover:bg-blue-700 transition-all uppercase text-xs tracking-widest">Recomeçar Prova</button>
+                <div class="mt-10 text-center"><button onclick="location.reload()" class="px-14 py-4 bg-blue-600 text-white font-black rounded-xl shadow-lg hover:bg-blue-700 transition-all uppercase text-xs">Recomeçar Prova</button></div>
             </div>
         </div>
     </div>
 
     <script>
-        // BANCO DE DADOS FORMATADO E SEM ERROS DE VÍRGULA
+        // BANCO DE DADOS PADRONIZADO (Nomes completos para evitar undefined)
         const questionsDB = [
             { subject: "Ética Profissional", topic: "Sociedade", text: "1. Gomes, advogado, decide constituir uma sociedade unipessoal. Após registro, é convidado a integrar uma sociedade pluripessoal na mesma base territorial. Segundo o EAOAB:", options: ["Pode integrar ambas livremente.", "Não pode integrar mais de uma sociedade de advogados na mesma base territorial.", "Pode integrar se houver autorização da Seccional.", "Pode, pois uma delas é unipessoal."], correct: 1, explanation: "Art. 15, § 4º do EAOAB: O advogado não pode pertencer a mais de uma sociedade na mesma base territorial." },
             { subject: "Ética Profissional", topic: "Mandato", text: "2. O advogado Dênis decidiu renunciar ao mandato em uma ação trabalhista por desentendimento com o cliente. Sobre os deveres de Dênis:", options: ["A renúncia dispensa comunicação se feita ao juiz.", "Dênis deve notificar o cliente e representá-lo pelos 10 dias seguintes à notificação.", "O dever de representar cessa no ato da postagem da carta.", "É proibido renunciar após a fase de instrução."], correct: 1, explanation: "Art. 112 do CPC e Art. 5º do Estatuto da OAB." },
@@ -130,13 +130,13 @@
             { subject: "Direito Civil", topic: "Posse", text: "26. Má-fé na posse é quando se tem ciência do vício:", options: ["Falso.", "Verdadeiro.", "Só em aluguel.", "Não existe."], correct: 1, explanation: "Art. 1.201 CC." },
             { subject: "Direito Civil", topic: "Animais", text: "27. Dono de animal responde se não provar culpa da vítima ou força maior:", options: ["Amizade com a vítima.", "Culpa da vítima ou força maior.", "Que o bicho é vacinado.", "Que não estava em casa."], correct: 1, explanation: "Art. 936 CC." },
             { subject: "Direito Civil", topic: "União", text: "28. Herança na união estável sem contrato:", options: ["Divide.", "Exclui da comunhão.", "Dobra.", "Sobra."], correct: 1, explanation: "Art. 1.659 CC." },
-            { subject: "Direito Civil", topic: "Vago", text: "29. Sem herdeiros, a herança vai para:", options: ["Irmãos.", "Estado/Município.", "Vizinhos.", "MP."], correct: 1, explanation: "Herança Jacente." },
+            { subject: "Direito Civil", topic: "Sucessão", text: "29. Sem herdeiros, a herança vai para:", options: ["Irmãos.", "Estado/Município.", "Vizinhos.", "MP."], correct: 1, explanation: "Herança Jacente." },
             { subject: "ECA", topic: "Adoção", text: "30. Adoção por procuração é vedada?", options: ["Não.", "Sim.", "Só em SP.", "Só para bebês."], correct: 1, explanation: "Art. 39 ECA." },
             { subject: "ECA", topic: "Internação", text: "31. Internação exige violência ou grave ameaça:", options: ["Falso.", "Verdadeiro.", "Só com drogas.", "Obrigatória."], correct: 1, explanation: "Art. 122 ECA." },
-            { subject: "Consumidor", topic: "Fato", text: "32. Prazo para reparação por explosão de produto:", options: ["1 ano.", "5 anos.", "90 dias.", "10 anos."], correct: 1, explanation: "Art. 27 CDC." },
-            { subject: "Consumidor", topic: "Reflexão", text: "33. Direito de arrependimento (prazo):", options: ["24h.", "7 dias.", "30 dias.", "15 dias."], correct: 1, explanation: "Art. 49 CDC." },
-            { subject: "Consumidor", topic: "Anúncio", text: "34. Omitir dado essencial no produto é propaganda:", options: ["Abusiva.", "Enganosa.", "Lícita.", "Diferente."], correct: 1, explanation: "Art. 37 CDC." },
-            { subject: "Consumidor", topic: "Prova", text: "35. Inversão do ônus da prova exige verossimilhança:", options: ["Falso.", "Verdadeiro.", "Só se for rico.", "Sempre proibida."], correct: 1, explanation: "Art. 6 CDC." },
+            { subject: "Direito do Consumidor", topic: "Fato", text: "32. Prazo para reparação por explosão de produto:", options: ["1 ano.", "5 anos.", "90 dias.", "10 anos."], correct: 1, explanation: "Art. 27 CDC." },
+            { subject: "Direito do Consumidor", topic: "Web", text: "33. Direito de arrependimento (prazo):", options: ["24h.", "7 dias.", "30 dias.", "15 dias."], correct: 1, explanation: "Art. 49 CDC." },
+            { subject: "Direito do Consumidor", topic: "Anúncio", text: "34. Omitir dado essencial no produto é propaganda:", options: ["Abusiva.", "Enganosa.", "Lícita.", "Diferente."], correct: 1, explanation: "Art. 37 CDC." },
+            { subject: "Direito do Consumidor", topic: "Prova", text: "35. Inversão do ônus da prova exige verossimilhança:", options: ["Falso.", "Verdadeiro.", "Só se for rico.", "Sempre proibida."], correct: 1, explanation: "Art. 6 CDC." },
             { subject: "Direito Empresarial", topic: "Aval", text: "36. Aval parcial no Código Civil é proibido?", options: ["Não.", "Sim.", "Livre.", "Só em cheque."], correct: 1, explanation: "Art. 897 CC." },
             { subject: "Direito Empresarial", topic: "Invenção", text: "37. Patente de invenção dura:", options: ["10 anos.", "20 anos.", "15 anos.", "50 anos."], correct: 1, explanation: "Lei 9.279." },
             { subject: "Direito Empresarial", topic: "Sociedade", text: "38. Sócios na limitada respondem solidariamente pela integralização?", options: ["Não.", "Sim.", "Só o gerente.", "Só em dívida de luz."], correct: 1, explanation: "Art. 1.052 CC." },
@@ -169,7 +169,7 @@
             { subject: "Direito Processual Penal", topic: "Flagrante", text: "65. Comunicar flagrante em:", options: ["12h.", "24h.", "48h.", "Imediato."], correct: 1, explanation: "Art. 306 CPP." },
             { subject: "Direito Processual Penal", topic: "Soltura", text: "66. Liberdade provisória sem fiança é possível?", options: ["Não.", "Sim.", "Só para ricos.", "Raramente."], correct: 1, explanation: "Art. 310 CPP." },
             { subject: "Direito Processual Penal", topic: "Militar", text: "67. Citação do militar é pelo chefe do serviço:", options: ["Falso.", "Verdadeiro.", "Edital.", "Correio."], correct: 1, explanation: "Art. 358 CPP." },
-            { subject: "Direito Processual Penal", topic: "Max", text: "68. Limite de testemunhas no rito ordinário:", options: ["5.", "8.", "10.", "3."], correct: 1, explanation: "Art. 401 CPP." },
+            { subject: "Direito Processual Penal", topic: "Max", text: "68. Limite de testemunhas no rito ordinário:", options: ["5.", "8.", "10.", "3."], correct: 2, explanation: "Art. 401 CPP." },
             { subject: "Direito Processual Penal", topic: "Adit", text: "69. Mutatio libelli exige aditamento:", options: ["Não.", "Sim.", "Livre.", "Só se for erro."], correct: 1, explanation: "Art. 384 CPP." },
             { subject: "Direito Processual Penal", topic: "Prazo", text: "70. Prazo Apelação Criminal:", options: ["15 dias.", "5 dias.", "8 dias.", "10 dias."], correct: 1, explanation: "Art. 593 CPP." },
             { subject: "Direito do Trabalho", topic: "Prejuízo", text: "71. Alteração ilícita é a que gera prejuízo:", options: ["Falso.", "Verdadeiro.", "Só salarial.", "Livre."], correct: 1, explanation: "Art. 468 CLT." },
@@ -233,6 +233,7 @@
             document.querySelectorAll('[id^="side-q-"]').forEach(el => el.classList.remove('sidebar-active'));
             document.getElementById(`side-q-${idx}`).classList.add('sidebar-active');
             
+            // CORREÇÃO DOS NOMES AQUI (q.subject, q.topic, q.text)
             document.getElementById('subject-tag').innerText = q.subject;
             document.getElementById('topic-tag').innerText = "TEMA: " + q.topic;
             document.getElementById('question-text').innerText = q.text;
