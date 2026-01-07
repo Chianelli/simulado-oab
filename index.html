@@ -22,789 +22,87 @@
     <div id="home-screen" class="max-w-4xl mx-auto mt-10 p-6">
         <div class="text-center mb-12">
             <h1 class="text-5xl font-black text-blue-600 mb-3 italic tracking-tighter">OAB SIMULADOS PRO</h1>
-            <p class="text-slate-500 font-medium">Plataforma de Treinamento com Questões Reais da FGV</p>
+            <p class="text-slate-500 font-medium">Questões Reais da FGV com Sistema de Descarte</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <script>
-                const exams = ['45', '44', '43', '42', '41', '40', '39'];
-                exams.forEach(num => {
-                    document.write(`
-                        <button onclick="startQuiz('OAB${num}')" class="group p-6 bg-white border-2 border-slate-200 rounded-2xl shadow-sm hover:border-blue-500 hover:shadow-xl transition-all text-left">
-                            <span class="text-blue-500 font-bold text-[10px] uppercase tracking-widest">Exame Unificado</span>
-                            <h3 class="text-2xl font-black text-slate-800 italic">${num}</h3>
-                            <div class="mt-4 text-slate-400 font-bold text-xs group-hover:text-blue-600 transition-colors">INICIAR SIMULADO →</div>
-                        </button>
-                    `);
-                });
-            </script>
-        </div>
+        <div id="exam-buttons" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            </div>
     </div>
 
     <div id="quiz-screen" class="max-w-[1500px] mx-auto p-4 flex flex-col md:flex-row gap-6 hidden">
-        
         <aside class="w-full md:w-64 bg-white rounded-3xl shadow-xl p-6 md:sticky md:top-4 h-auto md:h-[calc(100vh-2rem)] overflow-y-auto border border-slate-200 flex-shrink-0">
-            <h3 id="exam-title-side" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 text-center border-b pb-3">MAPA DA PROVA</h3>
+            <h3 id="exam-title-side" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5 text-center border-b pb-3 italic">MAPA</h3>
             <div id="questions-grid" class="grid grid-cols-5 md:grid-cols-4 gap-2 text-center text-[11px] font-bold"></div>
         </aside>
 
         <div class="flex-1">
             <header class="flex justify-between items-center bg-white p-5 rounded-2xl shadow-sm mb-6 border border-slate-200">
-                <button onclick="location.reload()" class="text-xs font-black text-blue-600 uppercase tracking-tighter hover:underline">← VOLTAR AO MENU</button>
-                <div id="total-timer" class="text-3xl font-mono font-black text-slate-700 tracking-tighter">05:00:00</div>
-                <div class="text-right">
-                    <p class="text-[10px] font-black text-slate-400 uppercase">Tempo na Questão</p>
-                    <div id="question-timer" class="text-xl font-mono font-bold text-blue-400 leading-none">00:00</div>
-                </div>
+                <button onclick="location.reload()" class="text-xs font-black text-blue-600 uppercase hover:underline">← MENU</button>
+                <div id="total-timer" class="text-3xl font-mono font-black text-slate-700">05:00:00</div>
+                <div id="question-timer" class="text-xl font-mono font-bold text-blue-400">00:00</div>
             </header>
 
             <main id="main-quiz-area" class="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100 relative">
                 <div class="flex justify-between items-start mb-8">
-                    <div>
-                        <span id="subject-tag" class="bg-blue-600 text-white text-[11px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest mr-2"></span>
+                    <div class="flex flex-col gap-1">
+                        <span id="subject-tag" class="bg-blue-600 text-white text-[11px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest w-fit"></span>
                         <span id="topic-tag" class="text-xs text-slate-400 font-bold uppercase italic"></span>
                     </div>
                     <button id="btn-review" onclick="toggleReview()" class="flex items-center gap-2 px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50 transition-all shadow-sm">
-                        🤔 Chutei / Revisar dps
+                        🤔 Chutei / Rever
                     </button>
                 </div>
-                
                 <h2 id="question-text" class="text-xl font-medium leading-relaxed text-slate-800 mb-10 text-justify"></h2>
-                
                 <div id="options-container" class="space-y-4"></div>
-
-                <div id="feedback" class="mt-10 p-8 bg-blue-50 rounded-[2rem] border-l-[12px] border-blue-600 hidden">
-                    <h4 class="font-black text-blue-900 mb-3 uppercase text-xs tracking-widest flex items-center gap-2">
-                        <span>⚖️ Fundamentação Legal:</span>
-                    </h4>
-                    <p id="justification-text" class="text-slate-700 text-sm leading-relaxed mb-6 font-medium italic"></p>
-                    <div class="bg-white p-4 rounded-2xl border border-blue-100 inline-block shadow-sm">
-                        <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest">📚 Estudar para esta questão:</p>
-                        <p id="study-tip" class="text-slate-700 text-sm font-bold uppercase"></p>
-                    </div>
+                <div id="feedback" class="mt-10 p-8 bg-blue-50 rounded-3xl border-l-[12px] border-blue-600 hidden">
+                    <h4 class="font-black text-blue-900 mb-3 uppercase text-xs">⚖️ Fundamentação Legal:</h4>
+                    <p id="justification-text" class="text-slate-700 text-sm italic font-medium"></p>
                 </div>
-
                 <footer class="mt-12 pt-8 border-t border-slate-100 flex justify-between items-center">
-                    <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase tracking-widest transition-colors">Anterior</button>
-                    <div class="bg-slate-100 px-6 py-2 rounded-full text-[11px] font-black text-slate-500 uppercase tracking-widest">Questão <span id="current-idx-display" class="text-slate-900 text-sm">1</span> / 80</div>
-                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-12 py-4 rounded-2xl transition shadow-xl uppercase text-xs tracking-widest">Próxima</button>
+                    <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase">Anterior</button>
+                    <div class="text-[11px] font-black text-slate-300 uppercase">Questão <span id="current-idx-display" class="text-slate-800 text-sm">1</span> / <span id="total-qs-display">80</span></div>
+                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-12 py-4 rounded-2xl transition shadow-xl uppercase text-xs">Próxima</button>
                 </footer>
             </main>
 
-            <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100">
-                <h2 class="text-4xl font-black text-slate-800 mb-10 text-center italic tracking-tighter uppercase underline decoration-blue-500 decoration-8 underline-offset-8">Relatório de Performance</h2>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="bg-slate-900 p-10 rounded-[2.5rem] text-center text-white flex flex-col justify-center border-b-[12px] border-blue-600 shadow-2xl">
-                        <span class="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em] mb-4">Aproveitamento Total</span>
-                        <div class="text-8xl font-black mb-4"><span id="score-total">0</span><span class="text-2xl text-slate-500">/80</span></div>
-                        <div id="score-percent" class="text-sm font-bold text-blue-400 uppercase tracking-widest"></div>
-                    </div>
-                    
-                    <div class="lg:col-span-2">
-                        <h3 class="font-black text-slate-800 uppercase text-xs mb-6 tracking-widest border-b pb-2 flex items-center gap-2">
-                            🔍 Análise por Matéria
-                        </h3>
-                        <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-                    </div>
-                </div>
-
-                <div id="review-summary" class="mt-12 p-8 bg-yellow-50 rounded-3xl border-2 border-yellow-200 hidden">
-                    <h4 class="font-black text-yellow-800 text-xs uppercase mb-4 tracking-widest italic">⚠️ Matérias Marcadas com Dúvida (Chutes):</h4>
-                    <p id="review-list" class="text-sm text-yellow-700 leading-relaxed font-bold"></p>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <button onclick="location.reload()" class="px-16 py-5 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition-all shadow-2xl uppercase tracking-widest text-xs">Voltar ao Menu Principal</button>
-                </div>
+            <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center">
+                <h2 class="text-3xl font-black text-slate-800 mb-8 uppercase italic underline decoration-blue-500 decoration-8 underline-offset-8">Relatório Final</h2>
+                <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left"></div>
+                <div class="mt-10"><button onclick="location.reload()" class="px-14 py-4 bg-blue-600 text-white font-black rounded-xl">Novo Simulado</button></div>
             </div>
         </div>
     </div>
 
     <script>
-        // --- ESTRUTURA DE DADOS ---
-        const examsDatabase = {
-            "OAB45": [
-                {
-                    subject: "Ética Profissional",
-                    topic: "Incompatibilidade",
-                    text: "O advogado Dr. Roberto, com sólida carreira na área cível, é convidado pelo Prefeito de seu Município para assumir o cargo de Secretário Municipal de Saúde, em razão de sua vasta experiência em gestão hospitalar anterior à advocacia. Roberto aceita o convite e toma posse. No entanto, ele possui uma banca com diversos processos em curso, inclusive contra o próprio Município, e não deseja abandonar seus clientes, pretendendo continuar assinando as petições nos horários em que não estiver na secretaria. Diante do caso narrado, à luz das normas do Estatuto da Advocacia e da OAB (EAOAB), assinale a opção que indica a situação de Roberto:",
-                    options: [
-                        "Roberto poderá manter sua atuação profissional, desde que não utilize o prestígio do cargo para captar clientela, sofrendo apenas impedimento contra a Fazenda Pública que o remunera.",
-                        "Roberto passa a estar em situação de incompatibilidade total com o exercício da advocacia enquanto permanecer no cargo de Secretário Municipal, devendo licenciar-se da Ordem.",
-                        "Roberto pode continuar advogando normalmente em processos que não envolvam o direito à saúde, uma vez que a incompatibilidade é restrita à sua área de atuação na secretaria municipal.",
-                        "Roberto deve cancelar definitivamente sua inscrição na OAB, pois cargos de primeiro escalão no Poder Executivo municipal são vedados permanentemente a bacharéis em Direito com inscrição ativa."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 28, III, do EAOAB. O cargo de Secretário Municipal é de direção na administração pública, o que gera incompatibilidade total (proibição total) do exercício da advocacia durante o mandato."
-                },
-                {
-                    subject: "Ética Profissional",
-                    topic: "Publicidade",
-                    text: "A sociedade de advogados 'Alfa & Beta', buscando ampliar sua visibilidade no mercado jurídico digital, contrata uma empresa especializada para realizar o impulsionamento de publicações em redes sociais. As postagens contêm dicas genéricas sobre direitos do trabalhador, sem menção a casos concretos ou promessa de resultados, e apresentam o link para o site oficial do escritório, onde constam os endereços e telefones das unidades. Sobre a publicidade descrita, consoante o Provimento nº 205/2021 do Conselho Federal da OAB, assinale a afirmativa correta:",
-                    options: [
-                        "A conduta é permitida, pois o marketing jurídico digital, inclusive o impulsionamento de posts informativos, é autorizado desde que não configure mercantilização da profissão.",
-                        "O impulsionamento é vedado em qualquer hipótese por configurar captação indevida de clientela, sendo permitidas apenas postagens orgânicas (gratuitas).",
-                        "A publicidade é ilícita apenas por conter o link direto para o site e telefones, o que caracteriza oferta direta de serviços profissionais em ambiente de rede social.",
-                        "O Provimento 205/2021 permite apenas o uso de ferramentas de busca paga (Google Ads), vedando expressamente o impulsionamento em redes sociais de entretenimento."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 4º, § 1º do Provimento 205/2021 do CFOAB. É permitido o impulsionamento de conteúdo informativo, desde que preservada a dignidade da profissão e não haja promessa de resultados."
-                },
-                {
-                    subject: "Direito Constitucional",
-                    topic: "Controle de Constitucionalidade",
-                    text: "O Município de Florianópolis edita a Lei Municipal nº 123, que proíbe expressamente a queima de fogos de artifício ruidosos em todo o território municipal, visando a proteção de animais e pessoas autistas. Uma associação de fabricantes de fogos de artifício ingressa com uma ação direta de inconstitucionalidade perante o Tribunal de Justiça local, mas também deseja levar a questão ao Supremo Tribunal Federal. No sistema brasileiro de controle de constitucionalidade, qual o instrumento adequado para questionar diretamente no STF uma lei municipal que contrarie preceitos fundamentais da Constituição Federal?",
-                    options: [
-                        "Ação Direta de Inconstitucionalidade (ADI), pois leis municipais podem ser objeto de controle abstrato diretamente no STF frente à Constituição Federal.",
-                        "Arguição de Descumprimento de Preceito Fundamental (ADPF), em razão do princípio da subsidiariedade e da impossibilidade de ADI de lei municipal no STF frente à Constituição.",
-                        "Recurso Extraordinário, que é a única via possível, em qualquer hipótese, para que leis municipais cheguem ao conhecimento do Supremo Tribunal Federal para análise de mérito.",
-                        "Ação Direta de Inconstitucionalidade Interventiva, requerida pelo Procurador-Geral da República perante o STF para garantir a observância da autonomia dos entes federados."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 1º, parágrafo único, I, da Lei 9.882/99. Não cabe ADI de lei municipal no STF frente à CF, cabendo ADPF para esse fim devido à inexistência de outro meio eficaz para sanar a lesividade."
-                },
-                {
-                    subject: "Direito Constitucional",
-                    topic: "Processo Legislativo",
-                    text: "O Presidente da República decide vetar integralmente um projeto de lei federal que dispunha sobre a criação de novas diretrizes para o ensino superior, alegando razões de inconstitucionalidade e contrariedade ao interesse público. O veto é formalizado e comunicado ao Presidente do Senado Federal. Sobre o procedimento de apreciação do veto pelo Congresso Nacional, à luz da Constituição Federal de 1988, assinale a opção correta:",
-                    options: [
-                        "O veto será apreciado em sessão conjunta, dentro de trinta dias a contar de seu recebimento, só podendo ser rejeitado pelo voto da maioria absoluta dos Deputados e Senadores.",
-                        "O veto do Presidente da República é absoluto quando fundamentado em inconstitucionalidade jurídica, não cabendo revisão ou votação pelo Poder Legislativo.",
-                        "Se o veto não for apreciado em quarenta e cinco dias, será incluído automaticamente na ordem do dia da casa respectiva, sobrestando-se as demais proposições até sua votação final.",
-                        "A rejeição do veto exige o voto favorável de dois terços dos membros de cada uma das Casas do Congresso Nacional, em votações separadas e nominais."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 66, § 4º da CF/88. O veto será apreciado em sessão conjunta e só pode ser rejeitado pela maioria absoluta dos parlamentares (metade mais um de cada casa)."
-                },
-                {
-                    subject: "Direito Administrativo",
-                    topic: "Responsabilidade Civil do Estado",
-                    text: "Durante uma operação policial de alto risco em uma comunidade, uma viatura da Polícia Civil, ao tentar perseguir um veículo suspeito de carregar entorpecentes, acaba por colidir com um muro de uma residência particular que não possuía qualquer relação com o fato. O impacto causou o desabamento parcial da estrutura e danos a móveis que estavam no jardim. Diante do caso narrado, com base na jurisprudência dos Tribunais Superiores e na Constituição Federal, assinale a afirmativa correta sobre a responsabilidade do Estado:",
-                    options: [
-                        "O Estado responde objetivamente pelos danos causados, independentemente de prova de culpa dos policiais, bastando ao proprietário provar o nexo causal e o dano sofrido.",
-                        "A responsabilidade do Estado é subjetiva no caso de operações policiais, devendo o proprietário da residência provar que a policias agiram com imperícia ou negligência na condução da viatura.",
-                        "O Estado é isento de responsabilidade por ter agido no estrito cumprimento do dever legal em combate ao crime organizado, caracterizando força maior.",
-                        "A responsabilidade é compartilhada entre o Estado e os criminosos que estavam sendo perseguidos, devendo a ação ser proposta contra ambos em litisconsórcio passivo necessário."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 37, § 6º da CF/88. A responsabilidade civil das pessoas jurídicas de direito público é objetiva, fundada na teoria do risco administrativo, pelos danos que seus agentes causarem a terceiros."
-                },
-                {
-                    subject: "Direito Administrativo",
-                    topic: "Licitações",
-                    text: "O Ministério da Educação pretende realizar a contratação de uma empresa para a prestação de serviços contínuos de vigilância armada para seus edifícios administrativos. De acordo com a Nova Lei de Licitações e Contratos Administrativos (Lei nº 14.133/2021), tratando-se de serviços comuns, cujos padrões de desempenho e qualidade possam ser objetivamente definidos pelo edital, por meio de especificações usuais de mercado, a modalidade de licitação obrigatória é o:",
-                    options: [
-                        "Convite.",
-                        "Concurso.",
-                        "Pregão.",
-                        "Diálogo Competitivo."
-                    ],
-                    correct: 2,
-                    explanation: "Fundamentação: Art. 6º, XLI, da Lei 14.133/21. O pregão é a modalidade de licitação obrigatória para a aquisição de bens e serviços comuns."
-                },
-                {
-                    subject: "Direito Civil",
-                    topic: "Capacidade Civil",
-                    text: "Mariana, de 17 anos, possui economia própria proveniente de seu trabalho como desenvolvedora de softwares, vivendo em um apartamento alugado por ela mesma. Ao tentar realizar a compra de um veículo de luxo em uma concessionária, o vendedor questiona sua capacidade para assinar o contrato sem a assistência dos pais. Mariana afirma que é emancipada. No sistema do Código Civil brasileiro, a emancipação que ocorre pelo fato de o menor ter estabelecimento civil ou comercial, ou relação de emprego, desde que em função deles o menor tenha economia própria, é classificada como:",
-                    options: [
-                        "Emancipação Voluntária.",
-                        "Emancipação Judicial.",
-                        "Emancipação Legal.",
-                        "Emancipação Consensual."
-                    ],
-                    correct: 2,
-                    explanation: "Fundamentação: Art. 5º, parágrafo único, V, do Código Civil. Trata-se de uma das hipóteses de emancipação legal, que opera de pleno direito."
-                },
-                {
-                    subject: "Direito Civil",
-                    topic: "Vícios do Negócio Jurídico",
-                    text: "Sérgio, premido pela necessidade de pagar uma cirurgia de emergência para seu filho, que sofreu um grave acidente, vende sua única moradia por um preço vil, correspondente a 20% do valor real de mercado. O comprador, vizinho de Sérgio, tinha pleno conhecimento da situação de desespero e da urgência do dinheiro. De acordo com as disposições do Código Civil sobre os defeitos do negócio jurídico, o caso narrado configura:",
-                    options: [
-                        "Erro ou Ignorância.",
-                        "Estado de Perigo.",
-                        "Lesão.",
-                        "Dolo de Terceiro."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 156 do Código Civil. O estado de perigo ocorre quando alguém, para salvar-se ou a pessoa de sua família de grave dano conhecido pela outra parte, assume obrigação excessivamente onerosa."
-                },
-                {
-                    subject: "Direito Processual Civil",
-                    topic: "Tutela Provisória",
-                    text: "Em uma ação de cobrança, o autor demonstra que o réu está dilapidando seu patrimônio para evitar o pagamento de dívidas futuras. Diante do risco de ineficácia do provimento final, o autor peticiona requerendo o arresto cautelar de bens do devedor antes mesmo da citação. Nos termos do Código de Processo Civil de 2015, essa medida visa assegurar o resultado útil do processo e é classificada como:",
-                    options: [
-                        "Tutela de Urgência Antecipada.",
-                        "Tutela de Urgência Cautelar.",
-                        "Tutela da Evidência.",
-                        "Tutela de Urgência Incidental Satisfativa."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 301 do CPC/15. A tutela de urgência cautelar pode ser efetivada mediante arresto, sequestro ou qualquer outra medida idônea para asseguração do direito."
-                },
-                {
-                    subject: "Direito Processual Civil",
-                    topic: "Recursos",
-                    text: "O juiz de primeira instância profere uma decisão interlocutória rejeitando o incidente de desconsideração da personalidade jurídica formulado pelo credor no curso de um processo de execução. Inconformado, o credor deseja recorrer para que a decisão seja reformada pelo Tribunal. De acordo com o rol de cabimento do Art. 1.015 do Código de Processo Civil de 2015, o recurso adequado para impugnar tal decisão é o:",
-                    options: [
-                        "Agravo Interno.",
-                        "Agravo de Instrumento.",
-                        "Apelação.",
-                        "Recurso Ordinário."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 1.015, IV, do CPC/15. Cabe agravo de instrumento contra decisões interlocutórias que versarem sobre incidentes de desconsideração da personalidade jurídica."
-                },
-                {
-                    subject: "Direito Penal",
-                    topic: "Crime Tentado",
-                    text: "Arthur, com animus necandi, desfere cinco disparos de arma de fogo contra Bruno. Bruno é atingido em regiões vitais, mas, socorrido a tempo por uma equipe médica, sobrevive às lesões. Arthur esgotou todos os meios que tinha à sua disposição para consumar o crime, mas o resultado morte não ocorreu por circunstâncias alheias à sua vontade. No Direito Penal, essa espécie de tentativa é denominada:",
-                    options: [
-                        "Tentativa Branca ou Incruenta.",
-                        "Tentativa Vermelha ou Cruenta.",
-                        "Tentativa Perfeita ou Crime Falho.",
-                        "Tentativa Imperfeita."
-                    ],
-                    correct: 2,
-                    explanation: "Fundamentação: Doutrina. Na tentativa perfeita (crime falho), o agente esgota os atos executórios sem que o resultado ocorra."
-                },
-                {
-                    subject: "Direito Penal",
-                    topic: "Culpabilidade",
-                    text: "O agente que, por embriaguez voluntária, proveniente do consumo de álcool, comete um crime de lesão corporal contra sua esposa no âmbito doméstico, alega em sua defesa que, no momento do fato, não possuía discernimento sobre a ilicitude de sua conduta devido ao estado de ebriedade. Segundo o Código Penal brasileiro, no que tange à embriaguez:",
-                    options: [
-                        "A embriaguez voluntária ou culposa, pelo álcool ou substância de efeitos análogos, não exclui a imputabilidade penal.",
-                        "A embriaguez voluntária exclui a culpabilidade se o agente provar que não tinha intenção de cometer o crime.",
-                        "O agente terá sua pena reduzida obrigatoriamente se demonstrar que estava em estado de inconsciência.",
-                        "Apenas a embriaguez proveniente de caso fortuito ou força maior que cause incapacidade total isenta o agente de pena."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 28, II, do Código Penal. Pelo princípio da 'actio libera in causa', a embriaguez voluntária não afasta a responsabilidade penal."
-                },
-                {
-                    subject: "Direito Processual Penal",
-                    topic: "Inquérito Policial",
-                    text: "O Inquérito Policial, como procedimento administrativo inquisitivo e informativo, destina-se a fornecer ao titular da ação penal os elementos necessários para o seu ajuizamento. Sobre as características do Inquérito Policial, assinale a afirmativa correta:",
-                    options: [
-                        "O Inquérito Policial deve observar estritamente o contraditório e a ampla defesa sob pena de nulidade absoluta da futura ação penal.",
-                        "A autoridade policial não poderá mandar arquivar autos de inquérito, competindo tal ato ao juiz a requerimento do Ministério Público.",
-                        "O Inquérito Policial é indispensável para o oferecimento da denúncia, não podendo o Ministério Público agir sem ele.",
-                        "O sigilo do inquérito policial impede que o advogado do investigado tenha acesso aos elementos de prova já documentados nos autos."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 17 do CPP. O inquérito é indisponível para o delegado. O arquivamento segue a regra do Art. 28 do CPP."
-                },
-                {
-                    subject: "Direito Processual Penal",
-                    topic: "Prisão Preventiva",
-                    text: "A prisão preventiva é uma medida cautelar extrema que exige fundamentação concreta sobre o perigo gerado pelo estado de liberdade do imputado. Após as reformas do 'Pacote Anticrime' (Lei nº 13.964/2019), é correto afirmar que:",
-                    options: [
-                        "O juiz pode decretar a prisão preventiva de ofício durante a fase de investigação policial se houver prova da materialidade.",
-                        "A decisão que decretar a prisão preventiva deve ser revista a cada 90 dias, mediante decisão fundamentada, sob pena de tornar a prisão ilegal.",
-                        "A prisão preventiva só pode ser decretada em crimes cuja pena máxima seja superior a 8 anos de reclusão.",
-                        "A gravidade abstrata do delito é fundamento idôneo e suficiente para a decretação da segregação cautelar."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 316, parágrafo único do CPP. O magistrado deve revisar a necessidade da prisão preventiva a cada 90 dias."
-                },
-                {
-                    subject: "Direito do Trabalho",
-                    topic: "Contrato de Trabalho",
-                    text: "Uma empresa de software contrata um programador para trabalhar exclusivamente em regime de teletrabalho. Após dois anos, a empresa decide que o funcionário deve passar a trabalhar presencialmente na sede da companhia. De acordo com a CLT, a alteração do regime de teletrabalho para o presencial:",
-                    options: [
-                        "Pode ser realizada por decisão unilateral do empregador, garantido prazo de transição mínimo de quinze dias.",
-                        "Exige a concordância mútua entre as partes, sendo vedada a alteração unilateral por parte da empresa.",
-                        "Pode ser feita a qualquer tempo, sem necessidade de aviso prévio, desde que mantido o salário.",
-                        "Só é permitida se houver previsão expressa em convenção coletiva da categoria."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 75-C, § 2º da CLT. O empregador pode determinar o retorno ao trabalho presencial com aviso de 15 dias."
-                },
-                {
-                    subject: "Direito do Trabalho",
-                    topic: "FGTS",
-                    text: "Na hipótese de extinção do contrato de trabalho por acordo entre empregado e empregador, conforme introduzido pela Reforma Trabalhista de 2017, quais verbas o trabalhador terá direito a receber de forma diferenciada?",
-                    options: [
-                        "Aviso prévio integral e multa de 40% do FGTS.",
-                        "Metade do aviso prévio (se indenizado) e multa de 20% sobre o saldo do FGTS.",
-                        "Apenas as verbas salariais, perdendo o direito ao levantamento do FGTS.",
-                        "Aviso prévio integral, mas apenas 10% de multa do FGTS."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 484-A da CLT. No acordo mútuo, o aviso prévio indenizado e a multa do FGTS são pagos pela metade."
-                },
-                {
-                    subject: "Processo do Trabalho",
-                    topic: "Ritos Processuais",
-                    text: "Uma reclamação trabalhista é ajuizada contra uma empresa de logística, sendo o valor da causa fixado em 35 salários mínimos nacionais vigentes na data do protocolo. Considerando as normas da CLT, tal processo deve tramitar sob o rito:",
-                    options: [
-                        "Sumário.",
-                        "Sumaríssimo.",
-                        "Ordinário.",
-                        "Especial de Pequeno Valor."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 852-A da CLT. Causas cujo valor não exceda a 40 salários mínimos tramitam pelo rito sumaríssimo."
-                },
-                {
-                    subject: "Direito Tributário",
-                    topic: "Princípio da Legalidade",
-                    text: "O Presidente da República, diante de uma crise econômica setorial, decide majorar as alíquotas do Imposto de Importação (II) e do Imposto de Exportação (IE) por meio de Decreto, visando equilibrar a balança comercial. Sobre a constitucionalidade dessa medida, assinale a opção correta:",
-                    options: [
-                        "É inconstitucional, pois qualquer aumento de imposto exige a edição de Lei Ordinária ou Complementar.",
-                        "É constitucional, pois o Poder Executivo pode alterar as alíquotas desses impostos, atendidas as condições e os limites estabelecidos em lei.",
-                        "É inconstitucional, pois apenas o Imposto sobre Produtos Industrializados (IPI) goza dessa prerrogativa de alteração por ato do Executivo.",
-                        "É constitucional, mas a eficácia do decreto depende de posterior ratificação pelo Congresso Nacional em 60 dias."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 153, § 1º da CF/88. Trata-se da exceção ao princípio da legalidade estrita para impostos extrafiscais."
-                },
-                {
-                    subject: "Direito Tributário",
-                    topic: "Crédito Tributário",
-                    text: "Um contribuinte possui uma dívida tributária relativa ao ICMS. Ele solicita ao Estado o parcelamento do débito em 60 meses. De acordo com o Código Tributário Nacional (CTN), a concessão do parcelamento causa:",
-                    options: [
-                        "A extinção do crédito tributário.",
-                        "A exclusão do crédito tributário.",
-                        "A suspensão da exigibilidade do crédito tributário.",
-                        "A interrupção do prazo para a propositura da execução fiscal apenas."
-                    ],
-                    correct: 2,
-                    explanation: "Fundamentação: Art. 151, VI do CTN. O parcelamento suspende a exigibilidade do crédito, impedindo atos de cobrança forçada."
-                },
-                {
-                    subject: "Direito Empresarial",
-                    topic: "Estabelecimento Empresarial",
-                    text: "O contrato que tem por objeto a alienação, o usufruto ou arrendamento do estabelecimento empresarial denomina-se trespasso. Para que o trespasso produza efeitos quanto a terceiros, o Código Civil exige que o contrato seja averbado no Registro Público de Empresas Mercantis e publicado:",
-                    options: [
-                        "No Diário Oficial da União.",
-                        "Na Imprensa Oficial.",
-                        "Em jornal de grande circulação local apenas.",
-                        "No site oficial da empresa vendedora."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 1.144 do Código Civil. A eficácia perante terceiros depende de averbação e publicação na imprensa oficial."
-                },
-                {
-                    subject: "ECA",
-                    topic: "Medidas Socioeducativas",
-                    text: "Um adolescente de 15 anos pratica ato infracional análogo ao crime de roubo majorado pelo emprego de arma de fogo. O Magistrado, após o devido processo legal, decide aplicar a medida socioeducativa de internação. Segundo o ECA, no que se refere ao tempo de duração da internação:",
-                    options: [
-                        "A medida não tem prazo determinado, devendo sua manutenção ser reavaliada, mediante decisão fundamentada, no máximo a cada seis meses.",
-                        "A internação deve durar obrigatoriamente 3 anos, sem possibilidade de liberação antecipada.",
-                        "O adolescente deve ser liberado compulsoriamente aos 18 anos de idade.",
-                        "A medida deve ter prazo fixo determinado na sentença, não podendo exceder a 5 anos."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 121, § 2º do ECA. A medida de internação não admite prazo determinado e a revisão deve ser semestral."
-                },
-                {
-                    subject: "Direito do Consumidor",
-                    topic: "Responsabilidade pelo Fato do Produto",
-                    text: "Um consumidor adquire um liquidificador em uma loja de departamentos. No primeiro uso, o copo de vidro se estilhaça sem motivo aparente, causando cortes profundos na mão do consumidor, que necessita de atendimento hospitalar. Diante do defeito de segurança constatado, a responsabilidade do fabricante é:",
-                    options: [
-                        "Subjetiva, dependendo da prova de que houve falha no controle de qualidade da fábrica.",
-                        "Objetiva, respondendo o fabricante pelo dano independentemente de culpa (Teoria do Risco do Empreendimento).",
-                        "Excluída, pois o consumidor deveria ter verificado a integridade do vidro antes de ligar o aparelho.",
-                        "Subsidiária em relação ao lojista que vendeu o produto."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 12 do CDC. O fabricante responde, independentemente da existência de culpa, pelos danos causados por defeitos de segurança."
-                },
-                {
-                    subject: "Direito Ambiental",
-                    topic: "Responsabilidade Civil Ambiental",
-                    text: "Uma indústria química despeja resíduos tóxicos em um rio, causando a morte de toneladas de peixes e contaminando o lençol freático da região. O Ministério Público ajuíza ação civil pública. Sobre a responsabilidade civil por danos ambientais no Brasil, assinale a opção correta:",
-                    options: [
-                        "A responsabilidade é objetiva, informada pela teoria do risco integral, não admitindo excludentes de caso fortuito ou força maior.",
-                        "A responsabilidade depende da prova de dolo ou culpa grave dos diretores da empresa.",
-                        "A empresa só responde se houver descumprimento das normas de licenciamento ambiental.",
-                        "Trata-se de responsabilidade subjetiva mitigada, permitindo a inversão do ônus da prova."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 14, § 1º da Lei 6.938/81 e jurisprudência do STJ. Adota-se o risco integral para danos ao meio ambiente."
-                },
-                {
-                    subject: "Direitos Humanos",
-                    topic: "Convenção Americana",
-                    text: "A Convenção Americana sobre Direitos Humanos (Pacto de San José da Costa Rica) estabelece garantias judiciais indispensáveis. Segundo o pacto, toda pessoa tem o direito de ser ouvida, com as devidas garantias e dentro de um prazo razoável, por um juiz ou tribunal:",
-                    options: [
-                        "Competente, independente e imparcial, estabelecido anteriormente pela lei.",
-                        "De exceção, criado especificamente para julgar crimes contra a humanidade.",
-                        "Composto majoritariamente por membros eleitos pelo voto direto.",
-                        "Militar, sempre que o crime envolver segurança nacional."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 8.1 da Convenção Americana. Trata-se do princípio do Juiz Natural e do devido processo legal."
-                },
-                {
-                    subject: "Filosofia do Direito",
-                    topic: "Aristóteles",
-                    text: "Para Aristóteles, a justiça é uma virtude que consiste em observar a igualdade. Ele distingue a justiça distributiva da justiça corretiva. Sobre a justiça distributiva, o filósofo afirma que ela se aplica:",
-                    options: [
-                        "Na repartição das honras, do dinheiro ou de outros bens entre os cidadãos, segundo o mérito de cada um (proporção geométrica).",
-                        "Nas transações entre indivíduos, visando restaurar o equilíbrio quebrado por um dano (proporção aritmética).",
-                        "Apenas no âmbito das leis criminais, para punir os infratores da lei da pólis.",
-                        "Exclusivamente na relação entre escravos e senhores, para garantir a ordem social."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Ética a Nicômaco, Livro V. A justiça distributiva foca na distribuição de bens conforme o mérito."
-                },
-                {
-                    subject: "Direito Constitucional",
-                    topic: "Direitos Políticos",
-                    text: "Um cidadão brasileiro, com 32 anos de idade, deseja se candidatar ao cargo de Governador de Estado nas próximas eleições. Para que ele possa concorrer, de acordo com a Constituição Federal de 1988, a idade mínima exigida para o cargo de Governador e o momento de sua comprovação são:",
-                    options: [
-                        "30 anos, comprovados na data da posse.",
-                        "30 anos, comprovados na data do registro da candidatura.",
-                        "35 anos, comprovados na data da eleição.",
-                        "21 anos, comprovados na data da diplomação."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 14, § 3º, VI, 'b' da CF/88 e Súmula 11 do TSE. A idade mínima para Governador é de 30 anos, aferida na posse."
-                },
-                {
-                    subject: "Direito Administrativo",
-                    topic: "Bens Públicos",
-                    text: "Determinada praça pública, situada no centro de uma capital estadual, é utilizada diariamente pela população para lazer e circulação. À luz da classificação dos bens públicos prevista no Código Civil de 2002, tal praça é considerada um bem:",
-                    options: [
-                        "De uso especial.",
-                        "Dominical.",
-                        "De uso comum do povo.",
-                        "Inalienável por natureza absoluta."
-                    ],
-                    correct: 2,
-                    explanation: "Fundamentação: Art. 99, I do Código Civil. Praças, ruas e rios são bens de uso comum do povo."
-                }
-            {
-                    subject: "Direito Civil",
-                    topic: "Sucessões",
-                    text: "João, solteiro e sem filhos, falece deixando um patrimônio considerável. Seus pais já são falecidos. João possui dois irmãos vivos, Roberto e Cláudio, e dois sobrinhos, filhos de sua irmã Maria, que faleceu dois anos antes de João. Roberto, por razões pessoais, decide renunciar formalmente à herança de João por meio de escritura pública. Diante desse cenário sucessório, de acordo com o Código Civil, a herança de João deverá ser dividida da seguinte forma:",
-                    options: [
-                        "A herança é dividida integralmente entre Cláudio e os dois sobrinhos (filhos de Maria), cabendo metade a Cláudio e a outra metade dividida entre os sobrinhos.",
-                        "A herança é dividida em partes iguais entre Cláudio e Roberto, sendo a renúncia de Roberto considerada inválida por prejudicar os sobrinhos.",
-                        "Todo o patrimônio é destinado a Cláudio, pois na classe dos colaterais os mais próximos excluem os mais remotos, e a renúncia de Roberto impede que seus próprios filhos (se existissem) herdassem por representação.",
-                        "A herança é dividida em três partes iguais: uma para Cláudio, uma para Roberto (que seria repassada ao Estado pela renúncia) e uma para os sobrinhos."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 1.840 e 1.843 do CC. Na sucessão colateral, os filhos de irmãos (sobrinhos) herdam por direito de representação se concorrerem com tio. A renúncia de Roberto faz com que sua quota acresça aos outros herdeiros da mesma classe."
-                },
-                {
-                    subject: "Processo Civil",
-                    topic: "Litisconsórcio",
-                    text: "Um condomínio residencial ajuiza ação de cobrança de cotas condominiais em atraso contra o proprietário de uma unidade autônoma e sua ex-esposa, alegando que ambos constam no registro de imóveis como coproprietários e que a dívida possui natureza 'propter rem'. No curso do processo, a ex-esposa alega que, por força de partilha em divórcio não averbada, o imóvel pertence exclusivamente ao réu. Considerando a natureza da relação jurídica e a necessidade de que a decisão seja uniforme para todos os coproprietários registrados, o litisconsórcio passivo no caso é:",
-                    options: [
-                        "Facultativo simples.",
-                        "Necessário e unitário.",
-                        "Necessário e simples.",
-                        "Facultativo unitário."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 114 e 116 do CPC/15. O litisconsórcio é necessário quando a lei ou a natureza da relação jurídica exige a presença de todos, e unitário quando o juiz tiver que decidir o mérito de modo uniforme."
-                },
-                {
-                    subject: "Direito Penal",
-                    topic: "Erro de Tipo",
-                    text: "Durante uma caçada autorizada em uma floresta densa, Tício avista um movimento atrás de uma moça. Acreditando tratar-se de um javali selvagem, animal que pretendia caçar, efetua um disparo certeiro. Ao se aproximar para recolher a presa, descobre horrorizado que atingiu e matou um colega caçador que estava agachado colhendo amostras de plantas. Diante das regras sobre a teoria do erro no Código Penal, a conduta de Tício configura:",
-                    options: [
-                        "Erro de Proibição inevitável, que exclui a culpabilidade do agente.",
-                        "Erro de Tipo essencial, que exclui o dolo, mas permite a punição por crime culposo, se houver previsão legal.",
-                        "Crime de Homicídio Doloso, pois o agente assumiu o risco de produzir o resultado (dolo eventual).",
-                        "Erro sobre a Pessoa, devendo Tício responder pelo crime como se tivesse atingido o animal pretendido."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 20 do Código Penal. O erro sobre elemento constitutivo do tipo (achar que era animal, mas era gente) exclui o dolo, permitindo punição por culpa (Homicídio Culposo)."
-                },
-                {
-                    subject: "Direito Penal",
-                    topic: "Crimes contra a Administração",
-                    text: "Um funcionário público municipal, responsável pela fiscalização de obras, constata uma irregularidade em uma construção residencial. Em vez de lavrar o auto de infração, ele solicita ao proprietário da obra o pagamento da quantia de R$ 2.000,00 para 'fazer vista grossa' e não aplicar a multa devida. O proprietário, fingindo aceitar, aciona a polícia, e o funcionário é preso no momento em que recebia o dinheiro. Segundo o Código Penal, o crime consumou-se no momento em que o funcionário:",
-                    options: [
-                        "Recebeu efetivamente a quantia em dinheiro das mãos do proprietário.",
-                        "Solicitou a vantagem indevida, por se tratar de crime formal.",
-                        "Deixou de lavrar o auto de infração, caracterizando a prevaricação.",
-                        "Foi preso pela autoridade policial, configurando a tentativa de corrupção passiva."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 317 do CP. A corrupção passiva na modalidade 'solicitar' é crime formal e se consuma com a mera solicitação, sendo o recebimento mero exaurimento."
-                },
-                {
-                    subject: "Processo Penal",
-                    topic: "Provas",
-                    text: "Em um processo criminal por crime de tráfico de drogas, a polícia realiza a entrada forçada no domicílio do réu durante a noite, sem mandado judicial e sem que houvesse situação de flagrante delito evidente ou prestação de socorro. Durante a busca, são encontrados 5kg de cocaína e balanças de precisão. A defesa requer o desentranhamento das provas. Com base na jurisprudência consolidada do STF e no Código de Processo Penal, tais provas são consideradas:",
-                    options: [
-                        "Válidas, pois o tráfico de drogas é crime permanente, autorizando a entrada a qualquer hora.",
-                        "Inadmissíveis, por serem provas ilícitas derivadas de violação de domicílio, devendo ser desentranhadas do processo.",
-                        "Válidas, desde que a polícia apresente justificativa posterior por escrito.",
-                        "Anuláveis, cabendo ao juiz decidir se o interesse público na punição do tráfico se sobrepõe à garantia individual."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 5º, XI da CF e Tema 280 do STF. A entrada forçada sem mandado e sem 'fundadas razões' prévias torna a prova ilícita."
-                },
-                {
-                    subject: "Direito do Trabalho",
-                    topic: "Estabilidade Provisória",
-                    text: "Uma empregada de uma indústria metalúrgica descobre que está grávida dois dias após ter sido notificada de seu aviso prévio indenizado. Ela comunica o fato à empresa e solicita a sua reintegração, o que é negado pelo empregador sob o argumento de que a concepção ocorreu quando o contrato já estava em fase de encerramento. Segundo a jurisprudência sumulada do TST e o ADCT, a empregada:",
-                    options: [
-                        "Não possui direito à estabilidade, pois o contrato já havia sido rescindido com o aviso prévio.",
-                        "Tem direito à estabilidade provisória, pois a confirmação da gravidez durante o prazo do aviso prévio, ainda que indenizado, garante a proteção no emprego.",
-                        "Só teria direito se a gravidez fosse comunicada antes da notificação do aviso prévio.",
-                        "Tem direito apenas à indenização do período de licença-maternidade, sem necessidade de reintegração."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 10, II, 'b' do ADCT e Súmula 244, III do TST. A proteção à maternidade independe do conhecimento do empregador ou do tipo de contrato."
-                },
-                {
-                    subject: "Direito do Trabalho",
-                    topic: "Prazos de Pagamento",
-                    text: "Após a rescisão do contrato de trabalho de um vendedor, a empresa realiza o pagamento das verbas rescisórias e a entrega das guias para saque do FGTS e seguro-desemprego. Segundo a CLT, com as alterações da Reforma de 2017, o prazo máximo para o empregador efetuar o pagamento dos valores constantes no instrumento de rescisão e entregar os documentos é de:",
-                    options: [
-                        "10 dias contados do término do contrato, independentemente da modalidade do aviso prévio.",
-                        "No primeiro dia útil imediato ao término do aviso prévio trabalhado.",
-                        "48 horas após a assinatura do termo de rescisão perante o sindicato.",
-                        "30 dias se o aviso prévio tiver sido indenizado pela empresa."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 477, § 6º da CLT. O prazo é unificado em 10 dias para qualquer modalidade de rescisão."
-                },
-                {
-                    subject: "Processo do Trabalho",
-                    topic: "Execução Trabalhista",
-                    text: "Iniciada a fase de execução em um processo trabalhista para cobrança de horas extras, o executado é citado para pagar a dívida ou garantir a execução. De acordo com o Art. 880 da CLT, o prazo para que o executado pague o valor devido ou garanta a execução, sob pena de penhora, é de:",
-                    options: [
-                        "15 dias, conforme aplicação subsidiária do CPC.",
-                        "48 horas.",
-                        "5 dias úteis.",
-                        "10 dias úteis."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 880 da CLT. Na execução trabalhista, o prazo para pagamento ou garantia do juízo é de 48 horas."
-                },
-                {
-                    subject: "Direito Tributário",
-                    topic: "Imunidade Tributária",
-                    text: "Uma entidade de assistência social, sem fins lucrativos, que aplica integralmente seus recursos na manutenção de seus objetivos institucionais no Brasil, adquire um veículo utilitário para ser utilizado no transporte de alimentos doados. O fisco estadual lança a cobrança de IPVA sobre o referido veículo. Segundo a Constituição Federal de 1988, a referida entidade:",
-                    options: [
-                        "Deve pagar o imposto, pois a imunidade só se aplica ao patrimônio imobiliário (sedes).",
-                        "É imune ao IPVA, pois a imunidade das instituições de assistência social abrange o patrimônio, a renda e os serviços vinculados às suas finalidades essenciais.",
-                        "Goza apenas de isenção, que deve ser renovada anualmente perante a Secretaria de Fazenda.",
-                        "Deve pagar o imposto, mas tem direito à restituição do valor ao final do exercício financeiro."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 150, VI, 'c' da CF/88. A imunidade é ampla para o patrimônio vinculado às finalidades da entidade."
-                },
-                {
-                    subject: "Direito Tributário",
-                    topic: "Extinção do Crédito",
-                    text: "Um contribuinte descobre que pagou uma taxa de iluminação pública declarada inconstitucional pelo Supremo Tribunal Federal em sede de controle concentrado. Ele deseja reaver os valores pagos nos últimos anos. Nos termos do Código Tributário Nacional, a ação judicial para restituição de tributo pago indevidamente prescreve em:",
-                    options: [
-                        "2 anos, contados da decisão do STF.",
-                        "5 anos, contados da data da extinção do crédito tributário (pagamento).",
-                        "10 anos, em razão da inconstitucionalidade da norma.",
-                        "Imprescritível, por se tratar de indébito tributário de natureza inconstitucional."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 168, I do CTN. O prazo para pleitear a restituição (repetição de indébito) é de 5 anos."
-                },
-                {
-                    subject: "Direito Empresarial",
-                    topic: "Falência e Recuperação",
-                    text: "Uma Sociedade de Economia Mista federal, que atua na exploração de minérios, entra em crise financeira profunda, tornando-se insolvente e acumulando dívidas com fornecedores e empregados. De acordo com a Lei nº 11.101/2005 (Lei de Falências e Recuperação de Empresas), sobre essa entidade:",
-                    options: [
-                        "Pode requerer recuperação judicial, mas não pode ter sua falência decretada.",
-                        "Não se aplica a Lei de Falências e Recuperação de Empresas, sendo vedada a decretação de sua quebra.",
-                        "Aplica-se integralmente a lei, podendo o Ministério Público requerer a falência a qualquer tempo.",
-                        "Pode falir apenas se houver autorização expressa do Congresso Nacional por meio de lei ordinária."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 2º, I da Lei 11.101/05. Empresas públicas e sociedades de economia mista estão excluídas do regime falimentar."
-                },
-                {
-                    subject: "Direito do Consumidor",
-                    topic: "Responsabilidade pelo Vício",
-                    text: "Um consumidor adquire um smartphone que, após 10 dias de uso, apresenta um defeito na câmera que impede a captação de imagens. Ele procura a assistência técnica, que solicita um prazo de 45 dias para a chegada da peça de reposição. O consumidor recusa o prazo e exige a devolução imediata do dinheiro. Segundo o CDC, o consumidor:",
-                    options: [
-                        "Tem direito à devolução imediata, pois 45 dias excede o prazo legal de 30 dias que o fornecedor possui para sanar o vício.",
-                        "Deve aguardar os 45 dias, pois o prazo legal pode ser estendido por acordo entre as partes.",
-                        "Tem direito apenas à troca por um modelo similar, sendo a devolução de valores a última opção.",
-                        "Não tem direitos, pois deveria ter testado a câmera no momento da compra na loja."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 18, § 1º do CDC. O fornecedor tem 30 dias para sanar o vício. Se não o fizer, o consumidor escolhe entre as três alternativas legais."
-                },
-                {
-                    subject: "ECA",
-                    topic: "Conselho Tutelar",
-                    text: "As decisões do Conselho Tutelar, órgão autônomo e não jurisdicional encarregado de zelar pelos direitos da criança e do adolescente, possuem caráter executório. No entanto, de acordo com o ECA, tais decisões podem ser revistas:",
-                    options: [
-                        "Pelo Prefeito Municipal, em sede de recurso hierárquico.",
-                        "Pela autoridade judiciária, a pedido de quem tenha legítimo interesse.",
-                        "Pelo Ministério Público Estadual exclusivamente.",
-                        "Apenas por decisão de um colegiado de outros Conselheiros Tutelares."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 137 do ECA. O controle das decisões do Conselho Tutelar é feito pelo Poder Judiciário."
-                },
-                {
-                    subject: "Direito Ambiental",
-                    topic: "Licenciamento Ambiental",
-                    text: "Um empreendedor pretende instalar uma grande usina hidrelétrica em um rio interestadual, obra que causará impacto ambiental significativo em três estados diferentes da federação. De acordo com a Lei Complementar nº 140/2011, a competência para realizar o licenciamento ambiental desse empreendimento é do:",
-                    options: [
-                        "Órgão ambiental municipal onde a barragem for construída.",
-                        "Órgão ambiental federal (IBAMA).",
-                        "Órgão ambiental estadual do estado que sofrer o maior impacto.",
-                        "Consórcio formado pelos órgãos ambientais dos três estados afetados."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 7º, XIV, 'e' da LC 140/11. Empreendimentos com impacto regional (mais de um estado) são licenciados pela União."
-                },
-                {
-                    subject: "Direitos Humanos",
-                    topic: "Direitos dos Refugiados",
-                    text: "Segundo a Lei nº 9.474/97, que institui o Estatuto dos Refugiados no Brasil, e os tratados internacionais, o princípio que veda a devolução de um refugiado para um território onde sua vida ou liberdade estejam ameaçadas em razão de sua raça, religião ou opinião política, denomina-se:",
-                    options: [
-                        "Princípio da Soberania Nacional.",
-                        "Princípio do Non-Refoulement (Não-Devolução).",
-                        "Princípio da Extradição Facilitada.",
-                        "Princípio da Territorialidade Restritiva."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 33 da Convenção de 1951 e Lei 9.474/97. É o pilar fundamental do direito internacional dos refugiados."
-                },
-                {
-                    subject: "Filosofia do Direito",
-                    topic: "Immanuel Kant",
-                    text: "Na obra 'Metafísica dos Costumes', Kant distingue a legislação moral da legislação jurídica. Para o filósofo, o que caracteriza a legislação jurídica em oposição à moral é que aquela:",
-                    options: [
-                        "Exige que a ação seja praticada apenas por dever, sem considerar inclinações externas.",
-                        "Admite um móbil diferente da ideia do dever em si mesmo, ou seja, aceita a motivação externa e é passível de coação.",
-                        "Baseia-se puramente na tradição e nos costumes de um povo determinado.",
-                        "Não possui caráter universal, aplicando-se apenas aos súditos de um monarca específico."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Kant diferencia Direito (externo/coercitivo) de Moral (interna/autônoma)."
-                },
-                {
-                    subject: "Ética Profissional",
-                    topic: "Incompatibilidade Profissional",
-                    text: "A advogada Clara, regularmente inscrita nos quadros da OAB, decide participar de um concurso público para o cargo de Agente de Polícia Federal. Após aprovação e posse, Clara consulta a Seccional da OAB para saber como fica sua situação profissional. De acordo com o Estatuto da OAB, Clara deverá:",
-                    options: [
-                        "Licenciar-se da OAB, mantendo o número da inscrição mas sem poder advogar.",
-                        "Solicitar o cancelamento de sua inscrição, por exercer atividade incompatível em caráter permanente com a advocacia.",
-                        "Continuar advogando, sofrendo impedimento apenas em causas criminais federais.",
-                        "Averbar apenas um impedimento contra a Fazenda Pública Federal."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 28, V do EAOAB. Atividades policiais são incompatíveis com a advocacia, e por terem caráter definitivo no serviço público, geram o cancelamento da inscrição (Art. 11, IV)."
-                },
-                {
-                    subject: "Direito Constitucional",
-                    topic: "Organização do Estado",
-                    text: "Um determinado Estado da Federação, visando estimular a economia local, edita lei estadual que concede isenção de tributos federais (como o IPI) para indústrias que se instalarem em seu território. À luz da repartição de competências e dos princípios federativos da CF/88, tal lei estadual é:",
-                    options: [
-                        "Válida, pois os Estados possuem autonomia política e financeira para gerir seu desenvolvimento.",
-                        "Inconstitucional, pois um ente federado não pode conceder isenções de tributos que não são de sua competência (vedação à isenção heterônoma).",
-                        "Constitucional, desde que haja convênio prévio aprovado pelo CONFAZ.",
-                        "Válida, desde que a isenção seja compensada por aumento na alíquota do ICMS estadual."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 151, III da CF/88. É vedado à União instituir isenções de tributos estaduais ou municipais, e logicamente os estados não podem isentar tributos federais."
-                },
-                {
-                    subject: "Direito Administrativo",
-                    topic: "Desapropriação",
-                    text: "O Município de 'Lagoa Azul' necessita construir uma escola em um terreno privado que se encontra abandonado e com dívidas de IPTU. O prefeito edita um decreto declarando o imóvel de utilidade pública para fins de desapropriação. Sobre o procedimento de desapropriação por utilidade pública, é correto afirmar que:",
-                    options: [
-                        "A indenização deve ser prévia, justa e em dinheiro, ressalvados os casos previstos na Constituição.",
-                        "O Município pode tomar posse do imóvel imediatamente sem pagar nada, compensando o valor com as dívidas de IPTU.",
-                        "A desapropriação só pode ocorrer se o proprietário concordar com o valor oferecido administrativamente.",
-                        "O pagamento deve ser feito obrigatoriamente por meio de títulos da dívida pública resgatáveis em 20 anos."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 5º, XXIV da CF/88. A regra geral da desapropriação exige indenização prévia, justa e em dinheiro."
-                },
-                {
-                    subject: "Direito Civil",
-                    topic: "Responsabilidade Civil",
-                    text: "Um hospital privado realiza uma cirurgia em um paciente. Durante o procedimento, por falha no equipamento de monitoramento que não havia passado por manutenção obrigatória, o paciente sofre uma parada cardiorrespiratória e fica com sequelas neurológicas permanentes. Segundo o Código Civil e o Código de Defesa do Consumidor, a responsabilidade do hospital no caso é:",
-                    options: [
-                        "Subjetiva, dependendo da prova de dolo ou culpa do médico cirurgião que operava o aparelho.",
-                        "Objetiva, por se tratar de defeito na prestação do serviço hospitalar, respondendo o hospital independentemente de culpa.",
-                        "Excluída, por se tratar de caso fortuito interno (falha de máquina).",
-                        "Limitada ao valor do teto estabelecido no contrato de prestação de serviços médicos."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 14 do CDC. Hospitais são prestadores de serviço e respondem objetivamente por falhas na estrutura e equipamentos."
-                },
-                {
-                    subject: "Processo Civil",
-                    topic: "Ação Monitória",
-                    text: "Um credor possui um contrato de empréstimo assinado pelo devedor, mas sem a assinatura de duas testemunhas, o que retira do documento a natureza de título executivo extrajudicial. O credor deseja cobrar a dívida de forma célere. Nos termos do CPC/2015, a ação monitória pode ser proposta por quem afirmar, com base em prova escrita sem eficácia de título executivo, ter direito de exigir do devedor capaz:",
-                    options: [
-                        "Apenas o pagamento de quantia em dinheiro.",
-                        "O pagamento de quantia em dinheiro, a entrega de coisa móvel ou imóvel ou o adimplemento de obrigação de fazer ou de não fazer.",
-                        "Apenas a entrega de documentos pessoais.",
-                        "A exibição de balanço contábil empresarial."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 700 do CPC/15. A monitória teve seu alcance ampliado para abranger qualquer obrigação baseada em prova escrita sem força executiva."
-                },
-                {
-                    subject: "Direito Penal",
-                    topic: "Concurso de Pessoas",
-                    text: "Dois indivíduos, agindo em unidade de desígnios, decidem praticar um crime de furto em uma residência. Enquanto um vigia a rua, o outro entra na casa para subtrair os bens. No entanto, o indivíduo que entrou na casa, ao ser surpreendido pelo proprietário, decide, por conta própria e sem o conhecimento do comparsa que vigiava a rua, desferir golpes de faca na vítima, causando sua morte. De acordo com o Código Penal, sobre o concurso de pessoas e o desvio subjetivo entre os agentes:",
-                    options: [
-                        "Ambos respondem pelo crime de latrocínio, pois quem aceita participar de um crime assume o risco do resultado mais grave.",
-                        "O agente que vigiava a rua responde apenas pelo crime de furto, pois não anuiu nem previu o resultado morte, salvo se este resultado era previsível, caso em que a pena é aumentada.",
-                        "Ambos respondem por homicídio doloso em coautoria.",
-                        "A punibilidade é excluída para ambos em razão do excesso cometido por apenas um deles."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 29, § 2º do CP (Cooperação dolosamente distinta). O agente responde pelo crime que quis participar; se o resultado mais grave era previsível, a pena é aumentada até metade."
-                },
-                {
-                    subject: "Processo Penal",
-                    topic: "Liberdade Provisória",
-                    text: "Um réu é preso em flagrante por crime de furto simples. Ao analisar o auto de prisão em flagrante, o juiz constata que a prisão é legal, mas que não estão presentes os requisitos para a decretação da prisão preventiva. Nos termos do Código de Processo Penal, o juiz deverá conceder a liberdade provisória, podendo impor medidas cautelares diversas da prisão. Sobre a fiança, é correto afirmar que:",
-                    options: [
-                        "Não poderá ser concedida pelo delegado de polícia em nenhuma hipótese, sendo ato exclusivo do juiz.",
-                        "Poderá ser concedida pela autoridade policial (delegado) nos casos de infração cuja pena privativa de liberdade máxima não seja superior a 4 anos.",
-                        "É vedada para réus reincidentes, independentemente do crime praticado.",
-                        "O valor da fiança será sempre destinado ao fundo penitenciário nacional imediatamente após o pagamento."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 322 do CPP. O delegado pode arbitrar fiança para crimes com pena máxima de até 4 anos."
-                },
-                {
-                    subject: "Direito do Trabalho",
-                    topic: "Equiparação Salarial",
-                    text: "Em uma demanda trabalhista, o reclamante pleiteia a equiparação salarial com um colega que exerce a mesma função. A empresa contesta, alegando que o paradigma possui maior tempo de serviço. Segundo a CLT atualizada, a equiparação salarial só é possível quando a diferença de tempo de serviço na função entre paradigma e paragonado não for superior a:",
-                    options: [
-                        "2 anos e a diferença de tempo no emprego não for superior a 4 anos.",
-                        "4 anos independentemente do tempo na função.",
-                        "1 ano e a diferença no emprego for de 2 anos.",
-                        "5 anos, conforme o prazo prescricional trabalhista."
-                    ],
-                    correct: 0,
-                    explanation: "Fundamentação: Art. 461, § 1º da CLT. Requisitos: trabalho de igual valor, mesma localidade, diferença na função < 2 anos e no emprego < 4 anos."
-                }
-            ],
-              
-            "OAB44": [],
-                
-          
-            "OAB43": [], "OAB42": [], "OAB41": [], "OAB40": [], "OAB39": []
-        };
-
-        // --- VARIÁVEIS DE ESTADO ---
+        let examsDatabase = {};
         let currentExam = [];
         let userResponses = [];
         let currentIdx = 0;
         let totalSeconds = 5 * 60 * 60;
-        let questionSeconds = 0;
-        let qTimer, globalTimer;
+        let qSecs = 0;
+        let qTimer;
 
-        // --- LÓGICA DE EMBARALHAMENTO ---
+        async function init() {
+            try {
+                const response = await fetch('perguntas.json');
+                examsDatabase = await response.json();
+                renderMenu();
+            } catch (e) {
+                alert("Erro: O arquivo 'perguntas.json' não foi encontrado na mesma pasta.");
+            }
+        }
+
+        function renderMenu() {
+            const container = document.getElementById('exam-buttons');
+            Object.keys(examsDatabase).forEach(key => {
+                container.innerHTML += `
+                    <button onclick="startQuiz('${key}')" class="group p-6 bg-white border-2 border-slate-200 rounded-2xl shadow-sm hover:border-blue-500 hover:shadow-xl transition-all text-left">
+                        <span class="text-blue-500 font-bold text-[10px] uppercase tracking-widest">Prova Oficial</span>
+                        <h3 class="text-2xl font-black text-slate-800 italic">Exame ${key.replace('OAB','')}</h3>
+                        <div class="mt-4 text-blue-600 font-bold text-xs uppercase">Iniciar →</div>
+                    </button>`;
+            });
+        }
+
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -813,184 +111,109 @@
             return array;
         }
 
-        // --- CONTROLE DO QUIZ ---
-        function startQuiz(examKey) {
-            const data = examsDatabase[examKey];
-            if(!data || data.length === 0) {
-                alert("Alerta: O banco de dados desta prova será preenchido nas próximas etapas!");
-                return;
-            }
-
+        function startQuiz(key) {
+            const data = examsDatabase[key];
             currentExam = data.map(q => {
-                let opts = q.options.map((text, i) => ({ text, originalIdx: i }));
+                let opts = q.options.map((t, i) => ({ t, originalIdx: i }));
                 let shuffled = shuffle([...opts]);
-                return { ...q, options: shuffled.map(s => s.text), correct: shuffled.findIndex(o => o.originalIdx === q.correct) };
+                return { ...q, options: shuffled.map(s => s.t), correct: shuffled.findIndex(o => o.originalIdx === q.correct) };
             });
-
-            userResponses = Array(currentExam.length).fill(null).map(() => ({
-                selected: null, correct: null, review: false, discarded: []
-            }));
-
+            userResponses = Array(currentExam.length).fill(null).map(() => ({ selected: null, correct: null, review: false, discarded: [] }));
             document.getElementById('home-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
-            document.getElementById('exam-title-side').innerText = examKey;
-            
+            document.getElementById('total-qs-display').innerText = currentExam.length;
             buildSidebar();
             loadQuestion(0);
-            startTimers();
+            startGlobalTimer();
         }
 
         function buildSidebar() {
             const grid = document.getElementById('questions-grid');
             grid.innerHTML = '';
-            for(let i=0; i<currentExam.length; i++) {
+            currentExam.forEach((_, i) => {
                 const btn = document.createElement('button');
                 btn.id = `side-q-${i}`;
-                btn.className = "w-full py-3 rounded-xl bg-slate-100 text-slate-400 border border-slate-200 transition-all hover:bg-slate-200";
+                btn.className = "w-full py-3 rounded-xl bg-slate-100 text-slate-400 border border-slate-200";
                 btn.innerText = i + 1;
                 btn.onclick = () => loadQuestion(i);
                 grid.appendChild(btn);
-            }
+            });
         }
 
         function loadQuestion(idx) {
             currentIdx = idx;
             const q = currentExam[idx];
             const u = userResponses[idx];
-            
             document.querySelectorAll('[id^="side-q-"]').forEach(el => el.classList.remove('sidebar-active'));
             document.getElementById(`side-q-${idx}`).classList.add('sidebar-active');
-            
             document.getElementById('subject-tag').innerText = q.subject;
-            document.getElementById('topic-tag').innerText = "• " + q.topic;
+            document.getElementById('topic-tag').innerText = q.topic;
             document.getElementById('question-text').innerText = q.text;
             document.getElementById('current-idx-display').innerText = idx + 1;
             
             const container = document.getElementById('options-container');
             container.innerHTML = '';
-            
             q.options.forEach((opt, i) => {
                 const isDiscarded = u.discarded.includes(i);
-                const isSelected = u.selected === i;
-                
                 const wrapper = document.createElement('div');
-                wrapper.className = `flex items-center gap-4 w-full group ${isDiscarded ? 'discarded' : ''}`;
+                wrapper.className = `flex items-center gap-4 w-full ${isDiscarded ? 'discarded' : ''}`;
                 
-                // Botão Riscar (✕)
                 const discardBtn = document.createElement('button');
                 discardBtn.innerHTML = "✕";
-                discardBtn.className = `w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl border-2 border-slate-200 text-slate-300 font-black hover:border-blue-500 hover:text-blue-500 transition-all ${isDiscarded ? 'bg-blue-600 border-blue-600 text-white' : ''}`;
+                discardBtn.className = `w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl border-2 font-black ${isDiscarded ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-200 text-slate-300 hover:text-blue-500'}`;
                 discardBtn.onclick = (e) => { e.stopPropagation(); toggleDiscard(i); };
 
-                // Botão Alternativa
                 const btn = document.createElement('button');
-                btn.className = "option-btn flex-1 text-left p-5 border-2 border-slate-200 rounded-2xl hover:bg-blue-50 hover:border-blue-200 transition-all flex items-start font-medium relative shadow-sm";
+                btn.className = "option-btn flex-1 text-left p-5 border-2 border-slate-200 rounded-2xl hover:bg-blue-50 transition-all font-medium shadow-sm";
                 btn.innerHTML = `<span class="font-black text-blue-600 mr-4">${String.fromCharCode(65 + i)}</span> ${opt}`;
                 
                 if(u.selected !== null) {
-                    btn.disabled = true;
-                    discardBtn.style.display = 'none';
+                    btn.disabled = true; discardBtn.style.display = 'none';
                     if(i === q.correct) btn.classList.add('correct');
-                    if(isSelected && i !== q.correct) btn.classList.add('wrong');
-                } else {
-                    btn.onclick = () => checkAnswer(i);
-                }
+                    if(i === u.selected && i !== q.correct) btn.classList.add('wrong');
+                } else { btn.onclick = () => checkAnswer(i); }
                 
-                wrapper.appendChild(discardBtn);
-                wrapper.appendChild(btn);
-                container.appendChild(wrapper);
+                wrapper.appendChild(discardBtn); wrapper.appendChild(btn); container.appendChild(wrapper);
             });
 
-            const btnRev = document.getElementById('btn-review');
-            btnRev.className = (u.review) ? 
-                "flex items-center gap-2 px-5 py-2 bg-yellow-400 text-white rounded-full text-[10px] font-black uppercase shadow-lg" :
-                "flex items-center gap-2 px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase";
-
-            document.getElementById('next-btn').innerText = (idx === currentExam.length - 1) ? "Finalizar e Ver Resultados" : "Próxima Questão";
-
-            if(u.selected !== null) {
-                document.getElementById('justification-text').innerText = q.explanation;
-                document.getElementById('study-tip').innerText = q.subject;
-                document.getElementById('feedback').classList.remove('hidden');
-            } else {
-                document.getElementById('feedback').classList.add('hidden');
-            }
-            resetQuestionTimer();
+            document.getElementById('btn-review').className = u.review ? "flex items-center gap-2 px-5 py-2 bg-yellow-400 text-white rounded-full text-[10px] font-black uppercase" : "flex items-center gap-2 px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase";
+            document.getElementById('feedback').classList.toggle('hidden', u.selected === null);
+            document.getElementById('justification-text').innerText = q.explanation;
+            resetQTimer();
         }
 
-        function toggleDiscard(optIdx) {
-            if(userResponses[currentIdx].selected !== null) return;
-            const pos = userResponses[currentIdx].discarded.indexOf(optIdx);
-            if (pos === -1) userResponses[currentIdx].discarded.push(optIdx);
-            else userResponses[currentIdx].discarded.splice(pos, 1);
+        function toggleDiscard(i) {
+            const d = userResponses[currentIdx].discarded;
+            const pos = d.indexOf(i);
+            if (pos === -1) d.push(i); else d.splice(pos, 1);
             loadQuestion(currentIdx);
         }
 
-        function checkAnswer(selected) {
-            const q = currentExam[currentIdx];
-            const isCorrect = (selected === q.correct);
-            userResponses[currentIdx].selected = selected;
-            userResponses[currentIdx].correct = isCorrect;
-            userResponses[currentIdx].subject = q.subject;
-            updateSidebarColor();
+        function checkAnswer(i) {
+            userResponses[currentIdx].selected = i;
+            userResponses[currentIdx].correct = (i === currentExam[currentIdx].correct);
+            updateSidebar(currentIdx);
             loadQuestion(currentIdx);
         }
 
         function toggleReview() {
             userResponses[currentIdx].review = !userResponses[currentIdx].review;
-            updateSidebarColor();
+            updateSidebar(currentIdx);
             loadQuestion(currentIdx);
         }
 
-        function updateSidebarColor() {
-            const sideBtn = document.getElementById(`side-q-${currentIdx}`);
-            const res = userResponses[currentIdx];
-            if(res.review) sideBtn.className = "w-full py-3 rounded-xl border font-black sidebar-review shadow-md";
-            else if(res.correct === true) sideBtn.className = "w-full py-3 rounded-xl border font-black sidebar-correct shadow-md";
-            else if(res.correct === false) sideBtn.className = "w-full py-3 rounded-xl border font-black sidebar-wrong shadow-md";
+        function updateSidebar(idx) {
+            const btn = document.getElementById(`side-q-${idx}`);
+            const res = userResponses[idx];
+            if(res.review) btn.className = "w-full py-3 rounded-xl border font-black sidebar-review";
+            else btn.className = res.correct ? "w-full py-3 rounded-xl border font-black sidebar-correct" : "w-full py-3 rounded-xl border font-black sidebar-wrong";
         }
 
-        function showFinalResults() {
-            document.getElementById('main-quiz-area').classList.add('hidden');
-            document.querySelector('aside').classList.add('hidden');
-            document.getElementById('result-screen').classList.remove('hidden');
-            
-            const totalHits = userResponses.filter(r => r.correct).length;
-            document.getElementById('score-total').innerText = totalHits;
-            document.getElementById('score-percent').innerText = `${Math.round((totalHits/currentExam.length)*100)}% DE APROVEITAMENTO`;
-
-            const stats = {};
-            userResponses.forEach(r => {
-                if(!r.subject) return;
-                if(!stats[r.subject]) stats[r.subject] = { total: 0, hits: 0 };
-                stats[r.subject].total++;
-                if(r.correct) stats[r.subject].hits++;
-            });
-
-            const report = document.getElementById('subject-report');
-            report.innerHTML = '';
-            for(let s in stats) {
-                let p = Math.round((stats[s].hits/stats[s].total)*100);
-                report.innerHTML += `
-                <div class="bg-slate-50 p-5 rounded-[1.5rem] border border-slate-200 shadow-sm">
-                    <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">${s}</p>
-                    <p class="text-xl font-black ${p >= 60 ? 'text-green-600' : 'text-red-600'}">${p}% <span class="text-xs text-slate-400 font-medium">(${stats[s].hits}/${stats[s].total})</span></p>
-                    <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3"><div class="bg-blue-500 h-1.5 rounded-full" style="width:${p}%"></div></div>
-                </div>`;
-            }
-
-            const reviews = [...new Set(userResponses.filter(r => r.review).map(r => r.subject))];
-            if(reviews.length > 0) {
-                document.getElementById('review-summary').classList.remove('hidden');
-                document.getElementById('review-list').innerText = reviews.join(" | ");
-            }
-        }
-
-        function nextQuestion() { (currentIdx < currentExam.length - 1) ? loadQuestion(currentIdx + 1) : showFinalResults(); }
+        function nextQuestion() { (currentIdx < currentExam.length - 1) ? loadQuestion(currentIdx + 1) : showResults(); }
         function prevQuestion() { if(currentIdx > 0) loadQuestion(currentIdx - 1); }
 
-        function startTimers() {
-            globalTimer = setInterval(() => {
+        function startGlobalTimer() {
+            setInterval(() => {
                 totalSeconds--;
                 let h = Math.floor(totalSeconds/3600).toString().padStart(2,'0');
                 let m = Math.floor((totalSeconds%3600)/60).toString().padStart(2,'0');
@@ -999,18 +222,38 @@
             }, 1000);
         }
 
-        function resetQuestionTimer() {
-            clearInterval(qTimer);
-            questionSeconds = 0;
+        function resetQTimer() {
+            clearInterval(qTimer); qSecs = 0;
             qTimer = setInterval(() => {
-                questionSeconds++;
-                const m = Math.floor(questionSeconds/60).toString().padStart(2,'0');
-                const s = (questionSeconds%60).toString().padStart(2,'0');
+                qSecs++;
+                let m = Math.floor(qSecs/60).toString().padStart(2,'0');
+                let s = (qSecs%60).toString().padStart(2,'0');
                 document.getElementById('question-timer').innerText = `${m}:${s}`;
             }, 1000);
         }
+
+        function showResults() {
+            document.getElementById('main-quiz-area').classList.add('hidden');
+            document.querySelector('aside').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            const hits = userResponses.filter(r => r.correct).length;
+            document.getElementById('score-total').innerText = hits;
+            document.getElementById('score-percent').innerText = `${Math.round((hits/currentExam.length)*100)}% DE ACERTOS`;
+            const stats = {};
+            userResponses.forEach(r => {
+                if(!r.selected === null) return;
+                const sub = currentExam[userResponses.indexOf(r)].subject;
+                if(!stats[sub]) stats[sub] = { t: 0, h: 0 };
+                stats[sub].t++; if(r.correct) stats[sub].h++;
+            });
+            const report = document.getElementById('subject-report');
+            report.innerHTML = '';
+            for(let s in stats) {
+                let p = Math.round((stats[s].h/stats[s].t)*100);
+                report.innerHTML += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200"><p class="text-[9px] font-black text-slate-400 uppercase">${s}</p><p class="text-lg font-black ${p >= 60 ? 'text-green-600' : 'text-red-600'}">${p}% (${stats[s].h}/${stats[s].t})</p></div>`;
+            }
+        }
+        init();
     </script>
 </body>
 </html>
-
-
