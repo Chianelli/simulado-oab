@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulado OAB Pro - Sistema Oficial</title>
+    <title>Simulado OAB Pro - Sistema de Aprovação</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .correct { border: 3px solid #10b981 !important; background-color: #ecfdf5 !important; opacity: 1 !important; }
         .wrong { border: 3px solid #ef4444 !important; background-color: #fef2f2 !important; }
-        .sidebar-correct { background-color: #10b981 !important; color: white !important; }
-        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; }
-        .sidebar-review { background-color: #f59e0b !important; color: white !important; }
+        .sidebar-correct { background-color: #10b981 !important; color: white !important; border: none !important; }
+        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; border: none !important; }
+        .sidebar-review { background-color: #f59e0b !important; color: white !important; border: none !important; }
         .sidebar-active { outline: 3px solid #3b82f6; outline-offset: 2px; }
         .hidden { display: none !important; }
+        .option-btn:disabled { opacity: 1; cursor: default; }
         .discarded { opacity: 0.25; text-decoration: line-through; filter: grayscale(1); }
     </style>
 </head>
@@ -26,9 +27,9 @@
         <div id="exam-buttons" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </div>
 
-    <div id="quiz-screen" class="max-w-[1500px] mx-auto p-4 flex flex-col md:row gap-6 hidden">
-        <aside class="w-full md:w-64 bg-white rounded-3xl shadow-xl p-6 md:sticky md:top-4 h-auto md:h-[calc(100vh-2rem)] overflow-y-auto border border-slate-200">
-            <h3 id="exam-title-side" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5 text-center border-b pb-3">MAPA DA PROVA</h3>
+    <div id="quiz-screen" class="max-w-[1500px] mx-auto p-4 flex flex-col md:flex-row gap-6 hidden">
+        <aside class="w-full md:w-64 bg-white rounded-3xl shadow-xl p-6 md:sticky md:top-4 h-auto md:h-[calc(100vh-2rem)] overflow-y-auto border border-slate-200 flex-shrink-0">
+            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5 text-center border-b pb-3 italic">MAPA DA PROVA</h3>
             <div id="questions-grid" class="grid grid-cols-5 md:grid-cols-4 gap-2 text-center text-[11px] font-bold"></div>
         </aside>
 
@@ -36,13 +37,16 @@
             <header class="flex justify-between items-center bg-white p-5 rounded-2xl shadow-sm mb-6 border border-slate-200">
                 <button onclick="location.reload()" class="text-xs font-black text-blue-600 uppercase hover:underline">← MENU</button>
                 <div id="total-timer" class="text-3xl font-mono font-black text-slate-700">05:00:00</div>
-                <div id="question-timer" class="text-xl font-mono font-bold text-blue-400">00:00</div>
+                <div class="text-right">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Tempo na Questão</p>
+                    <div id="question-timer" class="text-xl font-mono font-bold text-blue-400 leading-none">00:00</div>
+                </div>
             </header>
 
             <main id="main-quiz-area" class="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100 relative">
                 <div class="flex justify-between items-start mb-8">
-                    <div>
-                        <span id="subject-tag" class="bg-blue-600 text-white text-[11px] font-black px-4 py-1.5 rounded-lg uppercase mr-2"></span>
+                    <div class="flex flex-col gap-1">
+                        <span id="subject-tag" class="bg-blue-600 text-white text-[11px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest w-fit"></span>
                         <span id="topic-tag" class="text-xs text-slate-400 font-bold uppercase italic"></span>
                     </div>
                     <button id="btn-review" onclick="toggleReview()" class="px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50">🤔 Rever dps</button>
@@ -52,27 +56,27 @@
                 <div id="options-container" class="space-y-4"></div>
 
                 <div id="feedback" class="mt-10 p-8 bg-blue-50 rounded-3xl border-l-[12px] border-blue-600 hidden">
-                    <h4 class="font-black text-blue-900 mb-3 uppercase text-xs">⚖️ RESPOSTA COMENTADA / LEGISLAÇÃO:</h4>
+                    <h4 class="font-black text-blue-900 mb-3 uppercase text-[10px] tracking-widest">⚖️ FUNDAMENTAÇÃO LEGAL E ARTIGOS:</h4>
                     <p id="justification-text" class="text-slate-700 text-lg italic font-medium leading-relaxed"></p>
                 </div>
 
                 <footer class="mt-12 pt-8 border-t border-slate-100 flex justify-between items-center">
                     <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase">Anterior</button>
-                    <div class="text-[11px] font-black text-slate-300 uppercase">Questão <span id="current-idx-display" class="text-slate-800 text-sm">1</span> / <span id="total-qs-display">80</span></div>
-                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-12 py-4 rounded-2xl shadow-xl uppercase text-xs">Próxima</button>
+                    <div class="text-[11px] font-black text-slate-500 uppercase tracking-widest">Questão <span id="current-idx-display" class="text-slate-900 text-sm">1</span> / <span id="total-qs-display">0</span></div>
+                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-12 py-4 rounded-2xl transition shadow-xl uppercase text-xs">Próxima</button>
                 </footer>
             </main>
 
             <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center">
-                <h2 class="text-4xl font-black text-slate-800 mb-4 uppercase italic tracking-tighter">Desempenho Final</h2>
-                <div class="text-6xl font-black text-blue-600 mb-10"><span id="score-total">0</span> / <span id="final-total-qs">80</span></div>
+                <h2 class="text-4xl font-black text-slate-800 mb-4 uppercase italic tracking-tighter">RELATÓRIO FINAL</h2>
+                <div class="text-7xl font-black text-blue-600 mt-6 mb-10"><span id="score-total">0</span> / <span id="final-total-qs">0</span></div>
                 
-                <div class="bg-slate-50 p-6 rounded-3xl mb-8">
-                    <h3 class="font-black text-slate-400 uppercase text-xs mb-4 tracking-widest">Análise por Disciplina</h3>
-                    <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left"></div>
+                <div class="bg-slate-50 p-8 rounded-[2.5rem] mb-8 border border-slate-100">
+                    <h3 class="font-black text-slate-400 uppercase text-xs mb-8 tracking-[0.2em]">Desempenho por Disciplina</h3>
+                    <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"></div>
                 </div>
 
-                <button onclick="location.reload()" class="px-14 py-4 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-700 transition-all">Refazer Simulado</button>
+                <button onclick="location.reload()" class="px-16 py-5 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition-all shadow-2xl">Novo Simulado</button>
             </div>
         </div>
     </div>
@@ -92,7 +96,7 @@
                 examsDatabase = await response.json();
                 renderMenu();
             } catch (e) {
-                alert("Erro ao ler o arquivo 'perguntas.json'.");
+                alert("Erro: Certifique-se de que 'perguntas.json' está na mesma pasta.");
             }
         }
 
@@ -103,18 +107,19 @@
                     <button onclick="startQuiz('${key}')" class="group p-6 bg-white border-2 border-slate-200 rounded-2xl shadow-sm hover:border-blue-500 hover:shadow-xl transition-all text-left">
                         <span class="text-blue-500 font-bold text-[10px] uppercase tracking-widest">FGV Oficial</span>
                         <h3 class="text-2xl font-black text-slate-800 italic">Exame ${key.replace('OAB','')}</h3>
-                        <div class="mt-4 text-blue-600 font-bold text-xs uppercase">Abrir Caderno →</div>
+                        <div class="mt-4 text-blue-600 font-bold text-xs uppercase">Iniciar →</div>
                     </button>`;
             });
         }
 
         function startQuiz(key) {
-            const data = examsDatabase[key];
-            currentExam = data; // Mantém a ordem original para ser fiel à prova
-            userResponses = Array(currentExam.length).fill(null).map(() => ({ selected: null, correct: null, review: false, discarded: [] }));
+            currentExam = examsDatabase[key]; 
+            userResponses = currentExam.map(() => ({ selected: null, correct: null, review: false, discarded: [] }));
+            
             document.getElementById('home-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
             document.getElementById('total-qs-display').innerText = currentExam.length;
+            
             buildSidebar();
             loadQuestion(0);
             startGlobalTimer();
@@ -126,7 +131,7 @@
             currentExam.forEach((_, i) => {
                 const btn = document.createElement('button');
                 btn.id = `side-q-${i}`;
-                btn.className = "w-full py-3 rounded-xl bg-slate-100 text-slate-400 border border-slate-200 font-bold";
+                btn.className = "w-full py-3 rounded-xl bg-slate-100 text-slate-400 border border-slate-200 font-black";
                 btn.innerText = i + 1;
                 btn.onclick = () => loadQuestion(i);
                 grid.appendChild(btn);
@@ -156,7 +161,7 @@
                 
                 const discBtn = document.createElement('button');
                 discBtn.innerHTML = "✕";
-                discBtn.className = `w-10 h-10 flex-shrink-0 rounded-lg border-2 font-black ${isDiscarded ? 'bg-blue-600 text-white' : 'border-slate-200 text-slate-300'}`;
+                discBtn.className = `w-10 h-10 flex-shrink-0 rounded-lg border-2 font-black transition-all ${isDiscarded ? 'bg-blue-600 text-white border-blue-600' : 'border-slate-200 text-slate-300'}`;
                 discBtn.onclick = (e) => { e.stopPropagation(); toggleDiscard(i); };
 
                 const btn = document.createElement('button');
@@ -164,25 +169,29 @@
                 btn.innerHTML = `<span class="font-black text-blue-600 mr-4">${String.fromCharCode(65 + i)}</span> ${opt}`;
                 
                 if(u.selected !== null) {
-                    btn.disabled = true; discBtn.style.display = 'none';
+                    btn.disabled = true;
+                    discBtn.style.display = 'none';
                     if(i === q.correct) btn.classList.add('correct');
                     if(i === u.selected && i !== q.correct) btn.classList.add('wrong');
-                } else { btn.onclick = () => checkAnswer(i); }
+                } else {
+                    btn.onclick = () => checkAnswer(i);
+                }
                 
                 wrapper.appendChild(discBtn); wrapper.appendChild(btn); container.appendChild(wrapper);
             });
 
             document.getElementById('feedback').classList.toggle('hidden', u.selected === null);
-            document.getElementById('justification-text').innerText = q.explanation;
+            document.getElementById('justification-text').innerText = q.explanation || "Fundamentação não disponível.";
             
             const btnRev = document.getElementById('btn-review');
-            btnRev.className = u.review ? "px-5 py-2 bg-yellow-400 text-white rounded-full text-[10px] font-black uppercase" : "px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase";
+            btnRev.className = u.review ? "px-5 py-2 bg-yellow-400 text-white rounded-full text-[10px] font-black uppercase shadow-lg" : "px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase";
             
             document.getElementById('next-btn').innerText = (idx === currentExam.length - 1) ? "Finalizar Simulado" : "Próxima Questão";
             resetQTimer();
         }
 
         function toggleDiscard(i) {
+            if(userResponses[currentIdx].selected !== null) return;
             const d = userResponses[currentIdx].discarded;
             const pos = d.indexOf(i);
             if (pos === -1) d.push(i); else d.splice(pos, 1);
@@ -206,7 +215,8 @@
             const btn = document.getElementById(`side-q-${idx}`);
             const res = userResponses[idx];
             if(res.review) btn.className = "w-full py-3 rounded-xl border font-black sidebar-review";
-            else btn.className = res.correct ? "w-full py-3 rounded-xl border font-black sidebar-correct" : "w-full py-3 rounded-xl border font-black sidebar-wrong";
+            else if(res.correct === true) btn.className = "w-full py-3 rounded-xl border font-black sidebar-correct";
+            else if(res.correct === false) btn.className = "w-full py-3 rounded-xl border font-black sidebar-wrong";
         }
 
         function nextQuestion() {
@@ -241,26 +251,30 @@
             document.querySelector('aside').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
             
-            const hits = userResponses.filter(r => r.correct).length;
+            const hits = userResponses.filter(r => r.correct === true).length;
             document.getElementById('score-total').innerText = hits;
             document.getElementById('final-total-qs').innerText = currentExam.length;
 
             const stats = {};
             currentExam.forEach((q, i) => {
                 const sub = q.subject;
-                if(!stats[sub]) stats[sub] = { total: 0, hits: 0 };
+                if (!stats[sub]) stats[sub] = { total: 0, hits: 0 };
                 stats[sub].total++;
-                if(userResponses[i].correct) stats[sub].hits++;
+                if (userResponses[i] && userResponses[i].correct === true) {
+                    stats[sub].hits++;
+                }
             });
 
             const report = document.getElementById('subject-report');
             report.innerHTML = '';
             for(let s in stats) {
                 let p = Math.round((stats[s].hits / stats[s].total) * 100);
+                let cor = p >= 60 ? 'text-green-600' : (p > 0 ? 'text-orange-500' : 'text-red-600');
                 report.innerHTML += `
                     <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">${s}</p>
-                        <p class="text-xl font-black ${p >= 60 ? 'text-green-600' : 'text-red-600'}">${p}% <span class="text-xs text-slate-400 font-medium">(${stats[s].hits}/${stats[s].total})</span></p>
+                        <p class="text-[10px] font-black text-slate-400 uppercase mb-1">${s}</p>
+                        <p class="text-2xl font-black ${cor}">${p}%</p>
+                        <p class="text-xs text-slate-400 font-bold">Acertou ${stats[s].hits} de ${stats[s].total}</p>
                     </div>`;
             }
         }
