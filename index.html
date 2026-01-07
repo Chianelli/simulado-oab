@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulado OAB Pro - Sistema de Aprovação</title>
+    <title>Simulado OAB Pro - Sistema Oficial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .correct { border: 3px solid #10b981 !important; background-color: #ecfdf5 !important; opacity: 1 !important; text-decoration: none !important; }
+        .correct { border: 3px solid #10b981 !important; background-color: #ecfdf5 !important; opacity: 1 !important; }
         .wrong { border: 3px solid #ef4444 !important; background-color: #fef2f2 !important; }
-        .sidebar-correct { background-color: #10b981 !important; color: white !important; border: none !important; }
-        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; border: none !important; }
-        .sidebar-review { background-color: #f59e0b !important; color: white !important; border: none !important; }
+        .sidebar-correct { background-color: #10b981 !important; color: white !important; }
+        .sidebar-wrong { background-color: #ef4444 !important; color: white !important; }
+        .sidebar-review { background-color: #f59e0b !important; color: white !important; }
         .sidebar-active { outline: 3px solid #3b82f6; outline-offset: 2px; }
         .hidden { display: none !important; }
-        .option-btn:disabled { opacity: 1; cursor: default; }
         .discarded { opacity: 0.25; text-decoration: line-through; filter: grayscale(1); }
     </style>
 </head>
@@ -22,15 +21,14 @@
     <div id="home-screen" class="max-w-4xl mx-auto mt-10 p-6">
         <div class="text-center mb-12">
             <h1 class="text-5xl font-black text-blue-600 mb-3 italic tracking-tighter">OAB SIMULADOS PRO</h1>
-            <p class="text-slate-500 font-medium">Questões Reais da FGV com Sistema de Descarte</p>
+            <p class="text-slate-500 font-medium text-center italic text-xl">Foco Total na Aprovação</p>
         </div>
-        <div id="exam-buttons" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            </div>
+        <div id="exam-buttons" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </div>
 
-    <div id="quiz-screen" class="max-w-[1500px] mx-auto p-4 flex flex-col md:flex-row gap-6 hidden">
-        <aside class="w-full md:w-64 bg-white rounded-3xl shadow-xl p-6 md:sticky md:top-4 h-auto md:h-[calc(100vh-2rem)] overflow-y-auto border border-slate-200 flex-shrink-0">
-            <h3 id="exam-title-side" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5 text-center border-b pb-3 italic">MAPA</h3>
+    <div id="quiz-screen" class="max-w-[1500px] mx-auto p-4 flex flex-col md:row gap-6 hidden">
+        <aside class="w-full md:w-64 bg-white rounded-3xl shadow-xl p-6 md:sticky md:top-4 h-auto md:h-[calc(100vh-2rem)] overflow-y-auto border border-slate-200">
+            <h3 id="exam-title-side" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-5 text-center border-b pb-3">MAPA DA PROVA</h3>
             <div id="questions-grid" class="grid grid-cols-5 md:grid-cols-4 gap-2 text-center text-[11px] font-bold"></div>
         </aside>
 
@@ -43,31 +41,38 @@
 
             <main id="main-quiz-area" class="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100 relative">
                 <div class="flex justify-between items-start mb-8">
-                    <div class="flex flex-col gap-1">
-                        <span id="subject-tag" class="bg-blue-600 text-white text-[11px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest w-fit"></span>
+                    <div>
+                        <span id="subject-tag" class="bg-blue-600 text-white text-[11px] font-black px-4 py-1.5 rounded-lg uppercase mr-2"></span>
                         <span id="topic-tag" class="text-xs text-slate-400 font-bold uppercase italic"></span>
                     </div>
-                    <button id="btn-review" onclick="toggleReview()" class="flex items-center gap-2 px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50 transition-all shadow-sm">
-                        🤔 Chutei / Rever
-                    </button>
+                    <button id="btn-review" onclick="toggleReview()" class="px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase hover:bg-yellow-50">🤔 Rever dps</button>
                 </div>
+                
                 <h2 id="question-text" class="text-xl font-medium leading-relaxed text-slate-800 mb-10 text-justify"></h2>
                 <div id="options-container" class="space-y-4"></div>
+
                 <div id="feedback" class="mt-10 p-8 bg-blue-50 rounded-3xl border-l-[12px] border-blue-600 hidden">
-                    <h4 class="font-black text-blue-900 mb-3 uppercase text-xs">⚖️ Fundamentação Legal:</h4>
-                    <p id="justification-text" class="text-slate-700 text-sm italic font-medium"></p>
+                    <h4 class="font-black text-blue-900 mb-3 uppercase text-xs">⚖️ RESPOSTA COMENTADA / LEGISLAÇÃO:</h4>
+                    <p id="justification-text" class="text-slate-700 text-lg italic font-medium leading-relaxed"></p>
                 </div>
+
                 <footer class="mt-12 pt-8 border-t border-slate-100 flex justify-between items-center">
                     <button onclick="prevQuestion()" class="text-slate-400 hover:text-slate-900 font-black text-xs uppercase">Anterior</button>
                     <div class="text-[11px] font-black text-slate-300 uppercase">Questão <span id="current-idx-display" class="text-slate-800 text-sm">1</span> / <span id="total-qs-display">80</span></div>
-                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-12 py-4 rounded-2xl transition shadow-xl uppercase text-xs">Próxima</button>
+                    <button id="next-btn" onclick="nextQuestion()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-12 py-4 rounded-2xl shadow-xl uppercase text-xs">Próxima</button>
                 </footer>
             </main>
 
             <div id="result-screen" class="hidden bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 text-center">
-                <h2 class="text-3xl font-black text-slate-800 mb-8 uppercase italic underline decoration-blue-500 decoration-8 underline-offset-8">Relatório Final</h2>
-                <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left"></div>
-                <div class="mt-10"><button onclick="location.reload()" class="px-14 py-4 bg-blue-600 text-white font-black rounded-xl">Novo Simulado</button></div>
+                <h2 class="text-4xl font-black text-slate-800 mb-4 uppercase italic tracking-tighter">Desempenho Final</h2>
+                <div class="text-6xl font-black text-blue-600 mb-10"><span id="score-total">0</span> / <span id="final-total-qs">80</span></div>
+                
+                <div class="bg-slate-50 p-6 rounded-3xl mb-8">
+                    <h3 class="font-black text-slate-400 uppercase text-xs mb-4 tracking-widest">Análise por Disciplina</h3>
+                    <div id="subject-report" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left"></div>
+                </div>
+
+                <button onclick="location.reload()" class="px-14 py-4 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-700 transition-all">Refazer Simulado</button>
             </div>
         </div>
     </div>
@@ -87,7 +92,7 @@
                 examsDatabase = await response.json();
                 renderMenu();
             } catch (e) {
-                alert("Erro: O arquivo 'perguntas.json' não foi encontrado na mesma pasta.");
+                alert("Erro ao ler o arquivo 'perguntas.json'.");
             }
         }
 
@@ -96,28 +101,16 @@
             Object.keys(examsDatabase).forEach(key => {
                 container.innerHTML += `
                     <button onclick="startQuiz('${key}')" class="group p-6 bg-white border-2 border-slate-200 rounded-2xl shadow-sm hover:border-blue-500 hover:shadow-xl transition-all text-left">
-                        <span class="text-blue-500 font-bold text-[10px] uppercase tracking-widest">Prova Oficial</span>
+                        <span class="text-blue-500 font-bold text-[10px] uppercase tracking-widest">FGV Oficial</span>
                         <h3 class="text-2xl font-black text-slate-800 italic">Exame ${key.replace('OAB','')}</h3>
-                        <div class="mt-4 text-blue-600 font-bold text-xs uppercase">Iniciar →</div>
+                        <div class="mt-4 text-blue-600 font-bold text-xs uppercase">Abrir Caderno →</div>
                     </button>`;
             });
         }
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
         function startQuiz(key) {
             const data = examsDatabase[key];
-            currentExam = data.map(q => {
-                let opts = q.options.map((t, i) => ({ t, originalIdx: i }));
-                let shuffled = shuffle([...opts]);
-                return { ...q, options: shuffled.map(s => s.t), correct: shuffled.findIndex(o => o.originalIdx === q.correct) };
-            });
+            currentExam = data; // Mantém a ordem original para ser fiel à prova
             userResponses = Array(currentExam.length).fill(null).map(() => ({ selected: null, correct: null, review: false, discarded: [] }));
             document.getElementById('home-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
@@ -133,7 +126,7 @@
             currentExam.forEach((_, i) => {
                 const btn = document.createElement('button');
                 btn.id = `side-q-${i}`;
-                btn.className = "w-full py-3 rounded-xl bg-slate-100 text-slate-400 border border-slate-200";
+                btn.className = "w-full py-3 rounded-xl bg-slate-100 text-slate-400 border border-slate-200 font-bold";
                 btn.innerText = i + 1;
                 btn.onclick = () => loadQuestion(i);
                 grid.appendChild(btn);
@@ -144,41 +137,48 @@
             currentIdx = idx;
             const q = currentExam[idx];
             const u = userResponses[idx];
+            
             document.querySelectorAll('[id^="side-q-"]').forEach(el => el.classList.remove('sidebar-active'));
             document.getElementById(`side-q-${idx}`).classList.add('sidebar-active');
+            
             document.getElementById('subject-tag').innerText = q.subject;
-            document.getElementById('topic-tag').innerText = q.topic;
+            document.getElementById('topic-tag').innerText = "• " + q.topic;
             document.getElementById('question-text').innerText = q.text;
             document.getElementById('current-idx-display').innerText = idx + 1;
             
             const container = document.getElementById('options-container');
             container.innerHTML = '';
+
             q.options.forEach((opt, i) => {
                 const isDiscarded = u.discarded.includes(i);
                 const wrapper = document.createElement('div');
                 wrapper.className = `flex items-center gap-4 w-full ${isDiscarded ? 'discarded' : ''}`;
                 
-                const discardBtn = document.createElement('button');
-                discardBtn.innerHTML = "✕";
-                discardBtn.className = `w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl border-2 font-black ${isDiscarded ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-200 text-slate-300 hover:text-blue-500'}`;
-                discardBtn.onclick = (e) => { e.stopPropagation(); toggleDiscard(i); };
+                const discBtn = document.createElement('button');
+                discBtn.innerHTML = "✕";
+                discBtn.className = `w-10 h-10 flex-shrink-0 rounded-lg border-2 font-black ${isDiscarded ? 'bg-blue-600 text-white' : 'border-slate-200 text-slate-300'}`;
+                discBtn.onclick = (e) => { e.stopPropagation(); toggleDiscard(i); };
 
                 const btn = document.createElement('button');
-                btn.className = "option-btn flex-1 text-left p-5 border-2 border-slate-200 rounded-2xl hover:bg-blue-50 transition-all font-medium shadow-sm";
+                btn.className = "option-btn flex-1 text-left p-5 border-2 border-slate-200 rounded-2xl hover:bg-blue-50 transition-all font-medium";
                 btn.innerHTML = `<span class="font-black text-blue-600 mr-4">${String.fromCharCode(65 + i)}</span> ${opt}`;
                 
                 if(u.selected !== null) {
-                    btn.disabled = true; discardBtn.style.display = 'none';
+                    btn.disabled = true; discBtn.style.display = 'none';
                     if(i === q.correct) btn.classList.add('correct');
                     if(i === u.selected && i !== q.correct) btn.classList.add('wrong');
                 } else { btn.onclick = () => checkAnswer(i); }
                 
-                wrapper.appendChild(discardBtn); wrapper.appendChild(btn); container.appendChild(wrapper);
+                wrapper.appendChild(discBtn); wrapper.appendChild(btn); container.appendChild(wrapper);
             });
 
-            document.getElementById('btn-review').className = u.review ? "flex items-center gap-2 px-5 py-2 bg-yellow-400 text-white rounded-full text-[10px] font-black uppercase" : "flex items-center gap-2 px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase";
             document.getElementById('feedback').classList.toggle('hidden', u.selected === null);
             document.getElementById('justification-text').innerText = q.explanation;
+            
+            const btnRev = document.getElementById('btn-review');
+            btnRev.className = u.review ? "px-5 py-2 bg-yellow-400 text-white rounded-full text-[10px] font-black uppercase" : "px-5 py-2 border-2 border-yellow-400 text-yellow-600 rounded-full text-[10px] font-black uppercase";
+            
+            document.getElementById('next-btn').innerText = (idx === currentExam.length - 1) ? "Finalizar Simulado" : "Próxima Questão";
             resetQTimer();
         }
 
@@ -209,7 +209,11 @@
             else btn.className = res.correct ? "w-full py-3 rounded-xl border font-black sidebar-correct" : "w-full py-3 rounded-xl border font-black sidebar-wrong";
         }
 
-        function nextQuestion() { (currentIdx < currentExam.length - 1) ? loadQuestion(currentIdx + 1) : showResults(); }
+        function nextQuestion() {
+            if (currentIdx < currentExam.length - 1) loadQuestion(currentIdx + 1);
+            else showResults();
+        }
+
         function prevQuestion() { if(currentIdx > 0) loadQuestion(currentIdx - 1); }
 
         function startGlobalTimer() {
@@ -236,21 +240,28 @@
             document.getElementById('main-quiz-area').classList.add('hidden');
             document.querySelector('aside').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
+            
             const hits = userResponses.filter(r => r.correct).length;
             document.getElementById('score-total').innerText = hits;
-            document.getElementById('score-percent').innerText = `${Math.round((hits/currentExam.length)*100)}% DE ACERTOS`;
+            document.getElementById('final-total-qs').innerText = currentExam.length;
+
             const stats = {};
-            userResponses.forEach(r => {
-                if(!r.selected === null) return;
-                const sub = currentExam[userResponses.indexOf(r)].subject;
-                if(!stats[sub]) stats[sub] = { t: 0, h: 0 };
-                stats[sub].t++; if(r.correct) stats[sub].h++;
+            currentExam.forEach((q, i) => {
+                const sub = q.subject;
+                if(!stats[sub]) stats[sub] = { total: 0, hits: 0 };
+                stats[sub].total++;
+                if(userResponses[i].correct) stats[sub].hits++;
             });
+
             const report = document.getElementById('subject-report');
             report.innerHTML = '';
             for(let s in stats) {
-                let p = Math.round((stats[s].h/stats[s].t)*100);
-                report.innerHTML += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200"><p class="text-[9px] font-black text-slate-400 uppercase">${s}</p><p class="text-lg font-black ${p >= 60 ? 'text-green-600' : 'text-red-600'}">${p}% (${stats[s].h}/${stats[s].t})</p></div>`;
+                let p = Math.round((stats[s].hits / stats[s].total) * 100);
+                report.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest">${s}</p>
+                        <p class="text-xl font-black ${p >= 60 ? 'text-green-600' : 'text-red-600'}">${p}% <span class="text-xs text-slate-400 font-medium">(${stats[s].hits}/${stats[s].total})</span></p>
+                    </div>`;
             }
         }
         init();
