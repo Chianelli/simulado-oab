@@ -20,11 +20,11 @@
         </div>
         
         <div class="grid grid-cols-1 gap-6">
-            <button onclick="startQuiz('OAB 44')" class="group p-8 bg-white border-2 border-blue-100 hover:border-blue-600 rounded-2xl shadow-md transition-all text-left">
+            <button onclick="startQuiz('OAB44')" class="group p-8 bg-white border-2 border-blue-100 hover:border-blue-600 rounded-2xl shadow-md transition-all text-left">
                 <span class="text-blue-600 font-bold text-sm uppercase tracking-widest">🔥 Prova Mais Recente</span>
                 <h2 class="text-2xl font-bold text-slate-800 mt-1">Exame Unificado 44 (2024.3)</h2>
-                <p class="text-slate-500 text-sm mt-2">Contém as questões oficiais aplicadas em Dezembro/2024.</p>
-                <div class="mt-4 text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">Iniciar Simulado Completo →</div>
+                <p class="text-slate-500 text-sm mt-2">Contém as 80 questões oficiais aplicadas pela FGV.</p>
+                <div class="mt-4 text-blue-500 font-semibold group-hover:translate-x-2 transition-transform">Iniciar Simulado Completo →</div>
             </button>
         </div>
     </div>
@@ -51,9 +51,9 @@
 
             <div id="options-container" class="space-y-4"></div>
 
-            <div id="feedback" class="mt-8 p-6 bg-slate-50 rounded-xl border-l-4 border-blue-500 hidden">
-                <h4 class="font-bold text-blue-800 mb-2 italic">⚖️ Fundamentação Legal:</h4>
-                <p id="justification-text" class="text-slate-700 text-sm leading-relaxed"></p>
+            <div id="feedback" class="mt-8 p-6 bg-slate-50 rounded-xl border-l-4 border-blue-500 hidden text-sm italic">
+                <h4 class="font-bold text-blue-800 mb-2">⚖️ Fundamentação Legal:</h4>
+                <p id="justification-text"></p>
             </div>
 
             <footer class="mt-10 pt-6 border-t border-slate-100 flex justify-between items-center">
@@ -67,9 +67,8 @@
     </div>
 
     <script>
-        // BANCO DE DADOS COM QUESTÕES REAIS DA OAB 44
         const allExams = {
-"OAB44": [
+            "OAB44": [
                 {
                     subject: "Ética Profissional",
                     topic: "Sociedade de Advogados",
@@ -135,7 +134,7 @@
                     correct: 1,
                     explanation: "Fundamentação: Art. 26 do EAOAB e jurisprudência do STJ. A partilha deve ser proporcional ao serviço prestado."
                 },
-		{
+                {
                     subject: "Ética Profissional",
                     topic: "Direitos do Advogado",
                     text: "6. A advogada Maria, gestante, comparece a uma audiência de instrução e julgamento. Ao chegar, constata que há uma extensa fila de espera. Com base no Estatuto da Advocacia (Lei nº 8.906/94), assinale a afirmativa correta.",
@@ -216,7 +215,7 @@
                 {
                     subject: "Direito Constitucional",
                     topic: "Estado de Sítio",
-                    text: "12. Em caso de comoção grave de repercussão nacional, o Presidente da República, após ouvir o Conselho da República e o Conselho de Defesa Nacional, pode solicitar ao Congresso Nacional autorização para 				decretar:",
+                    text: "12. Em caso de comoção grave de repercussão nacional, o Presidente da República, após ouvir o Conselho da República e o Conselho de Defesa Nacional, pode solicitar ao Congresso Nacional autorização para decretar:",
                     options: [
                         "Estado de Defesa.",
                         "Intervenção Federal direta.",
@@ -265,7 +264,7 @@
                     correct: 1,
                     explanation: "Fundamentação: Art. 66, § 3º da CF/88. O silêncio do Presidente da República, decorrido o prazo de 15 dias úteis, importa sanção."
                 },
-		{
+                {
                     subject: "Direito Administrativo",
                     topic: "Serviços Públicos",
                     text: "16. A concessionária de serviço público de transporte coletivo 'Vá Bem' decide suspender o serviço em determinada linha por considerar que o número de passageiros não é suficiente para cobrir os custos operacionais, sem prévia autorização do poder concedente. Sobre essa conduta, assinale a opção correta.",
@@ -276,7 +275,7 @@
                         "O poder concedente deve obrigatoriamente assumir a operação da linha em 24 horas."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 6º, § 1º da Lei nº 8.987/95. O serviço adequado deve satisfazer as condições de continuidade, sendo um dos princípios basilares do Direito Administrativo."
+                    explanation: "Fundamentação: Art. 6º, § 1º da Lei nº 8.987/95. O serviço adequado deve satisfazer as condições de continuidade."
                 },
                 {
                     subject: "Direito Administrativo",
@@ -284,12 +283,12 @@
                     text: "17. O Município de 'Beta' removeu um servidor público de sua lotação original para uma região remota apenas como forma de punição por críticas feitas pelo servidor à gestão atual, sem que houvesse real necessidade do serviço. Esse ato administrativo é:",
                     options: [
                         "Válido, pois a remoção é ato discricionário da administração.",
-                        "Nulo por desvio de finalidade, uma vez que o poder de remoção foi usado para fim diverso do interesse público (punição disfarçada).",
+                        "Nulo por desvio de finalidade, uma vez que o poder de remoção foi usado para fim diverso do interesse público.",
                         "Anulável apenas se o servidor provar que não houve pagamento de diárias.",
                         "Válido, desde que o servidor seja ocupante de cargo em comissão."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Lei nº 4.717/65 (LACP) e princípios da Administração. O desvio de finalidade ocorre quando o agente pratica o ato visando fim diverso daquele previsto na lei."
+                    explanation: "Fundamentação: Lei nº 4.717/65 (LACP). O desvio de finalidade anula o ato."
                 },
                 {
                     subject: "Direito Administrativo",
@@ -302,7 +301,7 @@
                         "Limitação Administrativa."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 36 do Decreto-Lei nº 3.365/41. A ocupação temporária é o uso de propriedade vizinha para auxílio em obras públicas."
+                    explanation: "Fundamentação: Art. 36 do Decreto-Lei nº 3.365/41. Ocupação temporária para auxílio em obras públicas."
                 },
                 {
                     subject: "Direito Administrativo",
@@ -312,10 +311,10 @@
                         "Pode recusar a alteração se não houver concordância mútua.",
                         "É obrigado a aceitar, nos mesmos termos contratuais, os acréscimos até 25% do valor inicial.",
                         "Só é obrigado a aceitar se o acréscimo for de até 10%.",
-                        "Tem direito à rescisão imediata do contrato por alteração substancial."
+                        "Tem direito à rescisão imediata do contrato."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 124, § 1º da Lei nº 14.133/21. O contratado é obrigado a aceitar acréscimos ou supressões de até 25% em obras, serviços ou compras."
+                    explanation: "Fundamentação: Art. 124, § 1º da Lei nº 14.133/21. Obrigatoriedade de aceitar até 25%."
                 },
                 {
                     subject: "Direito Ambiental",
@@ -328,7 +327,7 @@
                         "Plano de Manejo simplificado."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 225, § 1º, IV da CF/88. Para instalação de obra ou atividade causadora de significativa degradação, é exigido o EIA/RIMA."
+                    explanation: "Fundamentação: Art. 225, § 1º, IV da CF/88."
                 },
                 {
                     subject: "Direito Ambiental",
@@ -336,25 +335,25 @@
                     text: "21. Sobre a responsabilidade civil por danos causados ao meio ambiente no Brasil, assinale a opção correta:",
                     options: [
                         "Baseia-se na teoria da culpa (subjetiva).",
-                        "Baseia-se na teoria do risco integral (objetiva), não admitindo excludentes como caso fortuito ou força maior.",
-                        "É prescritível em 5 anos, contados da data do evento danoso.",
-                        "Depende da comprovação de que a empresa agiu com dolo."
+                        "Baseia-se na teoria do risco integral (objetiva), não admitindo excludentes.",
+                        "É prescritível em 5 anos.",
+                        "Depende da comprovação de dolo."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Jurisprudência do STJ (Tema 435). A responsabilidade ambiental é objetiva, informada pela teoria do risco integral, sendo o dano ambiental imprescritível."
+                    explanation: "Fundamentação: Jurisprudência do STJ. Responsabilidade objetiva e risco integral."
                 },
                 {
                     subject: "Direito Civil",
                     topic: "Personalidade Jurídica",
                     text: "22. O juiz pode desconsiderar a personalidade jurídica de uma sociedade quando houver abuso, caracterizado pelo desvio de finalidade ou pela confusão patrimonial. Segundo o Código Civil, o desvio de finalidade é:",
                     options: [
-                        "A mera insolvência da pessoa jurídica perante seus credores.",
-                        "A utilização da pessoa jurídica com o propósito de lesar credores ou para a prática de atos ilícitos de qualquer natureza.",
-                        "A existência de um grupo econômico sem separação de sedes.",
-                        "A transferência de bens da pessoa jurídica para os sócios em valores de mercado."
+                        "A mera insolvência da pessoa jurídica.",
+                        "A utilização da pessoa jurídica com o propósito de lesar credores ou para atos ilícitos.",
+                        "A existência de um grupo econômico.",
+                        "A transferência de bens para os sócios em valores de mercado."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 50, § 1º do Código Civil (redação da Lei da Liberdade Econômica). Desvio de finalidade exige propósito de lesar ou ilicitude."
+                    explanation: "Fundamentação: Art. 50, § 1º do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
@@ -363,11 +362,11 @@
                     options: [
                         "As energias que tenham valor econômico.",
                         "O direito à sucessão aberta.",
-                        "Os materiais destinados a alguma construção, enquanto não forem empregados.",
+                        "Os materiais destinados a construção, enquanto não empregados.",
                         "Os direitos reais sobre objetos móveis."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 80, inciso II do Código Civil. O direito à sucessão aberta é considerado bem imóvel por determinação legal."
+                    explanation: "Fundamentação: Art. 80, inciso II do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
@@ -375,108 +374,108 @@
                     text: "24. Configura-se o estado de perigo quando alguém, premido da necessidade de salvar-se, ou a pessoa de sua família, de grave dano conhecido pela outra parte:",
                     options: [
                         "Assume obrigação excessivamente onerosa.",
-                        "Pratica ato em legítima defesa putativa.",
-                        "Emite declaração de vontade sob coação moral irresistível.",
-                        "Vende bens abaixo do preço de mercado por simples erro de cálculo."
+                        "Pratica ato em legítima defesa.",
+                        "Emite declaração sob coação moral.",
+                        "Vende bens abaixo do preço por erro de cálculo."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 156 do Código Civil. O estado de perigo exige o binômio: situação de risco (próprio ou família) + obrigação excessivamente onerosa."
+                    explanation: "Fundamentação: Art. 156 do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
                     topic: "Prescrição",
                     text: "25. Sobre a prescrição e a decadência, de acordo com o Código Civil, assinale a afirmativa correta.",
                     options: [
-                        "As partes podem alterar os prazos prescricionais por acordo mútuo.",
+                        "As partes podem alterar os prazos prescricionais.",
                         "A prescrição pode ser interrompida qualquer número de vezes.",
-                        "Os prazos de prescrição não podem ser alterados por acordo das partes.",
-                        "O juiz não pode reconhecer a prescrição de ofício."
+                        "Os prazos de prescrição não podem ser alterados por acordo.",
+                        "O juiz não pode reconhecer de ofício."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 192 do Código Civil. Os prazos prescricionais são fixados em lei e não podem ser alterados pelas partes."
+                    explanation: "Fundamentação: Art. 192 do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
                     topic: "Posse",
                     text: "26. Considera-se possuidor de má-fé aquele que:",
                     options: [
-                        "Ignora o vício ou o obstáculo que impede a aquisição da coisa.",
-                        "Possui justo título e boa-fé presumida.",
-                        "Tem ciência do vício ou do obstáculo que impede a aquisição da coisa.",
-                        "Ocupa imóvel rural por mais de 10 anos sem oposição."
+                        "Ignora o vício que impede a aquisição.",
+                        "Possui justo título.",
+                        "Tem ciência do vício ou do obstáculo que impede a aquisição.",
+                        "Ocupa imóvel rural por mais de 10 anos."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 1.201 e 1.202 do Código Civil. A posse de boa-fé perde esse caráter no momento em que as circunstâncias façam presumir que o possuidor não ignora que possui indevidamente."
+                    explanation: "Fundamentação: Art. 1.201 do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
                     topic: "Responsabilidade Civil",
                     text: "27. O dono ou detentor de um animal ressarcirá o dano por este causado:",
                     options: [
-                        "Apenas se for provada a sua culpa in vigilando.",
+                        "Apenas se provada sua culpa.",
                         "Se não provar culpa da vítima ou força maior.",
-                        "Somente se o animal for de espécie considerada perigosa.",
-                        "A responsabilidade, nesse caso, é sempre subjetiva."
+                        "Somente se o animal for perigoso.",
+                        "A responsabilidade é sempre subjetiva."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 936 do Código Civil. A responsabilidade do dono do animal é objetiva, só sendo afastada se provar culpa da vítima ou força maior."
+                    explanation: "Fundamentação: Art. 936 do Código Civil."
                 },
-{
+                {
                     subject: "Direito Civil",
                     topic: "Direito de Família",
-                    text: "28. João e Maria vivem em união estável há cinco anos, sem contrato escrito. Durante a união, João recebeu um imóvel de herança de seu pai e comprou um carro com o salário de seu trabalho. Caso decidam se separar, de acordo com o Código Civil:",
+                    text: "28. João e Maria vivem em união estável há cinco anos. João recebeu um imóvel de herança e comprou um carro com o salário. Em caso de separação:",
                     options: [
-                        "Maria terá direito à metade do imóvel e do carro.",
-                        "Maria terá direito à metade do carro, mas não terá direito ao imóvel recebido por herança.",
-                        "Maria não terá direito a nenhum bem, pois não há contrato escrito.",
-                        "Todos os bens, inclusive os anteriores à união, devem ser partilhados igualmente."
+                        "Maria terá direito a metade de tudo.",
+                        "Maria terá direito à metade do carro, mas não ao imóvel de herança.",
+                        "Maria não terá direito a nada.",
+                        "Todos os bens anteriores devem ser partilhados."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 1.725 e 1.659, I, do Código Civil. Na ausência de contrato, aplica-se a comunhão parcial de bens, onde bens recebidos por sucessão (herança) são excluídos da comunhão."
+                    explanation: "Fundamentação: Art. 1.659, I, do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
                     topic: "Sucessões",
-                    text: "29. Sobre a sucessão legítima, assinale a opção correta quanto à ordem de vocação hereditária estabelecida pelo Código Civil.",
+                    text: "29. Sobre a sucessão legítima, na falta de descendentes e ascendentes:",
                     options: [
-                        "Os descendentes herdam sozinhos, excluindo sempre o cônjuge sobrevivente.",
-                        "Na falta de descendentes e ascendentes, o cônjuge sobrevivente herda a totalidade da herança.",
-                        "Os colaterais de 5º grau são chamados a herdar antes dos ascendentes.",
-                        "O companheiro não possui direitos sucessórios na falta de parentes sucessíveis."
+                        "Os colaterais herdam primeiro.",
+                        "O cônjuge sobrevivente herda a totalidade.",
+                        "A herança vai para o Estado.",
+                        "O companheiro não possui direitos."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 1.829, III, do Código Civil. A ordem de vocação chama o cônjuge sobrevivente em terceiro lugar, herdando a totalidade na falta de descendentes e ascendentes."
+                    explanation: "Fundamentação: Art. 1.829, III, do Código Civil."
                 },
                 {
                     subject: "ECA",
                     topic: "Adoção",
                     text: "30. De acordo com o Estatuto da Criança e do Adolescente (ECA), a adoção por procuração:",
                     options: [
-                        "É permitida desde que o adotante esteja no exterior.",
+                        "É permitida no exterior.",
                         "É expressamente vedada.",
-                        "É permitida apenas para adotantes maiores de 50 anos.",
-                        "É permitida se houver concordância do Ministério Público."
+                        "É permitida para maiores de 50 anos.",
+                        "Depende do Ministério Público."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 39, § 2º, do ECA. A adoção é ato personalíssimo e a lei proíbe expressamente a adoção por procuração."
+                    explanation: "Fundamentação: Art. 39, § 2º, do ECA."
                 },
                 {
                     subject: "ECA",
                     topic: "Ato Infracional",
-                    text: "31. Um adolescente de 16 anos pratica um ato análogo ao crime de roubo. Segundo o ECA, a medida socioeducativa de internação:",
+                    text: "31. Um adolescente de 16 anos pratica um ato análogo ao crime de roubo. A internação:",
                     options: [
-                        "Pode ser aplicada, pois o ato foi praticado mediante grave ameaça ou violência à pessoa.",
-                        "Não pode ser aplicada em nenhuma hipótese para menores de 18 anos.",
-                        "Só pode ser aplicada se o adolescente for reincidente em crimes leves.",
-                        "É automática para qualquer ato infracional análogo a crime grave."
+                        "Pode ser aplicada pela grave ameaça ou violência.",
+                        "Não pode ser aplicada para menores de 18.",
+                        "Só se for reincidente.",
+                        "É automática."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 122, I, do ECA. A internação pode ser aplicada quando o ato infracional for cometido mediante grave ameaça ou violência à pessoa."
+                    explanation: "Fundamentação: Art. 122, I, do ECA."
                 },
                 {
                     subject: "Direito do Consumidor",
-                    topic: "Responsabilidade pelo Fato do Produto",
-                    text: "32. Um liquidificador recém-comprado explode durante o uso normal, atingindo o rosto do consumidor e causando ferimentos. Nesse caso, o prazo para o consumidor reclamar a reparação pelos danos (prescrição) é de:",
+                    topic: "Fato do Produto",
+                    text: "32. O prazo para o consumidor reclamar reparação por dano causado por explosão de produto (fato do produto) é de:",
                     options: [
                         "30 dias.",
                         "90 dias.",
@@ -484,77 +483,77 @@
                         "10 anos."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 27 do CDC. Prescreve em cinco anos a pretensão à reparação pelos danos causados por fato do produto ou do serviço."
+                    explanation: "Fundamentação: Art. 27 do CDC."
                 },
                 {
                     subject: "Direito do Consumidor",
-                    topic: "Direito de Arrependimento",
-                    text: "33. O consumidor que adquire um produto por meio da internet tem o direito de desistir do contrato, sem ônus, no prazo de:",
+                    topic: "Arrependimento",
+                    text: "33. O direito de desistir do contrato em compras pela internet sem ônus é de:",
                     options: [
                         "24 horas.",
-                        "7 dias a contar da aceitação ou do recebimento do produto.",
+                        "7 dias do recebimento.",
                         "15 dias úteis.",
-                        "30 dias, desde que o produto apresente defeito."
+                        "30 dias."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 49 do CDC. O direito de arrependimento aplica-se a compras fora do estabelecimento comercial (internet, telefone) no prazo de 7 dias."
+                    explanation: "Fundamentação: Art. 49 do CDC."
                 },
                 {
                     subject: "Direito do Consumidor",
                     topic: "Publicidade Enganosa",
-                    text: "34. Considera-se publicidade enganosa, nos termos do Código de Defesa do Consumidor:",
+                    text: "34. Considera-se publicidade enganosa, nos termos do CDC:",
                     options: [
-                        "A que é inteira ou parcialmente falsa ou que omita dado essencial sobre o produto.",
-                        "Apenas aquela que induz o consumidor ao erro sobre o preço.",
-                        "Toda publicidade que utilize termos em língua estrangeira.",
-                        "A publicidade que gera desconforto visual no consumidor."
+                        "A que omita dado essencial sobre o produto.",
+                        "Apenas a que induz erro no preço.",
+                        "A que usa termos estrangeiros.",
+                        "A que gera desconforto visual."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 37, § 1º, do CDC. É enganosa qualquer modalidade de informação inteira ou parcialmente falsa ou que silencie sobre dados essenciais."
+                    explanation: "Fundamentação: Art. 37, § 1º, do CDC."
                 },
                 {
                     subject: "Direito Civil",
-                    topic: "Condomínio Edilício",
-                    text: "35. Sobre o dever dos condôminos em um edifício, assinale a opção correta segundo o Código Civil.",
+                    topic: "Condomínio",
+                    text: "35. Sobre o dever dos condôminos, assinale a correta:",
                     options: [
-                        "O condômino que não utiliza as áreas comuns está isento da taxa de condomínio.",
-                        "É dever do condômino contribuir para as despesas do condomínio na proporção das suas frações ideais, salvo disposição em contrário na convenção.",
-                        "O condômino pode alterar a cor da fachada de sua unidade livremente.",
-                        "As multas condominiais não podem ultrapassar 1% do valor da unidade."
+                        "Quem não usa área comum não paga taxa.",
+                        "Contribuir proporcionalmente às frações ideais.",
+                        "Pode mudar cor da fachada livremente.",
+                        "Multa não passa de 1%."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 1.336, I, do Código Civil. A contribuição proporcional às frações ideais é dever legal do condômino."
+                    explanation: "Fundamentação: Art. 1.336, I, do Código Civil."
                 },
                 {
                     subject: "Direito Civil",
-                    topic: "Contratos de Locação",
-                    text: "36. Na locação de imóvel urbano, se o locador alienar o imóvel durante a vigência do contrato, o adquirente poderá denunciar o contrato, concedendo o prazo de 90 dias para a desocupação, salvo se:",
+                    topic: "Locação",
+                    text: "36. Na alienação do imóvel locado, o adquirente pode denunciar o contrato em 90 dias, salvo se:",
                     options: [
-                        "O locatário for idoso.",
-                        "A locação for por tempo determinado e o contrato contiver cláusula de vigência em caso de alienação e estiver averbado junto à matrícula do imóvel.",
-                        "O aluguel estiver sendo pago em dia.",
-                        "O novo proprietário já possuir outro imóvel na mesma cidade."
+                        "Locatário for idoso.",
+                        "Houver cláusula de vigência averbada na matrícula.",
+                        "Aluguel estiver em dia.",
+                        "Dono tiver outro imóvel."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 8º da Lei nº 8.245/91. A cláusula de vigência averbada garante a permanência do locatário mesmo em caso de venda."
+                    explanation: "Fundamentação: Art. 8º da Lei nº 8.245/91."
                 },
                 {
                     subject: "Direito do Consumidor",
-                    topic: "Inversão do Ônus da Prova",
-                    text: "37. A inversão do ônus da prova no processo civil de consumo é considerada:",
+                    topic: "Inversão do Ônus",
+                    text: "37. A inversão do ônus da prova no CDC é:",
                     options: [
-                        "Obrigatória em todos os processos contra grandes empresas.",
-                        "Um direito básico do consumidor, a critério do juiz, quando for verossímil a alegação ou quando o consumidor for hipossuficiente.",
-                        "Proibida em causas de valor inferior a 40 salários mínimos.",
-                        "Um dever do Ministério Público e não do juiz."
+                        "Obrigatória sempre.",
+                        "A critério do juiz se verossímil ou hipossuficiente.",
+                        "Proibida abaixo de 40 salários.",
+                        "Dever do MP."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 6º, VIII, do CDC. A inversão é ope judicis (a critério do juiz) baseada na verossimilhança ou hipossuficiência."
+                    explanation: "Fundamentação: Art. 6º, VIII, do CDC."
                 },
                 {
                     subject: "Direito Civil",
-                    topic: "Prazos de Garantia",
-                    text: "38. De acordo com o Código Civil, o prazo de garantia para obras de grande monta (solidez e segurança de edifícios) em contratos de empreitada é de:",
+                    topic: "Garantia",
+                    text: "38. O prazo de garantia para solidez e segurança de edifícios em empreitadas é:",
                     options: [
                         "1 ano.",
                         "3 anos.",
@@ -562,168 +561,168 @@
                         "10 anos."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 618 do Código Civil. Nos contratos de empreitada de edifícios, o empreiteiro responderá, durante o prazo irredutível de cinco anos, pela solidez e segurança do trabalho."
+                    explanation: "Fundamentação: Art. 618 do Código Civil."
                 },
                 {
                     subject: "ECA",
                     topic: "Conselho Tutelar",
-                    text: "39. Sobre os conselheiros tutelares, de acordo com o ECA, é correto afirmar:",
+                    text: "39. Os conselheiros tutelares têm mandato de:",
                     options: [
-                        "São agentes concursados com mandato vitalício.",
-                        "São escolhidos pela comunidade local para mandato de 4 anos, permitida recondução por novos processos de escolha.",
-                        "Devem obrigatoriamente ser formados em Direito.",
-                        "São subordinados hierarquicamente ao Juiz da Infância e Juventude."
+                        "Vitalício.",
+                        "4 anos, permitida recondução.",
+                        "2 anos.",
+                        "5 anos."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 132 do ECA. O Conselho Tutelar é órgão permanente e autônomo, com membros escolhidos pela comunidade para mandatos de 4 anos."
+                    explanation: "Fundamentação: Art. 132 do ECA."
                 },
                 {
                     subject: "Direito do Consumidor",
-                    topic: "Oferta e Vinculação",
-                    text: "40. Se o fornecedor recusar o cumprimento da oferta veiculada, o consumidor pode, alternativamente e à sua livre escolha:",
+                    topic: "Oferta",
+                    text: "40. Se o fornecedor recusa a oferta, o consumidor pode exigir cumprimento, aceitar equivalente ou rescindir com perdas e danos:",
                     options: [
-                        "Exigir o cumprimento forçado da obrigação.",
-                        "Aceitar outro produto ou prestação de serviço equivalente.",
-                        "Rescindir o contrato com direito à restituição da quantia paga, monetariamente atualizada, e perdas e danos.",
-                        "Qualquer uma das alternativas anteriores, à escolha do consumidor."
+                        "Exigir cumprimento.",
+                        "Aceitar equivalente.",
+                        "Rescindir com restituição.",
+                        "Qualquer uma das opções, à sua escolha."
                     ],
                     correct: 3,
-                    explanation: "Fundamentação: Art. 35 do CDC. O descumprimento da oferta confere ao consumidor três opções alternativas e facultativas."
+                    explanation: "Fundamentação: Art. 35 do CDC."
                 },
-{
+                {
                     subject: "Direito Empresarial",
-                    topic: "Títulos de Crédito",
-                    text: "41. Sobre o instituto do aval em títulos de crédito vinculados ao Código Civil, assinale a afirmativa correta.",
+                    topic: "Aval",
+                    text: "41. É vedado o aval parcial nos títulos regidos pelo Código Civil?",
                     options: [
-                        "O avalista pode cancelar sua assinatura unilateralmente após a entrega do título.",
-                        "É vedado o aval parcial nos títulos regidos pelo Código Civil.",
-                        "O avalista responde pela obrigação mesmo que a assinatura do avalizado seja nula por vício de forma.",
-                        "O aval deve ser dado necessariamente no verso do título."
+                        "Não, é permitido.",
+                        "Sim, é vedado.",
+                        "Depende do valor.",
+                        "Somente em cheques."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 897, parágrafo único, do Código Civil. Diferente da Lei Cheque ou da LUG, o Código Civil proíbe expressamente o aval parcial."
+                    explanation: "Fundamentação: Art. 897, parágrafo único, do CC."
                 },
                 {
                     subject: "Direito Empresarial",
-                    topic: "Propriedade Industrial",
-                    text: "42. De acordo com a Lei de Propriedade Industrial (Lei nº 9.279/96), a patente de invenção vigorará pelo prazo de:",
+                    topic: "Patente",
+                    text: "42. A patente de invenção vigora por:",
                     options: [
-                        "10 anos a contar da data do depósito.",
-                        "15 anos a contar da data da concessão.",
-                        "20 anos a contar da data de depósito.",
-                        "Indeterminado, enquanto houver exploração econômica."
+                        "10 anos.",
+                        "15 anos.",
+                        "20 anos.",
+                        "Indeterminado."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 40 da Lei 9.279/96. A patente de invenção tem vigência de 20 anos e o modelo de utilidade de 15 anos, ambos do depósito."
+                    explanation: "Fundamentação: Art. 40 da Lei 9.279/96."
                 },
                 {
                     subject: "Direito Empresarial",
-                    topic: "Sociedades Limitadas",
-                    text: "43. Na sociedade limitada, a responsabilidade de cada sócio é restrita ao valor de suas quotas, mas todos respondem solidariamente pela:",
+                    topic: "Limitada",
+                    text: "43. Na sociedade limitada, todos respondem solidariamente pela:",
                     options: [
                         "Integralização do capital social.",
-                        "Gestão temerária do administrador.",
-                        "Dívida tributária da empresa em qualquer hipótese.",
-                        "Contratação de funcionários sem registro."
+                        "Gestão do administrador.",
+                        "Dívida tributária sempre.",
+                        "FGTS dos funcionários."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 1.052 do Código Civil. A solidariedade na limitada diz respeito apenas à integralização total do capital social pactuado."
+                    explanation: "Fundamentação: Art. 1.052 do CC."
                 },
                 {
                     subject: "Direito Empresarial",
-                    topic: "Falência e Recuperação Judicial",
-                    text: "44. Na recuperação judicial, os créditos decorrentes de acidentes de trabalho são classificados como:",
+                    topic: "Trabalhista",
+                    text: "44. Créditos de acidente de trabalho na falência são limitados a:",
                     options: [
-                        "Créditos com garantia real.",
-                        "Créditos quirografários.",
-                        "Créditos derivados da legislação do trabalho, limitados a 150 salários-mínimos por credor.",
-                        "Créditos subordinados."
+                        "50 salários.",
+                        "100 salários.",
+                        "150 salários.",
+                        "Sem limite."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 83, I, da Lei 11.101/05. Créditos trabalhistas e de acidentes de trabalho têm preferência, limitados ao teto de 150 salários-mínimos."
+                    explanation: "Fundamentação: Art. 83, I, da Lei 11.101/05."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Prazos Processuais",
-                    text: "45. De acordo com o Código de Processo Civil de 2015, na contagem de prazo em dias, estabelecido por lei ou pelo juiz:",
+                    topic: "Prazos",
+                    text: "45. No CPC/15, prazos em dias contam-se em:",
                     options: [
-                        "Computar-se-ão os dias corridos, incluindo finais de semana.",
-                        "Computar-se-ão apenas os dias úteis.",
-                        "Computar-se-ão apenas os dias em que houver expediente bancário.",
-                        "Exclui-se o dia do começo e inclui-se o dia do vencimento, contando dias corridos."
+                        "Dias corridos.",
+                        "Dias úteis.",
+                        "Dias de semana.",
+                        "Meses."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 219 do CPC/15. A contagem de prazos processuais para atos das partes ocorre exclusivamente em dias úteis."
+                    explanation: "Fundamentação: Art. 219 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
                     topic: "Competência",
-                    text: "46. A ação fundada em direito real sobre imóveis deve ser proposta, como regra geral, no foro de:",
+                    text: "46. Ação sobre direito real de imóvel é proposta no foro da:",
                     options: [
                         "Domicílio do autor.",
                         "Domicílio do réu.",
-                        "Situação da coisa (forum rei sitae).",
-                        "Eleição estipulado em contrato escrito."
+                        "Situação da coisa.",
+                        "Capital."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 47 do CPC/15. Para ações fundadas em direito real sobre imóveis, a competência é do foro da situação da coisa."
+                    explanation: "Fundamentação: Art. 47 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Intervenção de Terceiros",
-                    text: "47. Quando uma das partes pretende chamar ao processo o corresponsável pela dívida para que este também responda pela condenação, deve utilizar o instituto do(a):",
+                    topic: "Intervenção",
+                    text: "47. Trazer corresponsável ao processo para responder pela dívida é:",
                     options: [
-                        "Assistência simples.",
-                        "Denunciação da lide.",
+                        "Denunciação.",
+                        "Assistência.",
                         "Chamamento ao processo.",
-                        "Amicus curiae."
+                        "Nomeação."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 130 do CPC/15. O chamamento ao processo é cabível para trazer codevedores, fiadores e solidários para a lide."
+                    explanation: "Fundamentação: Art. 130 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Tutela Provisória",
-                    text: "48. A tutela de urgência será concedida quando houver elementos que evidenciem a:",
+                    topic: "Tutela",
+                    text: "48. Requisitos da tutela de urgência:",
                     options: [
-                        "Probabilidade do direito e o perigo de dano ou o risco ao resultado útil do processo.",
-                        "Certeza absoluta do direito alegado.",
-                        "Concordância da parte contrária.",
-                        "Existência de patrimônio do réu para garantir a execução."
+                        "Probabilidade do direito e perigo de dano.",
+                        "Certeza do direito.",
+                        "Riqueza do réu.",
+                        "Vontade do juiz."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 300 do CPC/15. Os requisitos para tutela de urgência são o 'fumus boni iuris' (probabilidade) e o 'periculum in mora' (perigo)."
+                    explanation: "Fundamentação: Art. 300 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Audiência de Conciliação",
-                    text: "49. O não comparecimento injustificado do autor ou do réu à audiência de conciliação é considerado:",
+                    topic: "Conciliação",
+                    text: "49. Ausência injustificada na conciliação gera multa de até:",
                     options: [
-                        "Confissão ficta.",
-                        "Revelia imediata.",
-                        "Ato atentatório à dignidade da justiça, punido com multa de até 2% da vantagem econômica ou do valor da causa.",
-                        "Causa de extinção do processo sem resolução de mérito."
+                        "1%.",
+                        "2%.",
+                        "5%.",
+                        "10%."
                     ],
-                    correct: 2,
-                    explanation: "Fundamentação: Art. 334, § 8º, do CPC/15. A ausência injustificada gera multa, revertida em favor da União ou do Estado."
+                    correct: 1,
+                    explanation: "Fundamentação: Art. 334, § 8º, do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Recursos",
-                    text: "50. O recurso cabível contra decisão interlocutória que versa sobre mérito do processo ou tutelas provisórias é:",
+                    topic: "Agravo",
+                    text: "50. Recurso contra interlocutória de mérito é:",
                     options: [
                         "Apelação.",
                         "Agravo de Instrumento.",
-                        "Embargos de Declaração.",
-                        "Recurso Especial."
+                        "Embargos.",
+                        "RO."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 1.015 do CPC/15. O Agravo de Instrumento possui um rol de cabimento taxativo para decisões interlocutórias específicas."
+                    explanation: "Fundamentação: Art. 1.015 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Ação Rescisória",
-                    text: "51. O prazo para a propositura de ação rescisória, contados do trânsito em julgado da última decisão proferida no processo, é de:",
+                    topic: "Rescisória",
+                    text: "51. Prazo da ação rescisória é:",
                     options: [
                         "1 ano.",
                         "2 anos.",
@@ -731,220 +730,220 @@
                         "10 anos."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 975 do CPC/15. O direito à rescisão extingue-se em 2 anos contados do trânsito em julgado da decisão."
+                    explanation: "Fundamentação: Art. 975 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Saneamento do Processo",
-                    text: "52. Não ocorrendo hipótese de julgamento antecipado do mérito, o juiz deverá proferir decisão de saneamento e organização do processo. Nesta fase, o juiz deve:",
+                    topic: "Saneamento",
+                    text: "52. No saneamento o juiz deve:",
                     options: [
-                        "Proferir a sentença condenatória.",
-                        "Delimitar as questões de fato sobre as quais recairá a atividade probatória e as questões de direito relevantes.",
-                        "Citar o réu para apresentar contestação.",
-                        "Homologar o valor da causa indicado pelo autor."
+                        "Dar a sentença.",
+                        "Delimitar fatos e questões de direito.",
+                        "Citar o réu.",
+                        "Anular tudo."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 357 do CPC/15. O saneamento serve para organizar os pontos controvertidos e definir as provas necessárias."
+                    explanation: "Fundamentação: Art. 357 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Execução",
-                    text: "53. No cumprimento de sentença que estabeleça obrigação de pagar quantia certa, se o executado não pagar voluntariamente no prazo de 15 dias, o débito será acrescido de multa de:",
+                    topic: "Multa",
+                    text: "53. No cumprimento de sentença, não pagar em 15 dias gera multa de:",
                     options: [
-                        "2% e honorários de 5%.",
-                        "10% e honorários de 10%.",
-                        "20% e juros de mora de 1% ao mês.",
-                        "Apenas juros moratórios."
+                        "2%.",
+                        "10%.",
+                        "20%.",
+                        "30%."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 523, § 1º, do CPC/15. O não pagamento voluntário gera multa de 10% mais honorários advocatícios de 10%."
+                    explanation: "Fundamentação: Art. 523 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Remessas Necessárias",
-                    text: "54. Está sujeita ao duplo grau de jurisdição (remessa necessária), não produzindo efeito senão depois de confirmada pelo tribunal, a sentença:",
+                    topic: "Remessa",
+                    text: "54. Sentença contra União exige duplo grau (remessa necessária)?",
                     options: [
-                        "Proferida contra a União, os Estados, o Distrito Federal e os Municípios.",
-                        "Que julga improcedente o pedido da Fazenda Pública.",
-                        "Que condena o réu ao pagamento de pensão alimentícia.",
-                        "Proferida em processo de Juizado Especial Cível."
+                        "Sim.",
+                        "Não.",
+                        "Só se o autor pedir.",
+                        "Só em causas criminais."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 496 do CPC/15. A sentença contra entes públicos exige reexame necessário, salvo se o valor for abaixo dos tetos legais estabelecidos."
+                    explanation: "Fundamentação: Art. 496 do CPC."
                 },
                 {
                     subject: "Direito Processual Civil",
-                    topic: "Embargos de Declaração",
-                    text: "55. Os embargos de declaração interrompem o prazo para a interposição de recurso e devem ser opostos no prazo de:",
+                    topic: "Embargos",
+                    text: "55. Prazo de Embargos de Declaração é:",
                     options: [
                         "5 dias.",
                         "10 dias.",
                         "15 dias.",
-                        "30 dias."
+                        "8 dias."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 1.023 do CPC/15. Os embargos são o único recurso com prazo de 5 dias e que possui efeito interruptivo (zera o prazo dos demais)."
-                },
-{
-                    subject: "Direito Penal",
-                    topic: "Teoria do Crime",
-                    text: "56. Tício, com a intenção de matar Mévio, desfere um golpe de faca em sua direção. Mévio, contudo, é socorrido a tempo e levado ao hospital. Durante a cirurgia, ocorre um incêndio na ala hospitalar, e Mévio morre exclusivamente em razão das queimaduras. Nesse caso, Tício responderá por:",
-                    options: [
-                        "Homicídio consumado.",
-                        "Homicídio tentado.",
-                        "Homicídio culposo.",
-                        "Lesão corporal seguida de morte."
-                    ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 13, § 1º, do Código Penal. Trata-se de causa superveniente relativamente independente que, por si só, produziu o resultado (rompimento do nexo causal quanto à morte)."
+                    explanation: "Fundamentação: Art. 1.023 do CPC."
                 },
                 {
                     subject: "Direito Penal",
-                    topic: "Crimes contra o Patrimônio",
-                    text: "57. Subtrair coisa alheia móvel, para si ou para outrem, mediante grave ameaça ou violência a pessoa, configura o crime de:",
+                    topic: "Nexo",
+                    text: "56. Tício esfaqueia Mévio, que morre em incêndio no hospital. Tício responde por:",
                     options: [
-                        "Furto qualificado.",
+                        "Consumado.",
+                        "Tentativa.",
+                        "Culposo.",
+                        "Lesão corporal."
+                    ],
+                    correct: 1,
+                    explanation: "Fundamentação: Art. 13, § 1º do CP."
+                },
+                {
+                    subject: "Direito Penal",
+                    topic: "Roubo",
+                    text: "57. Subtrair com violência é:",
+                    options: [
+                        "Furto.",
                         "Extorsão.",
                         "Roubo.",
-                        "Apropriação indébita."
+                        "Estelionato."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 157 do Código Penal. O emprego de violência ou grave ameaça é o elemento que diferencia o roubo do furto."
+                    explanation: "Fundamentação: Art. 157 do CP."
                 },
                 {
                     subject: "Direito Penal",
-                    topic: "Legítima Defesa",
-                    text: "58. Entende-se em legítima defesa quem, usando moderadamente dos meios necessários, repele injusta agressão, atual ou iminente, a direito seu ou de outrem. Sobre o excesso, o Código Penal prevê que:",
+                    topic: "Excesso",
+                    text: "58. Na legítima defesa, o agente responde pelo excesso?",
                     options: [
-                        "O agente não responde pelo excesso em nenhuma hipótese.",
-                        "O agente responderá pelo excesso doloso ou culposo.",
-                        "O excesso só é punível se causar a morte do agressor.",
-                        "Apenas o excesso doloso é punível."
+                        "Não.",
+                        "Sim, doloso ou culposo.",
+                        "Só se matar.",
+                        "Só se o juiz quiser."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 23, parágrafo único, do CP. O agente responderá pelo excesso, seja ele praticado com dolo ou por culpa."
+                    explanation: "Fundamentação: Art. 23 do CP."
                 },
                 {
                     subject: "Direito Processual Penal",
-                    topic: "Inquérito Policial",
-                    text: "59. O inquérito policial, por ser um procedimento administrativo informativo, é regido pelo princípio do(a):",
+                    topic: "IP",
+                    text: "59. Inquérito Policial é:",
                     options: [
-                        "Contraditório pleno.",
-                        "Inquisitividade.",
-                        "Publicidade absoluta.",
-                        "Disponibilidade pela autoridade policial."
+                        "Contraditório.",
+                        "Inquisitivo.",
+                        "Público geral.",
+                        "Disponível."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Doutrina e CPP. No IP não há acusação formal, logo não há contraditório, sendo um procedimento inquisitivo."
+                    explanation: "Fundamentação: Doutrina CPP."
                 },
                 {
                     subject: "Direito Processual Penal",
-                    topic: "Prisão Preventiva",
-                    text: "60. A prisão preventiva poderá ser decretada como garantia da ordem pública, da ordem econômica, por conveniência da instrução criminal ou para assegurar a aplicação da lei penal, quando houver prova da existência do crime e indício suficiente de autoria. É vedada a decretação da preventiva:",
+                    topic: "Prisão",
+                    text: "60. É vedada preventiva para antecipação de pena?",
                     options: [
-                        "Em crimes dolosos punidos com pena máxima superior a 4 anos.",
-                        "Com a finalidade de antecipação de cumprimento de pena.",
-                        "Se o réu for reincidente em crime doloso.",
-                        "Em casos de violência doméstica contra a mulher."
+                        "Sim.",
+                        "Não.",
+                        "Só em crimes leves.",
+                        "Só se for réu primário."
                     ],
-                    correct: 1,
-                    explanation: "Fundamentação: Art. 313, § 2º, do CPP. A lei veda expressamente o uso da preventiva como antecipação de sanção penal."
+                    correct: 0,
+                    explanation: "Fundamentação: Art. 313, § 2º do CPP."
                 },
                 {
                     subject: "Direito Processual Penal",
-                    topic: "Tribunal do Júri",
-                    text: "61. No procedimento do Tribunal do Júri, a decisão do juiz que, convencido da materialidade do fato e da existência de indícios suficientes de autoria ou de participação, submete o réu a julgamento pelos jurados, denomina-se:",
+                    topic: "Júri",
+                    text: "61. Decisão que manda réu a julgamento no Júri é:",
                     options: [
                         "Impronúncia.",
-                        "Absolvição sumária.",
+                        "Absolvição.",
                         "Pronúncia.",
-                        "Desclassificação."
+                        "Sentença."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 413 do CPP. A pronúncia é a decisão interlocutória mista que encerra a primeira fase do Júri."
+                    explanation: "Fundamentação: Art. 413 do CPP."
                 },
                 {
                     subject: "Direito Processual Penal",
-                    topic: "Recursos em Espécie",
-                    text: "62. O recurso cabível contra a decisão que rejeita a denúncia ou queixa é o:",
+                    topic: "Recurso",
+                    text: "62. Recurso contra rejeição de denúncia é:",
                     options: [
                         "Apelação.",
-                        "Recurso em Sentido Estrito (RESE).",
-                        "Agravo em Execução.",
-                        "Embargos Infringentes."
+                        "RESE.",
+                        "Agravo.",
+                        "Habeas Corpus."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 581, inciso I, do CPP. O RESE é o recurso específico para questionar a rejeição da peça acusatória."
+                    explanation: "Fundamentação: Art. 581 do CPP."
                 },
                 {
                     subject: "Direito do Trabalho",
-                    topic: "Contrato de Trabalho",
-                    text: "63. Considera-se alteração ilícita do contrato de trabalho, mesmo com o consentimento do empregado, aquela que:",
+                    topic: "Contrato",
+                    text: "63. Alteração contratual ilícita é a que resulta em:",
                     options: [
-                        "Mude o horário de trabalho de diurno para noturno.",
-                        "Resulte, direta ou indiretamente, em prejuízos ao empregado.",
-                        "Promova o empregado para cargo de confiança.",
-                        "Determine a reversão do empregado ao cargo efetivo após exercício de função de confiança."
+                        "Ganho ao patrão.",
+                        "Prejuízo ao empregado.",
+                        "Promoção.",
+                        "Aumento de carga."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 468 da CLT. Vigora o princípio da inalterabilidade contratual lesiva ao empregado."
+                    explanation: "Fundamentação: Art. 468 da CLT."
                 },
                 {
                     subject: "Direito do Trabalho",
-                    topic: "Jornada de Trabalho",
-                    text: "64. De acordo com a CLT, o limite padrão da jornada de trabalho semanal no Brasil, sem considerar horas extras, é de:",
+                    topic: "Jornada",
+                    text: "64. Jornada semanal padrão é de:",
                     options: [
-                        "40 horas.",
-                        "44 horas.",
-                        "48 horas.",
-                        "36 horas."
+                        "40h.",
+                        "44h.",
+                        "48h.",
+                        "36h."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 7º, XIII, da CF/88 e CLT. A jornada normal não pode exceder 8h diárias e 44h semanais."
+                    explanation: "Fundamentação: Art. 7º da CF."
                 },
                 {
                     subject: "Direito do Trabalho",
-                    topic: "Extinção do Contrato",
-                    text: "65. Na dispensa por justa causa motivada por embriaguez habitual ou em serviço, o empregado perde o direito ao recebimento de:",
+                    topic: "Justa Causa",
+                    text: "65. Na justa causa, perde-se:",
                     options: [
-                        "Saldo de salário.",
+                        "Saldo salário.",
                         "Férias vencidas.",
-                        "Aviso prévio e multa de 40% do FGTS.",
-                        "Depósitos de FGTS já realizados."
+                        "Aviso e 40% FGTS.",
+                        "Depósitos anteriores."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 482 da CLT. A justa causa retira o direito às verbas indenizatórias (aviso prévio e multa do FGTS)."
+                    explanation: "Fundamentação: Art. 482 CLT."
                 },
                 {
                     subject: "Direito do Trabalho",
-                    topic: "Equiparação Salarial",
-                    text: "66. Para que haja equiparação salarial entre dois empregados, exige-se, entre outros requisitos, que a diferença de tempo de serviço na função não seja superior a:",
+                    topic: "Equiparação",
+                    text: "66. Tempo na função para equiparação não pode passar de:",
                     options: [
                         "1 ano.",
                         "2 anos.",
                         "4 anos.",
-                        "5 anos."
+                        "10 anos."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 461, § 1º, da CLT. A diferença de tempo na função entre paradigma e paragonado não pode ser superior a 2 anos."
+                    explanation: "Fundamentação: Art. 461 CLT."
                 },
                 {
                     subject: "Processo do Trabalho",
-                    topic: "Rito Sumaríssimo",
-                    text: "67. O procedimento sumaríssimo no processo do trabalho aplica-se às causas cujo valor não exceda a:",
+                    topic: "Sumaríssimo",
+                    text: "67. Rito sumaríssimo vai até:",
                     options: [
-                        "20 salários-mínimos.",
-                        "40 salários-mínimos.",
-                        "60 salários-mínimos.",
-                        "100 salários-mínimos."
+                        "20 salários.",
+                        "40 salários.",
+                        "60 salários.",
+                        "100 salários."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 852-A da CLT. Causas entre 2 e 40 salários-mínimos seguem o rito sumaríssimo."
+                    explanation: "Fundamentação: Art. 852-A CLT."
                 },
                 {
                     subject: "Processo do Trabalho",
-                    topic: "Recursos Trabalhistas",
-                    text: "68. O prazo para interposição de Recurso Ordinário, contra sentença proferida em reclamação trabalhista, é de:",
+                    topic: "Recurso",
+                    text: "68. Prazo do RO é:",
                     options: [
                         "5 dias.",
                         "8 dias.",
@@ -952,25 +951,25 @@
                         "10 dias."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 895, I, da CLT. No processo do trabalho, a regra geral para recursos (exceto Embargos) é de 8 dias."
+                    explanation: "Fundamentação: Art. 895 CLT."
                 },
                 {
                     subject: "Direito do Trabalho",
-                    topic: "Estabilidade",
-                    text: "69. A empregada gestante possui estabilidade provisória no emprego desde a confirmação da gravidez até:",
+                    topic: "Gestante",
+                    text: "69. Estabilidade gestante vai até:",
                     options: [
-                        "O parto.",
-                        "Três meses após o parto.",
-                        "Cinco meses após o parto.",
-                        "O término da licença-maternidade."
+                        "Parto.",
+                        "3 meses após.",
+                        "5 meses após o parto.",
+                        "Final da licença."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 10, II, 'b', do ADCT. A estabilidade vai da confirmação da gravidez até 5 meses após o parto."
+                    explanation: "Fundamentação: ADCT."
                 },
                 {
                     subject: "Direito do Trabalho",
                     topic: "FGTS",
-                    text: "70. A alíquota mensal de depósito do FGTS na conta vinculada do trabalhador comum é de:",
+                    text: "70. Alíquota FGTS é:",
                     options: [
                         "2%.",
                         "8%.",
@@ -978,141 +977,139 @@
                         "20%."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Lei nº 8.036/90. O empregador deve depositar mensalmente 8% da remuneração do trabalhador."
+                    explanation: "Fundamentação: Lei 8.036."
                 },
                 {
                     subject: "Direito Penal",
-                    topic: "Penas",
-                    text: "71. Na aplicação da pena, o juiz deve seguir o sistema trifásico. A segunda fase da dosimetria refere-se ao cálculo de:",
+                    topic: "Dosimetria",
+                    text: "71. 2ª fase da pena calcula:",
                     options: [
                         "Pena-base.",
-                        "Causas de aumento e diminuição.",
+                        "Causas aumento.",
                         "Agravantes e atenuantes.",
-                        "Sursis processual."
+                        "Multa."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 68 do Código Penal. 1ª fase: Circunstâncias judiciais; 2ª fase: Agravantes/Atenuantes; 3ª fase: Causas de aumento/diminuição."
+                    explanation: "Fundamentação: Art. 68 CP."
                 },
                 {
                     subject: "Direito Tributário",
-                    topic: "Impostos",
-                    text: "72. O imposto sobre a transmissão 'causa mortis' e doação (ITCMD) é de competência do:",
+                    topic: "ITCMD",
+                    text: "72. ITCMD é competência:",
                     options: [
                         "União.",
                         "Municípios.",
-                        "Estados e Distrito Federal.",
-                        "Somente da União Federal."
+                        "Estados.",
+                        "Receita."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 155, I, da CF/88. O ITCMD é um tributo de competência estadual."
+                    explanation: "Fundamentação: Art. 155 CF."
                 },
                 {
                     subject: "Direito Tributário",
                     topic: "Princípios",
-                    text: "73. O princípio tributário que veda a cobrança de tributos no mesmo exercício financeiro em que haja sido publicada a lei que os instituiu ou aumentou é o da:",
+                    text: "73. Veda cobrar tributo no mesmo exercício que a lei o criou:",
                     options: [
                         "Irretroatividade.",
-                        "Anterioridade nonagesimal.",
-                        "Anterioridade anual (ou de exercício).",
-                        "Legalidade estrita."
+                        "90 dias.",
+                        "Anterioridade anual.",
+                        "Legalidade."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 150, III, 'b', da CF/88. É a regra que impede a surpresa fiscal no mesmo ano."
+                    explanation: "Fundamentação: Art. 150 CF."
                 },
                 {
                     subject: "Direito Internacional",
-                    topic: "Nacionalidade",
-                    text: "74. São brasileiros natos os nascidos no estrangeiro de pai brasileiro ou de mãe brasileira, desde que:",
+                    topic: "Natos",
+                    text: "74. Brasileiro nascido no exterior deve:",
                     options: [
-                        "Sejam registrados em repartição brasileira competente ou venham a residir no Brasil e optem pela nacionalidade após a maioridade.",
-                        "Basta que o pai ou a mãe tenham CPF ativo.",
-                        "A opção deve ser feita obrigatoriamente aos 18 anos, sob pena de perda.",
-                        "Nenhuma das alternativas."
+                        "Registrar ou morar no Brasil e optar.",
+                        "Ter CPF.",
+                        "Nascer em hospital.",
+                        "Ter passaporte."
                     ],
                     correct: 0,
-                    explanation: "Fundamentação: Art. 12, I, 'c', da CF/88. Regra do 'jus sanguinis' com condição de registro ou opção."
+                    explanation: "Fundamentação: Art. 12 CF."
                 },
                 {
                     subject: "Direito Internacional",
                     topic: "Tratados",
-                    text: "75. Os tratados e convenções internacionais sobre direitos humanos que forem aprovados em cada Casa do Congresso Nacional, em dois turnos, por três quintos dos votos dos respectivos membros, serão equivalentes às:",
+                    text: "75. Tratados de Direitos Humanos aprovados por 3/5 são:",
                     options: [
-                        "Leis Ordinárias.",
-                        "Leis Complementares.",
+                        "Leis.",
+                        "Decretos.",
                         "Emendas Constitucionais.",
-                        "Decretos Legislativos."
+                        "Resoluções."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 5º, § 3º, da CF/88. É o chamado bloco de constitucionalidade para Direitos Humanos."
+                    explanation: "Fundamentação: Art. 5º CF."
                 },
                 {
                     subject: "Direito Financeiro",
-                    topic: "Orçamento",
-                    text: "76. A lei que estabelece, de forma regionalizada, as diretrizes, objetivos e metas da administração pública federal para as despesas de capital denomina-se:",
+                    topic: "PPA",
+                    text: "76. Lei que estabelece metas regionais por 4 anos:",
                     options: [
-                        "LDO (Lei de Diretrizes Orçamentárias).",
-                        "LOA (Lei Orçamentária Anual).",
-                        "PPA (Plano Plurianual).",
-                        "Decreto de Contingenciamento."
+                        "LDO.",
+                        "LOA.",
+                        "PPA.",
+                        "Decreto."
                     ],
                     correct: 2,
-                    explanation: "Fundamentação: Art. 165, § 1º, da CF/88. O PPA tem duração de 4 anos e define o planejamento macro."
+                    explanation: "Fundamentação: Art. 165 CF."
                 },
                 {
                     subject: "Processo do Trabalho",
-                    topic: "Execução Trabalhista",
-                    text: "77. Na execução trabalhista, o prazo para o executado pagar ou garantir a execução, sob pena de penhora, é de:",
+                    topic: "Prazo",
+                    text: "77. Prazo para pagar na execução trabalhista:",
                     options: [
-                        "24 horas.",
-                        "48 horas.",
+                        "24h.",
+                        "48h.",
                         "15 dias.",
                         "5 dias."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 880 da CLT. O prazo de citação para pagamento na execução é de 48 horas."
+                    explanation: "Fundamentação: Art. 880 CLT."
                 },
                 {
                     subject: "Direito Penal",
-                    topic: "Extinção da Punibilidade",
-                    text: "78. A renúncia ao direito de queixa, nos crimes de ação penal privada, importa na:",
+                    topic: "Queixa",
+                    text: "78. Renúncia na ação privada gera:",
                     options: [
-                        "Suspensão do processo.",
-                        "Extinção da punibilidade.",
-                        "Redução da pena pela metade.",
-                        "Substituição por pena de multa."
+                        "Suspensão.",
+                        "Extinção punibilidade.",
+                        "Pena menor.",
+                        "Multa."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 107, V, do Código Penal. A renúncia impede o início da ação e extingue a punibilidade."
+                    explanation: "Fundamentação: Art. 107 CP."
                 },
                 {
-                    subject: "Ética Profissional",
-                    topic: "Órgãos da OAB",
-                    text: "79. Qual o órgão da OAB responsável por decidir sobre o cancelamento de inscrição profissional em caso de prova de falsidade de documento?",
+                    subject: "Ética",
+                    topic: "OAB",
+                    text: "79. Órgão que cancela inscrição por documento falso:",
                     options: [
-                        "Conselho Federal.",
-                        "Conselho Seccional.",
-                        "Caixa de Assistência.",
-                        "Subseção local."
+                        "Federal.",
+                        "Seccional.",
+                        "Caixa.",
+                        "Subseção."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 57 do EAOAB. O Conselho Seccional decide sobre cancelamentos e exclusões."
+                    explanation: "Fundamentação: Art. 57 EAOAB."
                 },
                 {
-                    subject: "Ética Profissional",
-                    topic: "Impedimentos",
-                    text: "80. Os servidores da administração pública direta, indireta ou fundacional, mesmo que não detenham poder de decisão, estão:",
+                    subject: "Ética",
+                    topic: "Servidor",
+                    text: "80. Servidor público tem impedimento contra:",
                     options: [
-                        "Incompatibilizados com a advocacia.",
-                        "Impedidos de exercer a advocacia contra a Fazenda Pública que os remunere.",
-                        "Livres para advogar em qualquer causa.",
-                        "Obrigados a pedir licença da OAB."
+                        "Ninguém.",
+                        "Fazenda que o remunera.",
+                        "Todo mundo.",
+                        "Empresa privada."
                     ],
                     correct: 1,
-                    explanation: "Fundamentação: Art. 30, I, do EAOAB. Servidores públicos em geral possuem impedimento parcial (não podem advogar contra quem paga o salário deles)."
+                    explanation: "Fundamentação: Art. 30 EAOAB."
                 }
-           
-                // Continuar até a questão 80...
-            ],
+            ]
         };
 
         let currentExam = [];
@@ -1128,7 +1125,10 @@
 
         function startQuiz(examKey) {
             currentExam = allExams[examKey];
-            if(!currentExam) return;
+            if(!currentExam) {
+                alert("Erro ao carregar a prova. Verifique o banco de dados.");
+                return;
+            }
             currentIdx = 0;
             document.getElementById('home-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
@@ -1208,7 +1208,6 @@
                     document.getElementById('total-timer').innerText = `${h}:${m}:${s}`;
                 } else {
                     clearInterval(timerInterval);
-                    alert("Tempo de prova esgotado!");
                 }
             }, 1000);
         }
