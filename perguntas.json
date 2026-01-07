@@ -3,7 +3,7 @@
     {
       "subject": "Ética Profissional",
       "topic": "Incompatibilidade",
-      "text": "O advogado Dr. Roberto, com sólida carreira na área cível, é convidado pelo Prefeito de seu Município para assumir o cargo de Secretário Municipal de Saúde, em razão de sua vasta experiência em gestão hospitalar anterior à advocacia. Roberto aceita o convite e toma posse. No entanto, ele possui uma banca com diversos processos em curso, inclusive contra o próprio Município, e não deseja abandonar seus clientes, pretendendo continuar assinando as petições nos horários em que não estiver na secretaria. Diante do caso narrado, à luz das normas do Estatuto da Advocacia e da OAB (EAOAB), assinale a opção que indica a situação de Roberto:",
+      "text": "1. O advogado Dr. Roberto, com sólida carreira na área cível, é convidado pelo Prefeito de seu Município para assumir o cargo de Secretário Municipal de Saúde, em razão de sua vasta experiência em gestão hospitalar anterior à advocacia. Roberto aceita o convite e toma posse. No entanto, ele possui uma banca com diversos processos em curso, inclusive contra o próprio Município, e não deseja abandonar seus clientes, pretendendo continuar assinando as petições nos horários em que não estiver na secretaria. Diante do caso narrado, à luz das normas do Estatuto da Advocacia e da OAB (EAOAB), assinale a opção que indica a situação de Roberto:",
       "options": [
         "Roberto poderá manter sua atuação profissional, desde que não utilize o prestígio do cargo para captar clientela, sofrendo apenas impedimento contra a Fazenda Pública que o remunera.",
         "Roberto passa a estar em situação de incompatibilidade total com o exercício da advocacia enquanto permanecer no cargo de Secretário Municipal, devendo licenciar-se da Ordem.",
@@ -11,21 +11,1036 @@
         "Roberto deve cancelar definitivamente sua inscrição na OAB, pois cargos de primeiro escalão no Poder Executivo municipal são vedados permanentemente a bacharéis em Direito com inscrição ativa."
       ],
       "correct": 1,
-      "explanation": "Fundamentação: Art. 28, III, do EAOAB. O cargo de Secretário Municipal é de direção na administração pública, o que gera incompatibilidade total (proibição total) do exercício da advocacia durante o mandato."
+      "explanation": "Fundamentação: Art. 28, III, do EAOAB. O cargo de Secretário Municipal (órgão da administração pública direta) gera incompatibilidade total."
+    },
+    {
+      "subject": "Direito Constitucional",
+      "topic": "Controle de Constitucionalidade",
+      "text": "2. O Município de Florianópolis edita a Lei Municipal nº 123, que proíbe expressamente a queima de fogos de artifício ruidosos em todo o território municipal, visando a proteção de animais e pessoas autistas. Uma associação de fabricantes de fogos de artifício ingressa com uma ação direta de inconstitucionalidade perante o Tribunal de Justiça local, mas também deseja levar a questão ao Supremo Tribunal Federal. No sistema brasileiro de controle de constitucionalidade, qual o instrumento adequado para questionar diretamente no STF uma lei municipal que contrarie preceitos fundamentais da Constituição Federal?",
+      "options": [
+        "Ação Direta de Inconstitucionalidade (ADI), pois leis municipais podem ser objeto de controle abstrato diretamente no STF frente à Constituição Federal.",
+        "Arguição de Descumprimento de Preceito Fundamental (ADPF), em razão do princípio da subsidiariedade e da impossibilidade de ADI de lei municipal no STF frente à Constituição.",
+        "Recurso Extraordinário, que é a única via possível, em qualquer hipótese, para que leis municipais cheguem ao conhecimento do Supremo Tribunal Federal para análise de mérito.",
+        "Ação Direta de Inconstitucionalidade Interventiva, requerida pelo Procurador-Geral da República perante o STF para garantir a observância da autonomia dos entes federados."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1º, parágrafo único, I, da Lei 9.882/99. Lei municipal não pode ser objeto de ADI no STF, apenas de ADPF."
     },
     {
       "subject": "Direito Civil",
       "topic": "Sucessões",
-      "text": "João, solteiro e sem filhos, falece deixando um patrimônio considerável. Seus pais já são falecidos. João possui dois irmãos vivos, Roberto e Cláudio, e dois sobrinhos, filhos de sua irmã Maria, que faleceu dois anos antes de João. Roberto, por razões pessoais, decide renunciar formalmente à herança de João por meio de escritura pública. Diante desse cenário sucessório, de acordo com o Código Civil, a herança de João deverá ser dividida da seguinte forma:",
+      "text": "3. João, solteiro e sem filhos, falece deixando um patrimônio considerável. Seus pais já são falecidos. João possui dois irmãos vivos, Roberto e Cláudio, e dois sobrinhos, filhos de sua irmã Maria, que faleceu dois anos antes de João. Roberto, por razões pessoais, decide renunciar formalmente à herança de João por meio de escritura pública. Diante desse cenário sucessório, de acordo com o Código Civil, a herança de João deverá ser dividida da seguinte forma:",
       "options": [
         "A herança é dividida integralmente entre Cláudio e os dois sobrinhos (filhos de Maria), cabendo metade a Cláudio e a outra metade dividida entre os sobrinhos.",
         "A herança é dividida em partes iguais entre Cláudio e Roberto, sendo a renúncia de Roberto considerada inválida por prejudicar os sobrinhos.",
-        "Todo o patrimônio é destinado a Cláudio, pois na classe dos colaterais os mais próximos excluem os mais remotos, e a renúncia de Roberto impede que seus próprios filhos (se existissem) herdassem por representação.",
+        "Todo o patrimônio é destinado a Cláudio, pois na classe dos colaterais os mais próximos excluem os mais remotos, e a renúncia de Roberto impede que seus próprios filhos herdassem.",
         "A herança é dividida em três partes iguais: uma para Cláudio, uma para Roberto (que seria repassada ao Estado pela renúncia) e uma para os sobrinhos."
       ],
       "correct": 0,
-      "explanation": "Fundamentação: Art. 1.840 e 1.843 do CC. Na sucessão colateral, os filhos de irmãos (sobrinhos) herdam por direito de representação se concorrerem com tio."
+      "explanation": "Fundamentação: Art. 1.840 e 1.843 do CC. Na sucessão colateral, os sobrinhos herdam por representação representando o irmão pré-morto (Maria)."
+    },
+    {
+      "subject": "Direito Administrativo",
+      "topic": "Responsabilidade Civil",
+      "text": "4. Durante uma perseguição policial de alto risco, uma viatura da Polícia, ao tentar desviar de um pedestre que atravessava fora da faixa, acaba por colidir com um muro de uma residência particular que não possuía qualquer relação com o fato. O impacto causou o desabamento parcial da estrutura. Diante do caso narrado, com base na jurisprudência e na Constituição Federal, assinale a afirmativa correta:",
+      "options": [
+        "O Estado responde objetivamente pelos danos causados, independentemente de prova de culpa dos policiais, bastando ao proprietário provar o nexo causal e o dano sofrido.",
+        "A responsabilidade do Estado é subjetiva no caso de operações policiais, devendo o proprietário da residência provar que a polícia agiu com imperícia.",
+        "O Estado é isento de responsabilidade por ter agido no estrito cumprimento do dever legal em combate ao crime.",
+        "A responsabilidade é compartilhada entre o Estado e os criminosos que estavam sendo perseguidos em litisconsórcio passivo necessário."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 37, § 6º da CF/88. Teoria do Risco Administrativo."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Crime Tentado",
+      "text": "5. Arthur, com intenção de matar Bruno, desfere cinco disparos de arma de fogo contra ele. Bruno é atingido em regiões vitais, mas, socorrido a tempo por uma equipe médica, sobrevive às lesões. Arthur esgotou todos os meios que tinha à sua disposição para consumar o crime, mas o resultado morte não ocorreu por circunstâncias alheias à sua vontade. No Direito Penal, essa espécie de tentativa é denominada:",
+      "options": [
+        "Tentativa Branca ou Incruenta.",
+        "Tentativa Vermelha ou Cruenta.",
+        "Tentativa Perfeita ou Crime Falho.",
+        "Tentativa Imperfeita."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Na tentativa perfeita (ou crime falho), o agente esgota a execução sem alcançar o resultado."
+    },
+    {
+      "subject": "Direito Processual Civil",
+      "topic": "Recursos",
+      "text": "6. O juiz de primeira instância profere uma decisão interlocutória que rejeita a alegação de impenhorabilidade de um bem de família feita pelo executado em sede de cumprimento de sentença. Nos termos do Código de Processo Civil de 2015, o recurso cabível contra essa decisão específica é o:",
+      "options": [
+        "Agravo Interno.",
+        "Apelação.",
+        "Agravo de Instrumento.",
+        "Embargos à Execução."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Art. 1.015, parágrafo único, do CPC/15. Cabe agravo contra decisões na fase de cumprimento de sentença."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "FGTS",
+      "text": "7. Na hipótese de extinção do contrato de trabalho por acordo entre empregado e empregador (Art. 484-A da CLT), quais verbas o trabalhador terá direito a receber de forma diferenciada?",
+      "options": [
+        "Aviso prévio integral e multa de 40% do FGTS.",
+        "Metade do aviso prévio (se indenizado) e multa de 20% sobre o saldo do FGTS.",
+        "Apenas as verbas salariais, perdendo o direito ao levantamento do FGTS.",
+        "Aviso prévio integral, mas apenas 10% de multa do FGTS."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 484-A da CLT. No acordo, o aviso prévio indenizado e a multa do FGTS são pagos pela metade."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "Princípio da Legalidade",
+      "text": "8. O Presidente da República, diante de uma crise setorial, decide majorar as alíquotas do Imposto de Importação (II) e do Imposto de Exportação (IE) por meio de Decreto. Sobre a constitucionalidade dessa medida, assinale a opção correta:",
+      "options": [
+        "É inconstitucional, pois qualquer aumento de imposto exige a edição de Lei Ordinária.",
+        "É constitucional, pois o Poder Executivo pode alterar as alíquotas desses impostos, atendidas as condições da lei.",
+        "É inconstitucional, pois apenas o IPI goza dessa prerrogativa.",
+        "É constitucional, mas depende de ratificação pelo Congresso em 60 dias."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 153, § 1º da CF/88 (Impostos extrafiscais)."
+    },
+    {
+      "subject": "Direito Processual Penal",
+      "topic": "Prisão Preventiva",
+      "text": "9. A prisão preventiva é uma medida cautelar de natureza pessoal que sacrifica a liberdade individual em prol de interesses sociais relevantes. Segundo as alterações trazidas pela Lei nº 13.964/2019 (Pacote Anticrime), a decisão que decretar a prisão preventiva deve ser motivada e fundamentada em receio de perigo e existência concreta de fatos novos ou contemporâneos. Sobre o dever de revisão dessa medida, de acordo com o Código de Processo Penal, assinale a opção correta:",
+      "options": [
+        "A revisão da necessidade de manutenção da prisão preventiva deve ser feita pelo órgão emissor da decisão a cada 90 dias, mediante decisão fundamentada, de ofício, sob pena de tornar a prisão ilegal.",
+        "A prisão preventiva, uma vez decretada, vigora até o trânsito em julgado da sentença condenatória, salvo se o Tribunal de Justiça conceder Habeas Corpus.",
+        "O prazo para revisão da prisão preventiva é de 60 dias, e sua contagem interrompe-se sempre que houver a interposição de recurso pela defesa.",
+        "Compete exclusivamente ao Ministério Público requerer a revisão da prisão preventiva ao juiz, não podendo este agir sem provocação."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 316, parágrafo único do CPP. O juiz deve revisar a necessidade da prisão a cada 90 dias de ofício."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Vícios do Consentimento",
+      "text": "10. Sérgio, proprietário de uma pequena marcenaria, vende seu único caminhão de entregas por um valor equivalente a apenas 30% do preço médio de mercado para seu vizinho Cláudio. Sérgio aceitou o valor reduzido porque Cláudio sabia que o filho de Sérgio estava sequestrado e que o dinheiro era urgente para o pagamento do resgate. Passada a situação traumática, Sérgio deseja anular a venda. De acordo com o Código Civil, tal negócio jurídico está eivado pelo defeito denominado:",
+      "options": [
+        "Erro ou Ignorância.",
+        "Dolo.",
+        "Estado de Perigo.",
+        "Lesão."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Art. 156 do Código Civil. Configura-se estado de perigo quando alguém assume obrigação excessivamente onerosa para salvar a si ou a família de grave dano conhecido pela outra parte."
+    },
+    {
+      "subject": "Direito Processual Civil",
+      "topic": "Tutela de Urgência",
+      "text": "11. Determinada empresa ingressa com uma ação de cobrança contra um devedor, mas demonstra ao juiz, por meio de provas documentais, que o réu está alienando todos os seus bens para nomes de terceiros ('laranjas') com o claro intuito de frustrar a futura execução. O autor requer o bloqueio de veículos e contas bancárias do réu imediatamente. Segundo o CPC/2015, essa medida de natureza cautelar, concedida para assegurar o resultado útil do processo, classifica-se como:",
+      "options": [
+        "Tutela de Urgência Antecipada.",
+        "Tutela de Urgência Cautelar.",
+        "Tutela da Evidência.",
+        "Sentença Provisória de Bloqueio."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 301 do CPC/15. A tutela cautelar visa garantir a viabilidade do direito, enquanto a antecipada satisfaz o direito precocemente."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Culpabilidade",
+      "text": "12. O agente que, por embriaguez voluntária ou culposa, pelo álcool ou substância de efeitos análogos, comete um crime em estado de completa inconsciência, sendo incapaz de entender o caráter ilícito do fato no momento da ação:",
+      "options": [
+        "É isento de pena, pois a consciência é elemento essencial da culpabilidade.",
+        "Responde normalmente pelo crime, não sendo excluída a imputabilidade penal pela embriaguez não proveniente de caso fortuito ou força maior.",
+        "Tem a pena obrigatoriamente reduzida de um a dois terços pela semi-imputabilidade.",
+        "Só responde se ficar provado que se embriagou especificamente para cometer aquele crime determinado (actio libera in causa)."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 28, II, do Código Penal. A embriaguez voluntária ou culposa não exclui a imputabilidade."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "Equiparação Salarial",
+      "text": "13. Para que seja possível a equiparação salarial entre dois empregados que exercem a mesma função (paradigma e paragonado), a CLT exige o preenchimento de requisitos específicos. Segundo a lei atual, a diferença de tempo de serviço na função entre eles e a diferença de tempo de serviço no estabelecimento (empresa) não podem ser superiores a:",
+      "options": [
+        "2 anos na função e 4 anos no estabelecimento.",
+        "1 ano na função e 2 anos no estabelecimento.",
+        "2 anos na função, sendo irrelevante o tempo total na empresa.",
+        "4 anos na função e 2 anos no estabelecimento."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 461, § 1º da CLT. Requisitos cumulativos para a equiparação salarial."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "Responsabilidade de Terceiros",
+      "text": "14. A empresa 'Tecnologia S.A.' encerra suas atividades de forma irregular, sem realizar a baixa nos órgãos competentes e sem deixar bens para quitar seus débitos tributários de ICMS. O fisco estadual decide redirecionar a execução fiscal contra o sócio-administrador que exercia a gestão à época do fato gerador. De acordo com o Código Tributário Nacional (CTN) e a jurisprudência sumulada do STJ:",
+      "options": [
+        "O redirecionamento é automático sempre que a empresa não paga o tributo no vencimento.",
+        "O sócio responde pessoalmente se agir com excesso de poderes, infração de lei, contrato social ou estatutos, ou em caso de dissolução irregular da sociedade.",
+        "A responsabilidade do sócio é subsidiária, devendo o fisco primeiro esgotar a busca de bens dos parentes dos sócios.",
+        "O redirecionamento é vedado em obrigações tributárias de natureza indireta como o ICMS."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 135, III do CTN e Súmula 435 do STJ."
+    },
+    {
+      "subject": "ECA",
+      "topic": "Adoção",
+      "text": "15. Um casal de brasileiros residentes no Japão manifesta o desejo de adotar uma criança brasileira. Ao mesmo tempo, um casal de estrangeiros (franceses) residentes no Brasil também está habilitado para adoção. Segundo as regras de preferência estabelecidas pelo Estatuto da Criança e do Adolescente (ECA), assinale a opção correta:",
+      "options": [
+        "O casal de brasileiros residentes no exterior tem preferência sobre o casal de estrangeiros residentes no Brasil.",
+        "O casal de estrangeiros residentes no Brasil tem preferência, pois a adoção internacional (brasileiros no exterior) é sempre a última medida.",
+        "Ambos concorrem em igualdade de condições, devendo o juiz decidir pelo critério da maior renda financeira.",
+        "A preferência é do casal que estiver há mais tempo na fila de espera, independentemente da nacionalidade ou domicílio."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 31 do ECA. A adoção por brasileiros residentes no Brasil tem prioridade; estrangeiros residentes no Brasil são considerados adoção nacional, tendo preferência sobre a internacional."
+    },
+    {
+      "subject": "Direito Ambiental",
+      "topic": "Infrações Administrativas",
+      "text": "16. Uma empresa transportadora de produtos perigosos sofre um acidente rodoviário que resulta no derramamento de óleo em uma área de proteção ambiental. O órgão ambiental estadual lavra auto de infração e aplica multa pecuniária. A empresa alega em sua defesa que o acidente foi causado por um terceiro que invadiu a pista contrária. Sobre a responsabilidade administrativa ambiental, segundo o entendimento consolidado do STJ:",
+      "options": [
+        "A responsabilidade administrativa ambiental é objetiva, bastando o nexo de causalidade entre a atividade e o dano.",
+        "A responsabilidade administrativa ambiental é subjetiva, exigindo a demonstração de dolo ou culpa do infrator.",
+        "A multa administrativa não pode ser aplicada se houver prova de força maior ou fato de terceiro.",
+        "O valor da multa deve ser sempre destinado ao proprietário das terras afetadas, e não ao Estado."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Jurisprudência do STJ. Diferente da responsabilidade civil (objetiva), a administrativa exige culpa (subjetiva)."
+    },
+    {
+      "subject": "Direito Constitucional",
+      "topic": "Processo Legislativo",
+      "text": "17. Determinado Deputado Federal apresenta projeto de lei que visa alterar o regime jurídico dos servidores públicos da União, dispondo sobre aumento de remuneração e critérios de promoção. Após aprovação nas duas Casas do Congresso Nacional, o projeto é enviado ao Presidente da República. Diante das regras de competência legislativa previstas na Constituição Federal de 1988, tal projeto padece de:",
+      "options": [
+        "Inconstitucionalidade formal orgânica, pois a matéria é de iniciativa exclusiva do Presidente da República.",
+        "Inconstitucionalidade formal subjetiva, por vício de iniciativa, já que leis sobre servidores públicos federais e sua remuneração são de iniciativa privativa do Chefe do Executivo.",
+        "Inconstitucionalidade material, por violar o princípio da separação dos poderes.",
+        "Nenhum vício, uma vez que o Deputado Federal possui competência legislativa plena para tratar de temas de interesse nacional."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 61, § 1º, II, 'a' e 'c' da CF/88. Matérias de servidores e remuneração da União são de iniciativa do Presidente."
+    },
+    {
+      "subject": "Direito Administrativo",
+      "topic": "Agentes Públicos",
+      "text": "18. Servidor público federal estável comete infração disciplinar grave e, após processo administrativo disciplinar (PAD) com observância do contraditório, é demitido. Dois anos depois, ele consegue anular a demissão por meio de uma ação judicial com sentença transitada em julgado, que reconhece vício na motivação do ato. O retorno do servidor estável ao cargo, com ressarcimento integral das vantagens, denomina-se:",
+      "options": [
+        "Recondução.",
+        "Reversão.",
+        "Reintegração.",
+        "Aproveitamento."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Art. 41, § 2º da CF/88 e Art. 28 da Lei 8.112/90."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Contratos",
+      "text": "19. Nos contratos de compra e venda de bens móveis, o vendedor responde por vícios ou defeitos ocultos que tornem a coisa imprópria ao uso a que é destinada. Caso o comprador descubra um vício oculto em um automóvel usado após 45 dias da entrega, o prazo para ele ingressar com a ação redibitória (para rescindir o contrato) ou a ação 'quanti minoris' (para abatimento no preço) é de:",
+      "options": [
+        "30 dias, contados da entrega efetiva do bem.",
+        "30 dias, contados do momento em que o vício for descoberto.",
+        "90 dias, por aplicação do Código de Defesa do Consumidor.",
+        "180 dias, independentemente da data da descoberta."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 445, § 1º do Código Civil. Se o vício, por sua natureza, só puder ser conhecido mais tarde, o prazo conta da ciência."
+    },
+    {
+      "subject": "Processo Civil",
+      "topic": "Prazos Processuais",
+      "text": "20. Na contagem de prazos processuais em dias, estabelecidos por lei ou pelo juiz, computar-se-ão apenas os dias úteis. De acordo com o CPC/2015, essa regra de contagem aplica-se a:",
+      "options": [
+        "Todos os prazos do sistema jurídico, inclusive os de direito material como prescrição.",
+        "Apenas aos prazos processuais, não se aplicando aos prazos de direito material.",
+        "Aos prazos fixados em meses e anos também.",
+        "Aos processos judiciais criminais e cíveis indistintamente."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 219 do CPC/15. A contagem em dias úteis é restrita a prazos processuais."
+    },
+    {
+      "subject": "Ética Profissional",
+      "topic": "Sigilo Profissional",
+      "text": "21. O advogado Dr. Marcos é intimado para depor como testemunha em um processo criminal contra um ex-cliente seu. No depoimento, o magistrado o questiona sobre fatos que lhe foram confiados pelo cliente durante o exercício da profissão. De acordo com o Estatuto da Advocacia e o Código de Ética da OAB, Marcos:",
+      "options": [
+        "Deve depor e revelar os fatos, sob pena de crime de desobediência e falso testemunho.",
+        "Tem o dever de guardar sigilo, podendo recusar-se a depor, salvo se o cliente o autorizar por escrito.",
+        "Deve guardar sigilo profissional, que é inviolável, salvo em grave ameaça ao direito à vida ou à honra, ou quando o advogado for acusado pelo próprio cliente.",
+        "Pode depor apenas sobre fatos que não constem em documentos escritos entregues pelo cliente."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Art. 35 a 38 do Código de Ética e Disciplina da OAB."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Legítima Defesa",
+      "text": "22. Recentemente, a Lei nº 13.964/2019 incluiu uma previsão específica no artigo 25 do Código Penal (Legítima Defesa). De acordo com a nova regra, considera-se também em legítima defesa:",
+      "options": [
+        "O agente de segurança pública que repele agressão ou risco de agressão a vítima mantida refém durante a prática de crimes.",
+        "O proprietário de terra que utiliza força letal para impedir invasão por movimentos sociais.",
+        "Qualquer cidadão que utilize arma de fogo contra agressão verbal injusta.",
+        "O policial que efetua disparos contra suspeito em fuga, mesmo que este não ofereça perigo iminente a terceiros."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 25, parágrafo único, do Código Penal."
+    },
+    {
+      "subject": "Processo Penal",
+      "topic": "Recursos",
+      "text": "23. Ao final da primeira fase do procedimento do Tribunal do Júri (judicium accusationis), o juiz decide desclassificar a infração para um crime que não seja da competência do Júri (ex: de tentativa de homicídio para lesão corporal). Contra essa decisão de desclassificação, cabe o recurso de:",
+      "options": [
+        "Apelação.",
+        "Recurso em Sentido Estrito (RESE).",
+        "Agravo de Instrumento.",
+        "Embargos de Declaração apenas."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 581, II do CPP. Cabe RESE contra decisão que concluir pela incompetência do juízo."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "Horas Extras",
+      "text": "24. Um empregado trabalha em regime de sobrejornada habitual. No momento da rescisão do contrato, ele pleiteia a integração das horas extras nas demais verbas. Segundo a jurisprudência sumulada do TST (Súmula 376), as horas extras habituais integram o cálculo de:",
+      "options": [
+        "Apenas do FGTS.",
+        "Apenas das férias e 13º salário.",
+        "De todas as verbas rescisórias, inclusive aviso prévio e descanso semanal remunerado (DSR).",
+        "Apenas do DSR, sendo vedado o reflexo em outras verbas para evitar 'bis in idem'."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Súmula 376, II do TST."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "Garantias do Crédito",
+      "text": "25. A União ajuíza execução fiscal contra uma empresa de cosméticos. Para garantir o juízo e poder apresentar Embargos à Execução, a empresa deseja oferecer bens. Segundo a Lei de Execução Fiscal (Lei 6.830/80), a ordem de preferência para garantia da execução inicia-se por:",
+      "options": [
+        "Bens imóveis.",
+        "Dinheiro, fiança bancária ou seguro-garantia.",
+        "Pedras e metais preciosos.",
+        "Veículos de via terrestre."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 9º da Lei 6.830/80 e Art. 835 do CPC."
+    },
+    {
+      "subject": "Direito Empresarial",
+      "topic": "Títulos de Crédito",
+      "text": "26. Uma empresa emite uma nota promissória em favor de um fornecedor. No verso do título, o fornecedor assina e coloca o nome de um terceiro para transferir o crédito. Esse ato jurídico denomina-se:",
+      "options": [
+        "Aval.",
+        "Aceite.",
+        "Endosso.",
+        "Protesto."
+      ],
+      "correct": 2,
+      "explanation": "Fundamentação: Art. 893 do Código Civil. O endosso transfere a propriedade do título."
+    },
+    {
+      "subject": "Direitos Humanos",
+      "topic": "Eficácia Interna",
+      "text": "27. De acordo com a jurisprudência do STF, os tratados internacionais de direitos humanos que foram aprovados pelo Congresso Nacional antes da Emenda Constitucional nº 45/2004 (portanto, sem o rito de 3/5 em dois turnos) possuem status hierárquico:",
+      "options": [
+        "Constitucional.",
+        "Supralegal (abaixo da Constituição e acima das leis ordinárias).",
+        "De lei ordinária federal comum.",
+        "Infralegal e meramente principiológico."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Entendimento fixado no RE 466.343 pelo STF."
+    },
+    {
+      "subject": "Filosofia do Direito",
+      "topic": "Positivismo Jurídico",
+      "text": "28. Herbert Hart, em sua obra 'O Conceito de Direito', critica a visão de Austin de que o direito seria apenas um conjunto de ordens coercitivas. Para Hart, o sistema jurídico é composto pela união de dois tipos de regras, denominadas:",
+      "options": [
+        "Regras morais e regras jurídicas.",
+        "Regras primárias (que impõem deveres) e regras secundárias (que conferem poderes e organizam o sistema).",
+        "Regras naturais e regras positivas.",
+        "Regras de conduta e regras de punição."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Teoria de Herbert Hart."
+    },
+    {
+      "subject": "Consumidor",
+      "topic": "Inversão do Ônus da Prova",
+      "text": "29. No processo civil que envolve relação de consumo, o juiz pode determinar a inversão do ônus da prova em favor do consumidor. Segundo o CDC, para que isso ocorra, é necessário que:",
+      "options": [
+        "O consumidor seja financeiramente miserável.",
+        "A alegação seja verossímil ou o consumidor seja hipossuficiente, segundo as regras ordinárias de experiência.",
+        "O fornecedor confesse parte da culpa no processo.",
+        "O valor da causa seja inferior a 40 salários mínimos."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 6º, VIII do CDC."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Posse",
+      "text": "30. O possuidor de má-fé, aquele que sabe que sua posse possui vício ou obstáculo que impede a aquisição da coisa, tem direito ao ressarcimento de quais benfeitorias realizadas no imóvel?",
+      "options": [
+        "Nenhuma benfeitoria.",
+        "Apenas as benfeitorias necessárias, sem direito de retenção.",
+        "As benfeitorias necessárias e as úteis.",
+        "Todas as benfeitorias, inclusive as voluptuárias."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1.220 do Código Civil."
+    },
+    {
+      "subject": "Direito Processual Civil",
+      "topic": "Agravo de Instrumento",
+      "text": "31. Nos termos do Código de Processo Civil de 2015, cabe agravo de instrumento contra as decisões interlocutórias que versarem sobre o mérito do processo. O STJ, ao julgar o Tema 988, fixou a tese da:",
+      "options": [
+        "Taxatividade absoluta do rol do Art. 1.015.",
+        "Taxatividade mitigada do rol do Art. 1.015, admitindo o recurso quando verificada a urgência decorrente da inutilidade do julgamento em apelação.",
+        "Ampliação do prazo do agravo para 30 dias úteis.",
+        "Obrigatoriedade de interposição de agravo retido antes do instrumento."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Tema Repetitivo 988 do STJ."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Homicídio",
+      "text": "32. O crime de homicídio é qualificado quando praticado mediante paga ou promessa de recompensa, ou por outro motivo torpe. Caso o agente cometa o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz:",
+      "options": [
+        "Deve absolver o réu por exclusão de ilicitude.",
+        "Pode reduzir a pena de um sexto a um terço (Homicídio Privilegiado).",
+        "Deve substituir a pena de prisão por penas restritivas de direitos.",
+        "Deve aplicar o perdão judicial."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 121, § 1º do Código Penal."
+    },
+    {
+      "subject": "Direito Processual Penal",
+      "topic": "Competência",
+      "text": "33. A competência jurisdicional será, de regra, determinada pelo lugar em que se consumar a infração. No entanto, nos crimes de estelionato praticados mediante depósito ou transferência de valores, a competência será determinada pelo:",
+      "options": [
+        "Lugar da sede da empresa de telefonia ou internet.",
+        "Lugar do domicílio da vítima.",
+        "Lugar onde os valores foram sacados pelo criminoso.",
+        "Lugar da residência do réu apenas."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 70, § 4º do CPP (Incluído pela Lei 14.155/2021)."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "Rescisão por Acordo",
+      "text": "34. Na rescisão por mútuo acordo (Art. 484-A da CLT), o empregado tem direito a sacar qual percentual do seu saldo do FGTS?",
+      "options": [
+        "100%.",
+        "80%.",
+        "50%.",
+        "20%."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 484-A, § 1º da CLT."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "IPTU",
+      "text": "35. O Imposto sobre a Propriedade Predial e Territorial Urbana (IPTU) tem como fato gerador a propriedade, o domínio útil ou a posse de bem imóvel por natureza ou por acessão física. Sobre a progressividade do IPTU, a Constituição Federal autoriza que as alíquotas sejam distintas em razão do:",
+      "options": [
+        "Valor venal do imóvel e do uso e da localização.",
+        "Número de moradores residentes no imóvel.",
+        "Nacionalidade do proprietário.",
+        "Apenas do valor venal, sendo vedada a diferenciação por localização."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 156, § 1º da CF/88."
+    },
+    {
+      "subject": "Direito Empresarial",
+      "topic": "Sociedades",
+      "text": "36. Na Sociedade Limitada, a responsabilidade de cada sócio é restrita ao valor de suas quotas, mas todos respondem solidariamente pela:",
+      "options": [
+        "Gestão administrativa do diretor.",
+        "Integralização do capital social.",
+        "Dívida trabalhista de outras empresas dos sócios.",
+        "Manutenção do nome empresarial."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1.052 do Código Civil."
+    },
+    {
+      "subject": "Direito Internacional",
+      "topic": "Nacionalidade",
+      "text": "37. São brasileiros naturalizados os estrangeiros de qualquer nacionalidade, residentes na República Federativa do Brasil há mais de quinze anos ininterruptos e sem condenação penal, desde que requeiram a nacionalidade brasileira. Essa modalidade de naturalização é conhecida como:",
+      "options": [
+        "Naturalização Ordinária.",
+        "Naturalização Extraordinária ou Quinzenária.",
+        "Naturalização por Casamento.",
+        "Naturalização Provisória."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 12, II, 'b' da CF/88."
+    },
+    {
+      "subject": "Direito Financeiro",
+      "topic": "Lei de Responsabilidade Fiscal",
+      "text": "38. De acordo com a LRF (LC 101/2000), a despesa total com pessoal, em cada período de apuração e em cada ente da Federação, não poderá exceder os percentuais da receita corrente líquida. Para os Municípios, esse limite global é de:",
+      "options": [
+        "50%.",
+        "60%.",
+        "40%.",
+        "70%."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 19, III da LRF."
+    },
+    {
+      "subject": "Direito Administrativo",
+      "topic": "Poderes da Administração",
+      "text": "39. O poder conferido à Administração Pública para expedir atos normativos (decretos, regulamentos) visando a fiel execução das leis denomina-se:",
+      "options": [
+        "Poder Hierárquico.",
+        "Poder Regulamentar.",
+        "Poder Disciplinar.",
+        "Poder de Polícia."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Doutrina administrativa."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Associações",
+      "text": "40. Nas associações civis, que são pessoas jurídicas de direito privado sem fins lucrativos, os associados possuem direitos iguais, mas o estatuto poderá instituir categorias com vantagens especiais. Sobre a exclusão de associado, é correto afirmar que:",
+      "options": [
+        "Pode ser feita por decisão unilateral do presidente a qualquer tempo.",
+        "Só é admissível havendo justa causa, reconhecida em procedimento que assegure direito de defesa e de recurso, nos termos do estatuto.",
+        "É vedada pela Constituição Federal, em razão da liberdade de associação.",
+        "Exige aprovação unânime de todos os outros associados."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 57 do Código Civil."
+    },
+    {
+      "subject": "Ética Profissional",
+      "topic": "Publicidade e Marketing",
+      "text": "41. Uma sociedade de advogados decide contratar um influenciador digital para realizar a divulgação de seus serviços em redes sociais, prometendo bônus por cada cliente indicado que fechar contrato. Além disso, o influenciador utiliza fotos ostentando bens de luxo vinculados ao sucesso do escritório. De acordo com o Provimento nº 205/2021 do CFOAB, essa conduta:",
+      "options": [
+        "É permitida, desde que o influenciador seja bacharel em Direito.",
+        "É vedada, pois a publicidade não pode ser feita por meio de influenciadores digitais com caráter mercantilista ou que prometa recompensa por indicação.",
+        "É permitida, pois o marketing de influência é uma realidade aceita na advocacia moderna.",
+        "É lícita, desde que o influenciador não mencione valores de honorários nas postagens."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 5º do Provimento 205/2021. É vedado o pagamento de comissões por indicação e a mercantilização da profissão."
+    },
+    {
+      "subject": "Direito Constitucional",
+      "topic": "Poder Judiciário",
+      "text": "42. O Conselho Nacional de Justiça (CNJ) é órgão integrante do Poder Judiciário com competências administrativas e disciplinares. Sobre a composição do CNJ, de acordo com a CF/88, assinale a opção correta:",
+      "options": [
+        "O CNJ é presidido pelo Ministro do Supremo Tribunal Federal que for eleito pelos seus pares para o cargo.",
+        "O Presidente do Supremo Tribunal Federal é o Presidente do Conselho Nacional de Justiça.",
+        "O CNJ possui 11 membros com mandato de 4 anos, permitida uma recondução.",
+        "Membros do Ministério Público não podem compor o CNJ para garantir a independência judicial."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 103-B, § 1º da CF/88. O Presidente do STF preside o CNJ."
+    },
+    {
+      "subject": "Direito Administrativo",
+      "topic": "Improbidade Administrativa",
+      "text": "43. De acordo com a Lei nº 8.429/1992, com as alterações da Lei nº 14.230/2021, constitui ato de improbidade administrativa que causa prejuízo ao erário qualquer ação ou omissão:",
+      "options": [
+        "Culposa ou dolosa que enseje perda patrimonial.",
+        "Dolosa, sendo que a modalidade culposa foi expressamente revogada pelo novo texto legal.",
+        "Que resulte em enriquecimento ilícito do agente, mesmo sem prejuízo direto aos cofres públicos.",
+        "Praticada exclusivamente por detentores de mandato eletivo."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1º, § 1º da Lei 8.429/92. A lei agora exige o dolo específico para todos os tipos de improbidade."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Família",
+      "text": "44. No regime de comunhão parcial de bens, que é o regime legal no Brasil na ausência de pacto antenupcial, comunicam-se entre os cônjuges:",
+      "options": [
+        "Os bens que cada cônjuge possuía ao casar e os recebidos por doação ou sucessão.",
+        "Os bens adquiridos na constância do casamento por título oneroso, ainda que só em nome de um dos cônjuges.",
+        "As obrigações anteriores ao casamento.",
+        "As heranças recebidas por qualquer dos cônjuges durante a união."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1.660, I do Código Civil."
+    },
+    {
+      "subject": "Processo Civil",
+      "topic": "Audiência de Conciliação",
+      "text": "45. Designada audiência de conciliação ou mediação, o réu é citado para comparecer. Se ambas as partes manifestarem, expressamente, desinteresse na composição consensual, o prazo para contestação começará a fluir da data:",
+      "options": [
+        "Da citação do réu.",
+        "Do protocolo do pedido de cancelamento da audiência apresentado pelo réu.",
+        "Da juntada do mandado de citação aos autos.",
+        "Da data em que a audiência ocorreria."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 335, II do CPC/15."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Pena Restritiva de Direitos",
+      "text": "46. As penas restritivas de direitos são autônomas e substituem as privativas de liberdade quando o crime for culposo ou, sendo doloso, a pena aplicada não for superior a:",
+      "options": [
+        "2 anos e o crime não for cometido com violência ou grave ameaça.",
+        "4 anos e o crime não for cometido com violência ou grave ameaça.",
+        "1 ano, independentemente da natureza do crime.",
+        "8 anos, se o réu for primário."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 44, I do Código Penal."
+    },
+    {
+      "subject": "Processo Penal",
+      "topic": "Habeas Corpus",
+      "text": "47. O Habeas Corpus é garantia constitucional contra violência ou coação na liberdade de locomoção. Sobre o HC, é correto afirmar que:",
+      "options": [
+        "Exige capacidade postulatória, devendo ser assinado obrigatoriamente por advogado.",
+        "Pode ser impetrado por qualquer pessoa, em seu favor ou de outrem, bem como pelo Ministério Público.",
+        "Não pode ser concedido de ofício pelo juiz ou tribunal.",
+        "Exige o pagamento de custas processuais mínimas se o impetrante tiver renda."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 654 do CPP. O HC é ação popular e gratuita, dispensando advogado."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "Insalubridade e Periculosidade",
+      "text": "48. Um empregado trabalha em um ambiente que é, simultaneamente, insalubre (exposição a ruído acima dos limites) e perigoso (contato com inflamáveis). Segundo a CLT e a jurisprudência atual do TST:",
+      "options": [
+        "O empregado tem direito a receber os dois adicionais acumuladamente.",
+        "O empregado deverá optar pelo adicional de insalubridade ou pelo de periculosidade, sendo vedada a acumulação.",
+        "O adicional de periculosidade absorve o de insalubridade por ser mais benéfico (30% sobre o salário base).",
+        "A acumulação é permitida apenas se prevista em convenção coletiva."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 193, § 2º da CLT e IRR do TST. A lei veda a acumulação de adicionais."
+    },
+    {
+      "subject": "Processo do Trabalho",
+      "topic": "Recurso de Revista",
+      "text": "49. O Recurso de Revista é o recurso de natureza extraordinária cabível contra decisões proferidas em grau de recurso ordinário pelos TRTs. Um pressuposto intrínseco específico deste recurso é a demonstração de:",
+      "options": [
+        "Repercussão geral da matéria.",
+        "Transcendência (econômica, política, social ou jurídica).",
+        "Violação de lei municipal.",
+        "Divergência entre juízes de primeiro grau do mesmo tribunal."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 896-A da CLT."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "IPI e Seletividade",
+      "text": "50. O Imposto sobre Produtos Industrializados (IPI) deve observar preceitos constitucionais específicos. Segundo a CF/88, o IPI:",
+      "options": [
+        "Não poderá ser seletivo, devendo ter alíquota única para todos os produtos.",
+        "Será seletivo, em função da essencialidade do produto.",
+        "Não incidirá sobre produtos destinados à exportação, salvo se forem matérias-primas.",
+        "É de competência concorrente entre União e Estados."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 153, § 3º, I da CF/88."
+    },
+    {
+      "subject": "Direito Empresarial",
+      "topic": "Propriedade Industrial",
+      "text": "51. O registro de desenho industrial no INPI protege a configuração externa de um objeto ou o conjunto ornamental de linhas e cores. De acordo com a Lei 9.279/96, o prazo de vigência do registro de desenho industrial é de:",
+      "options": [
+        "10 anos, improrrogáveis.",
+        "10 anos, podendo ser prorrogado por até 3 períodos sucessivos de 5 anos (total 25 anos).",
+        "20 anos contados do depósito.",
+        "Ad aeternum, enquanto for fabricado."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 108 da Lei 9.279/96."
+    },
+    {
+      "subject": "Ética Profissional",
+      "topic": "Direitos do Advogado",
+      "text": "52. O advogado tem o direito de examinar, em qualquer órgão dos Poderes Judiciário e Legislativo, ou da Administração Pública em geral, autos de processos findos ou em andamento, mesmo sem procuração, desde que:",
+      "options": [
+        "Não estejam sujeitos a sigilo ou segredo de justiça.",
+        "O cliente apresente declaração de hipossuficiência.",
+        "O processo verse sobre matéria tributária.",
+        "O advogado possua mais de 5 anos de inscrição."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 7º, XIII do EAOAB."
+    },
+    {
+      "subject": "Direito Constitucional",
+      "topic": "Segurança Pública",
+      "text": "53. A segurança pública, dever do Estado, direito e responsabilidade de todos, é exercida para a preservação da ordem pública e da incolumidade das pessoas e do patrimônio. Integram o rol dos órgãos de segurança pública previsto na CF/88:",
+      "options": [
+        "Polícia Federal, Polícia Rodoviária Federal, Polícias Civis, Militares e Guardas Municipais apenas.",
+        "Polícia Federal, Polícia Rodoviária Federal, Polícia Ferroviária Federal, Polícias Civis, Militares e Penais.",
+        "Forças Armadas e polícias estaduais.",
+        "Agência Brasileira de Inteligência (ABIN) e Polícia Federal."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 144 da CF/88, com a inclusão da Polícia Penal pela EC 104/2019."
+    },
+    {
+      "subject": "Direito Administrativo",
+      "topic": "Serviços Públicos",
+      "text": "54. Na concessão de serviço público, a retomada do serviço pelo poder concedente durante o prazo da concessão, por motivo de interesse público, mediante lei autorizativa específica e após prévio pagamento de indenização, denomina-se:",
+      "options": [
+        "Caducidade.",
+        "Encampação (ou Resgate).",
+        "Reversão.",
+        "Rescisão Judicial."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 37 da Lei 8.987/95."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Prescrição",
+      "text": "55. A prescrição ocorre em dez anos, quando a lei não lhe haja fixado prazo menor. Qual o prazo prescricional para a pretensão de reparação civil (danos morais e materiais)?",
+      "options": [
+        "1 ano.",
+        "3 anos.",
+        "5 anos.",
+        "10 anos."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 206, § 3º, V do Código Civil."
+    },
+    {
+      "subject": "Processo Civil",
+      "topic": "Embargos de Declaração",
+      "text": "56. Os embargos de declaração são cabíveis contra qualquer decisão judicial para esclarecer obscuridade, eliminar contradição, suprir omissão ou corrigir erro material. O prazo para sua interposição é de:",
+      "options": [
+        "15 dias úteis.",
+        "5 dias úteis.",
+        "10 dias úteis.",
+        "8 dias úteis."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1.023 do CPC/15. É o único recurso com prazo de 5 dias no CPC."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Peculato",
+      "text": "57. O funcionário público que, embora não tendo a posse do dinheiro, valor ou bem, o subtrai, ou concorre para que seja subtraído, em proveito próprio ou alheio, valendo-se de facilidade que lhe proporciona a qualidade de funcionário, comete o crime de:",
+      "options": [
+        "Peculato-apropriação.",
+        "Peculato-furto.",
+        "Peculato culposo.",
+        "Concussão."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 312, § 1º do Código Penal."
+    },
+    {
+      "subject": "Processo Penal",
+      "topic": "Ação Penal Pública",
+      "text": "58. Nos crimes em que a ação pública depender de representação, esta poderá ser exercida pelo ofendido ou por seu representante legal. O prazo decadencial para o exercício deste direito é de:",
+      "options": [
+        "30 dias após o fato.",
+        "6 meses, contado do dia em que o ofendido vier a saber quem é o autor do crime.",
+        "1 ano da data do fato.",
+        "Imprescritível até a sentença."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 38 do CPP."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "Estabilidade",
+      "text": "59. O empregado eleito para cargo de direção de Comissões Internas de Prevenção de Acidentes (CIPA) possui estabilidade provisória no emprego:",
+      "options": [
+        "Desde o registro da candidatura até um ano após o final do mandato.",
+        "Apenas durante o período em que estiver exercendo o mandato.",
+        "Não possui estabilidade, salvo se houver previsão em norma coletiva.",
+        "Desde a posse até o final do contrato de trabalho."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 10, II, 'a' do ADCT e Art. 165 da CLT."
+    },
+    {
+      "subject": "Processo do Trabalho",
+      "topic": "Depósito Recursal",
+      "text": "60. De acordo com a CLT, são isentos do pagamento do depósito recursal para interposição de recurso:",
+      "options": [
+        "As empresas públicas e sociedades de economia mista.",
+        "Os beneficiários da justiça gratuita, as entidades filantrópicas e as empresas em recuperação judicial.",
+        "Apenas os sindicatos.",
+        "Ninguém é isento, sendo pressuposto objetivo de admissibilidade para todos."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 899, § 10 da CLT."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "Imposto de Renda",
+      "text": "61. O Imposto sobre a Renda e Proventos de Qualquer Natureza (IR) é informado pelos princípios da:",
+      "options": [
+        "Anualidade, anterioridade e legalidade apenas.",
+        "Generalidade, universalidade e progressividade.",
+        "Seletividade e essencialidade.",
+        "Não cumulatividade e extrafiscalidade."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 153, § 2º, I da CF/88."
+    },
+    {
+      "subject": "Direito Empresarial",
+      "topic": "Sociedade Anônima",
+      "text": "62. Nas Sociedades Anônimas (S.A.), o capital social é dividido em ações. Sobre a responsabilidade dos acionistas, é correto afirmar que:",
+      "options": [
+        "É ilimitada e solidária entre todos os acionistas.",
+        "É limitada ao preço de emissão das ações subscritas ou adquiridas.",
+        "Os acionistas respondem subsidiariamente pela integralização do capital total.",
+        "Apenas os diretores respondem com seus bens pessoais em caso de dívida."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1º da Lei 6.404/76."
+    },
+    {
+      "subject": "ECA",
+      "topic": "Direito à Educação",
+      "text": "63. É dever do Estado assegurar à criança e ao adolescente o ensino fundamental, obrigatório e gratuito, inclusive para os que a ele não tiveram acesso na idade própria. Segundo o ECA, o não oferecimento do ensino obrigatório pelo Poder Público ou sua oferta irregular importa:",
+      "options": [
+        "Mera irregularidade administrativa sem sanção prevista.",
+        "Responsabilidade da autoridade competente (Crime de Responsabilidade).",
+        "Intervenção federal no Município ou Estado.",
+        "Perda imediata do cargo do Secretário de Educação."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 54, § 2º do ECA. O acesso ao ensino é direito público subjetivo."
+    },
+    {
+      "subject": "Direito do Consumidor",
+      "topic": "Cláusulas Abusivas",
+      "text": "64. São nulas de pleno direito, entre outras, as cláusulas contratuais relativas ao fornecimento de produtos e serviços que:",
+      "options": [
+        "Estabeleçam a inversão do ônus da prova em prejuízo do consumidor.",
+        "Permitam o arrependimento em 7 dias para compras em lojas físicas.",
+        "Fixem multas de mora de até 2% do valor da prestação.",
+        "Limitem o tempo de garantia do produto a 90 dias."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 51, VI do CDC."
+    },
+    {
+      "subject": "Direito Ambiental",
+      "topic": "Unidades de Conservação",
+      "text": "65. As Unidades de Conservação integram o Sistema Nacional de Unidades de Conservação da Natureza (SNUC). Aquela que tem por objetivo a preservação da natureza, admitindo apenas o uso indireto dos seus recursos naturais, denomina-se Unidade de:",
+      "options": [
+        "Uso Sustentável.",
+        "Proteção Integral.",
+        "Interesse Turístico.",
+        "Reserva Extrativista."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 7º da Lei 9.985/2000."
+    },
+    {
+      "subject": "Ética Profissional",
+      "topic": "Infrações Disciplinares",
+      "text": "66. O advogado que retém, abusivamente, autos recebidos com vista ou confiança, está sujeito à sanção disciplinar de:",
+      "options": [
+        "Censura.",
+        "Suspensão.",
+        "Exclusão.",
+        "Multa apenas."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 37, I do EAOAB."
+    },
+    {
+      "subject": "Direito Constitucional",
+      "topic": "Remédios Constitucionais",
+      "text": "67. O remédio constitucional adequado para assegurar o conhecimento de informações relativas à pessoa do impetrante, constantes de registros ou bancos de dados de entidades governamentais ou de caráter público, é o:",
+      "options": [
+        "Mandado de Segurança.",
+        "Habeas Data.",
+        "Habeas Corpus.",
+        "Ação Popular."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 5º, LXXII da CF/88."
+    },
+    {
+      "subject": "Direito Administrativo",
+      "topic": "Atos Administrativos",
+      "text": "68. O ato administrativo pelo qual a Administração Pública extingue um ato válido, por razões de conveniência e oportunidade (mérito administrativo), denomina-se:",
+      "options": [
+        "Anulação.",
+        "Revogação.",
+        "Cassação.",
+        "Caducidade."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Doutrina administrativa. A anulação ocorre por ilegalidade; a revogação por mérito."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Direito Real de Laje",
+      "text": "69. O proprietário de uma construção base poderá ceder a superfície superior ou inferior de sua construção a fim de que o titular da laje mantenha unidade distinta daquela originalmente construída sobre o solo. Sobre o direito real de laje, é correto afirmar que:",
+      "options": [
+        "A laje não pode ter matrícula própria no Registro de Imóveis.",
+        "Os titulares da laje respondem pelos encargos e tributos que incidirem sobre a sua unidade.",
+        "A instituição do direito de laje implica a atribuição de fração ideal de terreno ao lajeário.",
+        "É vedada a construção de lajes sucessivas (sobreposição)."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1.510-A do Código Civil."
+    },
+    {
+      "subject": "Processo Civil",
+      "topic": "Recurso Especial",
+      "text": "70. O Recurso Especial (REsp) é julgado pelo Superior Tribunal de Justiça (STJ) quando a decisão recorrida contrariar tratado ou lei federal, ou negar-lhes vigência. Um requisito essencial para a admissibilidade do REsp é o:",
+      "options": [
+        "Prequestionamento da matéria.",
+        "Demonstração de repercussão geral.",
+        "Depósito do valor integral da condenação.",
+        "Parecer favorável do Ministério Público Federal."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Súmulas 282 e 356 do STF e jurisprudência do STJ."
+    },
+    {
+      "subject": "Direito Penal",
+      "topic": "Crimes Hediondos",
+      "text": "71. De acordo com a Lei nº 8.072/1990, com as atualizações do Pacote Anticrime, considera-se crime hediondo:",
+      "options": [
+        "O furto qualificado pelo emprego de explosivo.",
+        "O roubo circunstanciado pelo emprego de arma branca.",
+        "O estelionato contra idoso.",
+        "A lesão corporal leve contra autoridade policial."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 1º, IX da Lei 8.072/90."
+    },
+    {
+      "subject": "Processo Penal",
+      "topic": "Competência",
+      "text": "72. A competência para processar e julgar o crime de latrocínio (roubo seguido de morte) é do:",
+      "options": [
+        "Tribunal do Júri.",
+        "Juiz singular da vara criminal comum.",
+        "Tribunal Regional Federal em todos os casos.",
+        "Juizado Especial Criminal se o valor for baixo."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Súmula 603 do STF. O latrocínio é crime contra o patrimônio."
+    },
+    {
+      "subject": "Direito do Trabalho",
+      "topic": "Intervalo Intrajornada",
+      "text": "73. Em qualquer trabalho contínuo, cuja duração exceda de 6 horas, é obrigatória a concessão de um intervalo para repouso ou alimentação. Segundo a CLT pós-reforma, o intervalo intrajornada pode ser reduzido para 30 minutos desde que:",
+      "options": [
+        "Haja apenas acordo individual escrito.",
+        "Haja previsão em convenção ou acordo coletivo de trabalho.",
+        "A empresa forneça alimentação gratuita no local.",
+        "O empregado more a menos de 1km da empresa."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 611-A, III da CLT."
+    },
+    {
+      "subject": "Direito Tributário",
+      "topic": "Taxas",
+      "text": "74. As taxas não podem ter base de cálculo própria de:",
+      "options": [
+        "Serviços públicos específicos.",
+        "Impostos.",
+        "Poder de polícia.",
+        "Emolumentos cartorários."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 145, § 2º da CF/88 e Súmula Vinculante 29."
+    },
+    {
+      "subject": "Direito Empresarial",
+      "topic": "Nome Empresarial",
+      "text": "75. O nome empresarial pode ser de duas espécies: firma ou denominação. Sobre a firma, é correto afirmar que:",
+      "options": [
+        "Deve conter o objeto social da empresa obrigatoriamente.",
+        "É formada pelo nome dos sócios, de forma completa ou abreviada.",
+        "Pode ser um nome de fantasia sem relação com os sócios.",
+        "Apenas sociedades anônimas podem usar firma."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 1.156 do Código Civil."
+    },
+    {
+      "subject": "Direitos Humanos",
+      "topic": "Estatuto do Idoso",
+      "text": "76. Segundo a Lei nº 10.741/2003 (Estatuto do Idoso), é assegurada a prioridade especial aos maiores de:",
+      "options": [
+        "60 anos sobre os demais.",
+        "80 anos, atendendo-se suas necessidades com preferência sobre os demais idosos.",
+        "65 anos em transporte coletivo apenas.",
+        "70 anos em processos judiciais apenas."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 15, § 2º do Estatuto do Idoso."
+    },
+    {
+      "subject": "Filosofia do Direito",
+      "topic": "Utilitarismo",
+      "text": "77. O utilitarismo de Jeremy Bentham propõe que a justiça de uma lei ou ação deve ser medida pelo princípio da utilidade, que busca:",
+      "options": [
+        "A proteção absoluta dos direitos individuais, independentemente das consequências.",
+        "A maior felicidade para o maior número de pessoas.",
+        "O cumprimento estrito da tradição religiosa.",
+        "A igualdade econômica absoluta entre todos os cidadãos."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Teoria Utilitarista."
+    },
+    {
+      "subject": "Consumidor",
+      "topic": "Cobrança de Dívidas",
+      "text": "78. Na cobrança de débitos, o consumidor inadimplente não será exposto a ridículo, nem será submetido a qualquer tipo de constrangimento ou ameaça. De acordo com o CDC, o consumidor cobrado em quantia indevida tem direito à repetição do indébito, por valor igual ao:",
+      "options": [
+        "Valor pago em excesso apenas.",
+        "Dobro do que pagou em excesso, acrescido de correção e juros, salvo engano justificável.",
+        "Triplo do valor, a título de danos punitivos.",
+        "Valor da dívida original apenas."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 42, parágrafo único do CDC."
+    },
+    {
+      "subject": "Direito Civil",
+      "topic": "Bens",
+      "text": "79. São bens imóveis para os efeitos legais:",
+      "options": [
+        "As energias que tenham valor econômico.",
+        "O direito à sucessão aberta.",
+        "Os materiais destinados a alguma construção, enquanto não forem nela empregados.",
+        "Os produtos da demolição de um prédio."
+      ],
+      "correct": 1,
+      "explanation": "Fundamentação: Art. 80, II do Código Civil."
+    },
+    {
+      "subject": "Direito Financeiro",
+      "topic": "Orçamento",
+      "text": "80. A lei que estabelece, de forma regionalizada, as diretrizes, objetivos e metas da administração pública federal para as despesas de capital e outras delas decorrentes é o:",
+      "options": [
+        "Plano Plurianual (PPA).",
+        "Lei de Diretrizes Orçamentárias (LDO).",
+        "Lei Orçamentária Anual (LOA).",
+        "Decreto de Contingenciamento."
+      ],
+      "correct": 0,
+      "explanation": "Fundamentação: Art. 165, § 1º da CF/88."
     }
+  
   ],
   "OAB44": [],
   "OAB43": [],
